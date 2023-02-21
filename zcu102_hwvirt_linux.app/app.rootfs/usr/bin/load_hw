@@ -1,0 +1,16 @@
+#!/bin/sh
+
+cd /opt/fredsys
+dtc -O dtb -o static.dtbo -b 0 -@ static.dts
+echo "Devicetree compiled"
+
+# Reconfigure the static design and apply its device tree overaly
+mkdir -p /lib/firmware
+cp /opt/fredsys/dart_fred/bits/static.bin /lib/firmware/
+cp /opt/fredsys/static.dtbo /lib/firmware/
+if [ ! -d "/sys/kernel/config/device-tree" ]; then
+ mount -t configfs none /sys/kernel/config
+fi
+mkdir -p /sys/kernel/config/device-tree/overlays/fred-static
+echo 0 > /sys/class/fpga_manager/fpga0/flags
+echo -n "static.dtbo" > /sys/kernel/config/device-tree/overlays/fred-static/path

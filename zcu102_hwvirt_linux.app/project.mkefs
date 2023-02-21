@@ -1,0 +1,1 @@
+copydir "$(ELINOS_PROJECT)/app.rootfs" "/"

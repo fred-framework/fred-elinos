@@ -1,0 +1,128 @@
+diff --git a/zynqmp-fpga-fmod.c b/zynqmp-fpga-fmod.c
+index 94c0f54..2ca3e96 100644
+--- a/zynqmp-fpga-fmod.c
++++ b/zynqmp-fpga-fmod.c
+@@ -55,8 +55,6 @@ MODULE_PARM_DESC(readback_type,
+ 		 "readback_type 0-configuration register read "
+ 		 "1- configuration data read (default: 0)");
+ 
+-static const struct zynqmp_eemi_ops *eemi_ops;
+-
+ /**
+  * struct zynqmp_configreg - Configuration register offsets
+  * @reg:	Name of the configuration register.
+@@ -145,9 +143,6 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
+ 	ktime_t rcfg_end_time;
+ /*----------------------------------------------------------------------------*/
+ 
+-	if (!eemi_ops->fpga_load)
+-		return -ENXIO;
+-
+ 	priv = mgr->priv;
+ 	priv->size = size;
+ 
+@@ -181,10 +176,10 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
+ /*----------------------------------------------------------------------------*/
+ 
+ 	if (priv->flags & IXR_FPGA_ENCRYPTION_EN)
+-		ret = eemi_ops->fpga_load(dma_addr, dma_addr + size,
++		ret = zynqmp_pm_fpga_load(dma_addr, dma_addr + size,
+ 					  priv->flags);
+ 	else
+-		ret = eemi_ops->fpga_load(dma_addr, size, priv->flags);
++		ret = zynqmp_pm_fpga_load(dma_addr, size, priv->flags);
+ 
+ /*---------------------------------- FMOD ------------------------------------*/
+ 	rcfg_end_time = ktime_get();
+@@ -209,10 +204,7 @@ static enum fpga_mgr_states zynqmp_fpga_ops_state(struct fpga_manager *mgr)
+ {
+ 	u32 status;
+ 
+-	if (!eemi_ops->fpga_get_status)
+-		return FPGA_MGR_STATE_UNKNOWN;
+-
+-	eemi_ops->fpga_get_status(&status);
++	zynqmp_pm_fpga_get_status(&status);
+ 	if (status & IXR_FPGA_DONE_MASK)
+ 		return FPGA_MGR_STATE_OPERATING;
+ 
+@@ -221,21 +213,17 @@ static enum fpga_mgr_states zynqmp_fpga_ops_state(struct fpga_manager *mgr)
+ 
+ static u64 zynqmp_fpga_ops_status(struct fpga_manager *mgr)
+ {
+-	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_pm_get_eemi_ops();
+ 	unsigned int *buf, reg_val;
+ 	dma_addr_t dma_addr;
+ 	u64 status = 0;
+ 	int ret;
+ 
+-	if (IS_ERR_OR_NULL(eemi_ops) || !eemi_ops->fpga_read)
+-		return FPGA_MGR_STATUS_FIRMWARE_REQ_ERR;
+-
+ 	buf = dma_zalloc_coherent(mgr->dev.parent, READ_DMA_SIZE,
+ 				  &dma_addr, GFP_KERNEL);
+ 	if (!buf)
+ 		return FPGA_MGR_STATUS_FIRMWARE_REQ_ERR;
+ 
+-	ret = eemi_ops->fpga_read(IXR_FPGA_CONFIG_STAT_OFFSET, dma_addr,
++	ret = zynqmp_pm_fpga_read(IXR_FPGA_CONFIG_STAT_OFFSET, dma_addr,
+ 				  IXR_FPGA_READ_CONFIG_TYPE, &reg_val);
+ 	if (ret) {
+ 		status = FPGA_MGR_STATUS_FIRMWARE_REQ_ERR;
+@@ -284,7 +272,7 @@ static int zynqmp_fpga_read_cfgreg(struct fpga_manager *mgr,
+ 	seq_puts(s, "zynqMP FPGA Configuration register contents are\n");
+ 
+ 	while (p->reg) {
+-		ret = eemi_ops->fpga_read(p->offset, dma_addr, readback_type,
++		ret = zynqmp_pm_fpga_read(p->offset, dma_addr, readback_type,
+ 					  &val);
+ 		if (ret)
+ 			goto free_dmabuf;
+@@ -340,7 +328,7 @@ static int zynqmp_fpga_read_cfgdata(struct fpga_manager *mgr,
+ 	}
+ 
+ 	seq_puts(s, "zynqMP FPGA Configuration data contents are\n");
+-	ret = eemi_ops->fpga_read((priv->size + DUMMY_FRAMES_SIZE) / 4,
++	ret = zynqmp_pm_fpga_read((priv->size + DUMMY_FRAMES_SIZE) / 4,
+ 				  dma_addr, readback_type, &data_offset);
+ 	if (ret)
+ 		goto free_dmabuf;
+@@ -364,9 +352,6 @@ static int zynqmp_fpga_ops_read(struct fpga_manager *mgr, struct seq_file *s)
+ 	struct zynqmp_fpga_priv *priv = mgr->priv;
+ 	int ret;
+ 
+-	if (!eemi_ops->fpga_read)
+-		return -ENXIO;
+-
+ 	if (!mutex_trylock(&priv->lock))
+ 		return -EBUSY;
+ 
+@@ -391,7 +376,7 @@ static const struct fpga_manager_ops zynqmp_fpga_ops = {
+ /*---------------------------------- FMOD ------------------------------------*/
+ static int phy_bit_start_dma_partial(struct zynqmp_fpga_priv *priv)
+ {
+-	if (!eemi_ops->fpga_load || priv->flags & IXR_FPGA_ENCRYPTION_EN)
++	if (priv->flags & IXR_FPGA_ENCRYPTION_EN)
+ 		return -ENXIO;
+ 
+ 	if (atomic_read(&priv->rcfg))
+@@ -439,7 +424,7 @@ int rcfg_worker(void *data)
+ 
+ 		/* call the FW to perform the reconfiguration */
+ 		dev_dbg(&mgr->dev, "phy_bit: notifier thread: calling FW\n");
+-		ret = eemi_ops->fpga_load((dma_addr_t)priv->phy_bit_addr,
++		ret = zynqmp_pm_fpga_load((dma_addr_t)priv->phy_bit_addr,
+ 						priv->phy_bit_size,
+ 						priv->flags | FPGA_MGR_PARTIAL_RECONFIG);
+ 
+@@ -574,10 +559,6 @@ static int zynqmp_fpga_probe(struct platform_device *pdev)
+ 	int err, ret;
+ 	struct fpga_manager *mgr;
+ 
+-	eemi_ops = zynqmp_pm_get_eemi_ops();
+-	if (IS_ERR(eemi_ops))
+-		return PTR_ERR(eemi_ops);
+-
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+ 		return -ENOMEM;

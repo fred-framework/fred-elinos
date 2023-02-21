@@ -1,0 +1,23 @@
+INSTALL_PATH    = $(ELINOS_PROJECT)/app.rootfs
+ELINOS          = ELinOS
+
+CFLAGS         = -Wall -DELINOS="\"$(ELINOS)\""
+
+# utilities to be built from a single C source
+PROGRAMS        = hello_world welcome_elinos
+# shell scripts
+SHELLSCRIPTS    = hello.sh
+
+all: $(PROGRAMS) $(SHELLSCRIPTS)
+	
+install: all
+	install -d $(INSTALL_PATH)/bin
+	install -m 755 $(PROGRAMS) $(SHELLSCRIPTS) $(INSTALL_PATH)/bin
+
+clean:
+	rm -f $(PROGRAMS)
+
+distclean: clean
+	for installed_file in $(PROGRAMS) $(SHELLSCRIPTS); do \
+	rm -f $(INSTALL_PATH)/bin/$$installed_file; \
+	done

@@ -1,0 +1,11 @@
+lttng2-user-hello-run
+
+This demo demonstrates the usage of the Userspace Tracer (UST).
+It is a hello world application instrumented with LTTNG markers
+used to test the LTTng userspace tracer.
+Please start CODEO and connect to the trace server. You need to
+start the application in order to see the user space traces in
+the CODEO configuration dialog.
+
+More information about Userspace Tracer can be found here:
+http://lttng.org/ust

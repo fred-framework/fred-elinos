@@ -1,0 +1,31 @@
+#
+# Example to build a kernel module outside the kernel tree,
+# but using the kernel make rules and its configuration.
+#
+# elinos-buildkernel is recommended because it makes sure that the kernel build
+# arguments are correctly set. Otherwise the kernel may rebuild all files
+#
+
+module_list := $(patsubst %/,%,$(dir $(wildcard $(shell pwd)/*/Makefile)))
+
+all: prepare
+	for module in $(module_list); do \
+		elinos-buildkernel M=$$module modules || exit 1; \
+	done
+
+prepare:
+	elinos-buildkernel modules_prepare
+
+install: all
+	for module in $(module_list); do \
+		elinos-buildkernel M=$$module modules_install || exit 1; \
+	done
+
+clean:
+	for module in $(module_list); do \
+		elinos-buildkernel M=$$module clean || exit 1; \
+	done
+
+distclean: clean
+
+.PHONY: all install prepare clean distclean

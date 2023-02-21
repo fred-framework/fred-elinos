@@ -1,0 +1,16 @@
+CFLAGS = -g -Wall
+demo_files = hanoi
+
+all: $(demo_files)
+
+install: all
+	install -d $(ELINOS_PROJECT)/app.rootfs/demo
+	(for file in $(demo_files); do \
+		install -m 755 $$file $(ELINOS_PROJECT)/app.rootfs/demo; \
+	done)
+
+clean:
+	rm -f hanoi *.o
+
+distclean: 
+	rm -rf $(ELINOS_PROJECT)/app.rootfs/demo

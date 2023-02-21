@@ -1,0 +1,29 @@
+LTTNG=$(shell grep '\<ELINOS_TRACENG\>' $(ELINOS_PROJECT)/.features |awk 'BEGIN {FS="="}; {print $$2}')
+
+# NOTE: The header file with the tracepoint definitions must be available in the
+#       header search path because the LTTng header file includes the specified
+#       file (check TRACEPOINT_INCLUDE_FILE).
+CFLAGS = -g3 -O0 -Wall -Wsystem-headers -I./
+LFLAGS = -llttng-ust -ldl
+
+ifeq "$(LTTNG)" "y"
+lttng2-user-hello: hello.o tp.o
+	$(CC) $(CFLAGS) $^ $(LFLAGS) -o $@
+else
+lttng2-user-hello:
+	-echo "Tracing is disabled. Don't create files."
+endif
+
+all: lttng2-user-hello
+
+install: lttng2-user-hello
+ifeq "$(LTTNG)" "y"
+	mkdir -p $(ELINOS_PROJECT)/app.rootfs/bin
+	cp $^ $(ELINOS_PROJECT)/app.rootfs/bin/.
+endif
+
+clean:
+	rm -f *~ *.o lttng2-user-hello
+	rm -f .depend
+
+distclean:

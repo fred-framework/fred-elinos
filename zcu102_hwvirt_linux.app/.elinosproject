@@ -1,0 +1,145 @@
+ELINOS_SAVED_DOSNAME=""
+ELINOS_SAVED_BOARD="zynq-zcu102_hwvirt"
+ELINOS_SAVED_KERNELPATH="zynq-zcu102/linux-5.10"
+ELINOS_PROJECT_PRJTYPE="system"
+ELINOS_PROJECT_ARCH="v8hf"
+ELINOS_PROJECT_BOARD="zynq-zcu102_hwvirt"
+ELINOS_PROJECT_BOOT_STRAT="pikeos_hwvirt"
+ELINOS_PROJECT_CPU="arm"
+ELINOS_PROJECT_DTB_FILE="xilinx/zynqmp-zcu102-revB-hwvirt.dtb"
+ELINOS_PROJECT_DTS_FILE=""
+ELINOS_PROJECT_FDT_LOAD_ADDRESS=""
+ELINOS_PROJECT_KERNELPATH="zynq-zcu102/linux-5.10"
+ELINOS_PROJECT_LIBC="glibc"
+ELINOS_PROJECT_MENMON=""
+ELINOS_PROJECT_MKIMAGE_DEF_IMG_TYP=""
+ELINOS_PROJECT_MKIMAGE_ENABLE_CUIMAGE=""
+ELINOS_PROJECT_MKIMAGE_ENABLE_UIMAGE_APPENDED_DTB=""
+ELINOS_PROJECT_MKIMAGE_ENTRY_ADDRESS=""
+ELINOS_PROJECT_MKIMAGE_LOAD_ADDRESS=""
+ELINOS_PROJECT_VERSION="7.1"
+ELINOS_PROJECT_ZIMAGENAME=""
+# ELINOS_BOARD_000eli is not set
+# ELINOS_BOARD_foundation_v8 is not set
+# ELINOS_BOARD_foundation_v8_hwvirt is not set
+# ELINOS_BOARD_juno_a57 is not set
+# ELINOS_BOARD_juno_a57_hwvirt is not set
+# ELINOS_BOARD_ls1028ardb is not set
+# ELINOS_BOARD_ls1043ardb is not set
+# ELINOS_BOARD_ls1043ardb_hwvirt is not set
+# ELINOS_BOARD_imx6_sa_dtb is not set
+# ELINOS_BOARD_imx6_sd_dtb is not set
+# ELINOS_BOARD_jetson_tk1 is not set
+# ELINOS_BOARD_jetson_tk1_hwvirt is not set
+# ELINOS_BOARD_jetson_tx1 is not set
+# ELINOS_BOARD_imx8_qxp_mek is not set
+# ELINOS_BOARD_imx8_qxp_mek_hwvirt is not set
+# ELINOS_BOARD_pikeos_arm_secure_io_v7hf is not set
+# ELINOS_BOARD_pikeos_arm_secure_io_v8hf is not set
+# ELINOS_BOARD_pikeos_hwvirt_secure_v7hf is not set
+# ELINOS_BOARD_pikeos_hwvirt_secure_v8hf is not set
+# ELINOS_BOARD_qemu_arm_v7hf is not set
+# ELINOS_BOARD_qemu_arm_v8hf is not set
+# ELINOS_BOARD_rpi_3_b_64bit is not set
+# ELINOS_BOARD_rpi_3_bplus_64bit is not set
+# ELINOS_BOARD_rpi_4_b_64bit is not set
+# ELINOS_BOARD_renesas_salvator_x is not set
+# ELINOS_BOARD_renesas_salvator_x_hwvirt is not set
+# ELINOS_BOARD_tqma8xqp_mba8xx is not set
+# ELINOS_BOARD_zynq_zc702 is not set
+# ELINOS_BOARD_zynq_zcu102 is not set
+ELINOS_BOARD_zynq_zcu102_hwvirt=y
+# ELINOS_BOARD_zzzcust is not set
+# ELINOS_CPU_000eli is not set
+ELINOS_CPU_arm=y
+# ELINOS_ARCH_000eli is not set
+# ELINOS_ARCH_v7hf is not set
+ELINOS_ARCH_v8hf=y
+ELINOS_LIB_glibc=y
+# ELINOS_BOOT_pikeos is not set
+ELINOS_BOOT_pikeos_hwvirt=y
+# ELINOS_BOOT_qemu is not set
+# ELINOS_BOOT_raspberry_pi is not set
+# ELINOS_BOOT_uboot is not set
+# ELINOS_BOOT_zimage is not set
+# ELINOS_BOOT_custom_boot is not set
+ELINOS_BOOT_VAR_DTB_FILE="xilinx/zynqmp-zcu102-revB-hwvirt.dtb"
+ELINOS_BOOT_VAR_ZIMAGENAME=""
+ELINOS_KERNEL_zynq_zcu102_linux_5_10=y
+# ELINOS_KERNEL_zynq_zc702_linux_5_10 is not set
+# ELINOS_KERNEL_renesas_rcarh3_linux_5_10 is not set
+# ELINOS_KERNEL_raspi64_linux_5_10 is not set
+# ELINOS_KERNEL_qemu_arm_v8hf_linux_5_10 is not set
+# ELINOS_KERNEL_qemu_arm_v7hf_linux_5_10 is not set
+# ELINOS_KERNEL_pikeos_hwvirt_secure_v8hf_linux_5_10 is not set
+# ELINOS_KERNEL_pikeos_hwvirt_secure_v7hf_linux_5_10 is not set
+# ELINOS_KERNEL_pikeos_arm_v8hf_linux_5_10 is not set
+# ELINOS_KERNEL_pikeos_arm_v7hf_linux_5_10 is not set
+# ELINOS_KERNEL_linux_linux_5_10 is not set
+# ELINOS_KERNEL_jetson_tx_linux_5_10 is not set
+# ELINOS_KERNEL_jetson_tk1_linux_5_10 is not set
+# ELINOS_KERNEL_imx8_linux_5_10 is not set
+# ELINOS_KERNEL_imx6_linux_5_10 is not set
+# ELINOS_KERNEL_fsl_qoriq_arm_v8hf_linux_5_10 is not set
+# ELINOS_KERNEL_custom is not set
+# ELINOS_KERNEL_arm_vexpress_linux_5_10 is not set
+ELINOS_HAS_ARCH_v7hf=y
+ELINOS_HAS_ARCH_v8hf=y
+ELINOS_HAS_CPU_arm=y
+ELINOS_HAS_LIBC="glibc"
+# ELINOS_FORCE_BOOT_NOMULTI is not set
+# ELINOS_FORCE_P4 is not set
+# ELINOS_DISABLE_CPU_ARM is not set
+# ELINOS_DISABLE_CPU_MIPS is not set
+# ELINOS_DISABLE_CPU_PPC is not set
+# ELINOS_DISABLE_CPU_SH is not set
+# ELINOS_DISABLE_CPU_SPARC is not set
+# ELINOS_DISABLE_CPU_X86 is not set
+ELINOS_MAKE_NUM_JOBS_AUTODETECTED=y
+ELINOS_MAKE_NUM_JOBS=9
+ELINOS_HIDE_BSP=y
+
+#
+# Custom Pool
+#
+ELINOS_CUSTOM_POOL_DIR=""
+ELINOS_CUSTOM_POOL_SUBDIR="virtualization/object"
+ELINOS_CUSTOM_POOL_BOOT_IMAGENAME="linux"
+
+#
+# Tools
+#
+
+#
+# Configure mkefs
+#
+ELINOS_MKEFS_AUTO_STRIP=y
+ELINOS_MKEFS_AUTO_INCLUDE=y
+ELINOS_MKEFS_ADD_SEARCH_PATH=""
+# ELINOS_MKEFS_REPORT_INODES is not set
+ELINOS_MKEFS_VERBOSITY_NONE=y
+# ELINOS_MKEFS_VERBOSITY_NORMAL is not set
+# ELINOS_MKEFS_VERBOSITY_MORE is not set
+# ELINOS_MKEFS_VERBOSITY_MOST is not set
+ELINOS_MKEFS_SIGN=""
+# ELINOS_MKEFS_ALLOW_DUPLICATE_FILES is not set
+ELINOS_MKEFS_ADD_PARAMETERS=""
+
+#
+# Configure validation
+#
+ELINOS_VALIDATION_ALWAYS=y
+ELINOS_VALIDATION_FILE_SYSTEM=y
+ELINOS_VALIDATION_KERNEL=y
+ELINOS_VALIDATION_ELINOS=y
+ELINOS_VALIDATION_CROSS=y
+
+#
+# Configure the build process
+#
+ELINOS_MAKE_VERBOSE=y
+# ELINOS_FORCE_LINK is not set
+
+#
+# Configure mkimage
+#

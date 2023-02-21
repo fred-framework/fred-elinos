@@ -1,0 +1,30 @@
+#
+# This example show how to add a source package to ELinOS projects.
+#
+
+PACKAGE=rsync-3.1.1
+
+all: $(PACKAGE)/rsync
+
+$(PACKAGE)/rsync:
+	rm -rf $(PACKAGE)
+	tar xvfz $(PACKAGE).tar.gz
+	(					\
+	  cd $(PACKAGE);			\
+	  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+	  --host=$(ELINOS_TARGET) --build=i686-pc-linux-gnu; \
+	  make					\
+	)
+
+install: all
+	(					\
+	  cd $(PACKAGE);			\
+	  make DESTDIR=$(ELINOS_PROJECT)/app.rootfs install	\
+	)
+
+clean:
+	rm -rf $(PACKAGE)
+
+distclean: clean
+	rm -rf $(ELINOS_PROJECT)/app.rootfs/*
+

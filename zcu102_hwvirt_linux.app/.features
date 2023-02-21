@@ -1,0 +1,1253 @@
+ELINOS_HAS_KERNEL_VERSION=5
+ELINOS_HAS_KERNEL_PATCHLEVEL=10
+ELINOS_HAS_KERNEL_SUBLEVEL=107
+ELINOS_HAS_KERNEL_EXTRAVERSION="-ELinOS-5439"
+ELINOS_HAS_LTTNG=y
+ELINOS_BOARD_ZYNQ_ZCU102=y
+
+#
+# Note for PikeOS Integrators: PikeOS Version
+#
+
+#
+# Required Firmware Version
+#
+ELINOS_DEFAULT_CONSOLE="vmtty"
+ELINOS_SER_CONSOLE_OPTIONS="ttyPS0,115200"
+ELINOS_DMA_SUPPORT=y
+ELINOS_FORCE_PCI_MSI=y
+ELINOS_FORCE_GPIO=y
+ELINOS_FORCE_SPI=y
+ELINOS_FORCE_I2C=y
+# ELINOS_BSP_NETWIRELESS_DEPENDENCY is not set
+ELINOS_HARDWARE_ZCU102_GENERIC_ALL=y
+# ELINOS_HARDWARE_ZCU102_WIRELESS is not set
+
+#
+# Global settings
+#
+# ELINOS_FEATURES_NOT_USED is not set
+# ELINOS_ADVANCED_OPTIONS is not set
+
+#
+# Additional peripherals support
+#
+# ELINOS_FORCE_ALL_HAS_FEATURES is not set
+# ELINOS_FORCE_HAS_DRM is not set
+# ELINOS_FORCE_HAS_FRAMEBUFFER is not set
+# ELINOS_FORCE_HAS_FRAMEBUFFER_VESA is not set
+# ELINOS_FORCE_HAS_ISA is not set
+# ELINOS_FORCE_HAS_STORAGE_SATA is not set
+# ELINOS_FORCE_HAS_PCI is not set
+# ELINOS_FORCE_HAS_SENSORS is not set
+# ELINOS_FORCE_HAS_SER_CONSOLE is not set
+# ELINOS_FORCE_HAS_SMP is not set
+# ELINOS_FORCE_HAS_SOUND is not set
+# ELINOS_FORCE_HAS_RTC is not set
+# ELINOS_FORCE_HAS_USB is not set
+# ELINOS_FORCE_HAS_ACPI is not set
+# ELINOS_FORCE_HAS_USB_GADGET is not set
+# ELINOS_FORCE_HAS_VGA_CONSOLE is not set
+# ELINOS_FORCE_HAS_WATCHDOG is not set
+# ELINOS_FORCE_HAS_TOUCHSCREEN is not set
+# ELINOS_FORCE_HAS_CAN is not set
+# ELINOS_FORCE_HAS_GPIO is not set
+# ELINOS_FORCE_HAS_I2C is not set
+# ELINOS_FORCE_HAS_LED is not set
+# ELINOS_FORCE_HAS_SPI is not set
+# ELINOS_PIKEOS_BASE is not set
+
+#
+# PikeOS Settings and Drivers
+#
+# ELINOS_P4VM_PORT is not set
+# ELINOS_P4VM_TTY is not set
+# ELINOS_P4VM_FILE_TTY is not set
+# ELINOS_P4VM_CHAR is not set
+# ELINOS_P4VM_LINK is not set
+# ELINOS_P4VM_FILE_CHAR is not set
+# ELINOS_P4VM_SPORT is not set
+# ELINOS_P4VM_FILE_SHM is not set
+# ELINOS_P4VM_PARTCTRL is not set
+# ELINOS_P4VM_MTD is not set
+# ELINOS_P4VM_BLK is not set
+# ELINOS_P4VM_FS is not set
+# ELINOS_PIKEOS_CONSOLE is not set
+
+#
+# General system configuration
+#
+ELINOS_DEFCONFIG=y
+ELINOS_DEFCONFIG_SECURITY=y
+
+#
+# Init process
+#
+ELINOS_INIT=y
+# ELINOS_INIT_SBIN_init is not set
+ELINOS_INIT_EARLY_USERSPACE=""
+# ELINOS_WANT_SYSTEMD is not set
+ELINOS_INIT_BUSYBOX=y
+# ELINOS_INIT_SYSTEMD is not set
+# ELINOS_INIT_CUSTOM is not set
+
+#
+# Init-specific options
+#
+# ELINOS_INIT_SYSTEMD_SBIN_reboot is not set
+# ELINOS_INIT_SYSTEMD_SBIN_halt is not set
+# ELINOS_INIT_SYSTEMD_SBIN_poweroff is not set
+# ELINOS_INIT_SYSTEMD_SBIN_init is not set
+# ELINOS_SYSTEMD_FULL_SETUP is not set
+# ELINOS_SYSTEMD_ENABLE_ADDITIONAL_FEATURES is not set
+# ELINOS_SYSTEMD_CONSOLE_DEBUG is not set
+# ELINOS_SYSTEMD_DEPENDENCIES is not set
+# ELINOS_SYSTEMD_PREDICTABLE_NETIF_NAMES is not set
+# ELINOS_RUNLEVEL_2 is not set
+ELINOS_RUNLEVEL_3=y
+# ELINOS_RUNLEVEL_4 is not set
+# ELINOS_RUNLEVEL_5 is not set
+# ELINOS_RUNLEVEL_CUSTOM is not set
+ELINOS_INIT_CREATE_INITTAB=y
+ELINOS_INIT_CUSTOM_INITTAB_FILE=""
+# ELINOS_INIT_ENABLE_AUTOSTART is not set
+
+#
+# Console
+#
+ELINOS_CONSOLE=y
+ELINOS_HAS_CONSOLE=y
+# ELINOS_DUMMY_CONSOLE is not set
+ELINOS_P4BUS_VMTTY_CONSOLE=y
+# ELINOS_FB_CONSOLE is not set
+ELINOS_HAS_SER_CONSOLE=y
+ELINOS_SER_CONSOLE=y
+ELINOS_USER_SER_CONSOLE_OPTIONS=""
+# ELINOS_HAS_VGA_CONSOLE is not set
+ELINOS_VGA_CONSOLE_USABLE=y
+
+#
+# Text console on VGA port not available due to framebuffer
+#
+# ELINOS_VGA_CONSOLE is not set
+
+#
+# Console on virtual terminal automatically activated
+#
+# ELINOS_VT_CONSOLE is not set
+# ELINOS_P4VM_FILE_CONSOLE is not set
+# ELINOS_P4VM_PORT_CONSOLE is not set
+# ELINOS_P4VM_EARLYPRINTK is not set
+ELINOS_P4BUS_VMTTY_CONSOLE_NAME="vmtty0"
+# ELINOS_VMM_EARLY_CONSOLE_ACTIVATE is not set
+# ELINOS_STD_P4_FILE_CONSOLE is not set
+# ELINOS_STD_P4_PORT_CONSOLE is not set
+ELINOS_STD_P4BUS_VMTTY_CONSOLE=y
+# ELINOS_STD_SER_CONSOLE is not set
+# ELINOS_STD_VT_CONSOLE is not set
+# ELINOS_SYSTEMD_ENABLE_TTY_GENERATOR is not set
+# ELINOS_EXTRA_CONSOLE is not set
+ELINOS_SYSTEM_START=y
+
+#
+# System startup (Login, Boot Shell)
+#
+# ELINOS_LOGIN_ON_CONSOLE is not set
+ELINOS_APP_ON_CONSOLE=y
+ELINOS_APP_ON_CONSOLE_PATH="/bin/sh"
+# ELINOS_XDM_ON_CONSOLE is not set
+# ELINOS_QUIET_ON_CONSOLE is not set
+ELINOS_PASSWD=y
+ELINOS_PAM=y
+ELINOS_PASSWD_SRC="$ELINOS_FEATURE_BASE/system-start/passwd"
+ELINOS_PASSWD_SAMPLE_ACCOUNT=""
+ELINOS_LOGIN_securetty="$ELINOS_FEATURE_BASE/system-start/securetty"
+ELINOS_LOGIN_securetty_ADD_SER_CONSOLE=y
+ELINOS_SHADOW=y
+# ELINOS_RESET_DATE is not set
+# ELINOS_INITIALIZE_ENTROPY is not set
+ELINOS_LSB_INIT_FUNCTIONS=y
+
+#
+# Shell
+#
+ELINOS_SHELL=y
+# ELINOS_SHELL_DASH is not set
+# ELINOS_SHELL_BASH is not set
+ELINOS_SHELL_BUSYBOX=y
+# ELINOS_SHELL_NONE is not set
+
+#
+# BusyBox as default shell not available due to SELinux
+#
+ELINOS_SHELL_ETC_PROFILE=y
+ELINOS_SHELL_ETC_PROFILE_profile="$ELINOS_PROJECT/src/etc/profile"
+# ELINOS_SHELL_USR_SHARE_TERMINFO is not set
+# ELINOS_DASH is not set
+ELINOS_BASH=y
+ELINOS_INPUTRC=y
+ELINOS_CUSTOM_INPUTRC=""
+
+#
+# Logging of system messages
+#
+ELINOS_SYSLOGD=y
+ELINOS_WANT_SYSLOGD=y
+# ELINOS_UTIL_LINUX_bin_dmesg is not set
+# ELINOS_UTIL_LINUX_usr_bin_logger is not set
+# ELINOS_NO_SYSLOGD is not set
+# ELINOS_SYSTEMD_JOURNAL is not set
+ELINOS_RSYSLOGD=y
+ELINOS_RSYSLOGD_PLUGINS_BASE=y
+# ELINOS_RSYSLOGD_PLUGINS_ALL is not set
+ELINOS_RSYSLOGD_CONFIG="$ELINOS_FEATURE_BASE/syslogd/rsyslog.conf"
+# ELINOS_CRON is not set
+ELINOS_TTY=y
+ELINOS_VT=y
+
+#
+#   Utilities for virtual terminals
+#
+# ELINOS_VTUTILS_ALL is not set
+# ELINOS_UTIL_LINUX_sbin_agetty is not set
+# ELINOS_VTUTIL_UBIN_chvt is not set
+# ELINOS_VTUTIL_UBIN_deallocvt is not set
+# ELINOS_VTUTIL_UBIN_dumpkeys is not set
+# ELINOS_VTUTIL_UBIN_fgconsole is not set
+# ELINOS_VTUTIL_UBIN_getkeycodes is not set
+# ELINOS_VTUTIL_UBIN_kbd_mode is not set
+# ELINOS_VTUTIL_UBIN_kbdrate is not set
+# ELINOS_VTUTIL_UBIN_loadkeys is not set
+# ELINOS_VTUTIL_UBIN_loadunimap is not set
+# ELINOS_VTUTIL_UBIN_mapscrn is not set
+# ELINOS_VTUTIL_UBIN_openvt is not set
+# ELINOS_VTUTIL_UBIN_psfaddtable is not set
+# ELINOS_VTUTIL_UBIN_psfgettable is not set
+# ELINOS_VTUTIL_UBIN_psfstriptable is not set
+# ELINOS_VTUTIL_UBIN_psfxtable is not set
+# ELINOS_VTUTIL_UBIN_setfont is not set
+# ELINOS_VTUTIL_UBIN_setkeycodes is not set
+# ELINOS_VTUTIL_UBIN_setleds is not set
+# ELINOS_VTUTIL_UBIN_setmetamode is not set
+# ELINOS_VTUTIL_UBIN_setterm is not set
+# ELINOS_VTUTIL_UBIN_showconsolefont is not set
+# ELINOS_VTUTIL_UBIN_showkey is not set
+# ELINOS_VTUTIL_BIN_stty is not set
+# ELINOS_VTUTIL_BIN_tty is not set
+# ELINOS_VTUTIL_UBIN_unicode_start is not set
+# ELINOS_VTUTIL_UBIN_unicode_stop is not set
+ELINOS_PTYS=y
+ELINOS_BUSYBOX=y
+ELINOS_BUSYBOX_DYNAMIC=y
+# ELINOS_BUSYBOX_STATIC is not set
+# ELINOS_BUSYBOX_CUSTOM is not set
+ELINOS_BUSYBOX_SKIP_FILES=""
+ELINOS_BUSYBOX_OVERRIDE_DIRECTORIES=""
+ELINOS_SYSCTL=y
+ELINOS_SYSCTL_CONF=y
+ELINOS_SYSCTL_CUSTOM_CONF=""
+ELINOS_MODULES=y
+ELINOS_MODULE_UNLOAD=y
+# ELINOS_KMOD_UTILS is not set
+ELINOS_LIBC_NSSWITCH=y
+ELINOS_LIBC_NSSWITCH_CONF=y
+# ELINOS_LIBC_NSSWITCH_CONF_CUSTOM is not set
+# ELINOS_KERNELPARAMS is not set
+ELINOS_SYSVIPC=y
+ELINOS_SHMEM_FULL=y
+# ELINOS_UTIL_LINUX_usr_bin_ipcrm is not set
+# ELINOS_UTIL_LINUX_usr_bin_ipcs is not set
+# ELINOS_SWAP is not set
+# ELINOS_SWAP_CREATE is not set
+# ELINOS_SWAP_INIT is not set
+
+#
+#   Swap utilities
+#
+# ELINOS_SWAPUTILS_ALL is not set
+# ELINOS_UTIL_LINUX_sbin_mkswap is not set
+# ELINOS_UTIL_LINUX_sbin_swapoff is not set
+# ELINOS_UTIL_LINUX_sbin_swapon is not set
+# ELINOS_LOOPBLK is not set
+# ELINOS_UTIL_LINUX_sbin_losetup is not set
+# ELINOS_X86 is not set
+# ELINOS_X86_EFI is not set
+# ELINOS_X86_EFI_RW is not set
+# ELINOS_X86_EFI_TOOLS is not set
+# ELINOS_X86_64_32BIT_COMPAT is not set
+ELINOS_HAS_PM_CPUIDLE=y
+ELINOS_HAS_PM_CPUFREQ=y
+# ELINOS_HAS_PM_SUSPEND is not set
+# ELINOS_PM is not set
+
+#
+# Power Management
+#
+# ELINOS_CPU_IDLE is not set
+# ELINOS_CPU_FREQ is not set
+# ELINOS_PM_SUSPEND is not set
+ELINOS_GENERAL_CONFIG=y
+ELINOS_DYNTICKS=y
+ELINOS_EPOLL=y
+# ELINOS_CGROUPS is not set
+# ELINOS_CGROUPS_LIBCGROUP is not set
+# ELINOS_NAMESPACES is not set
+
+#
+# Hardware configuration
+#
+ELINOS_HARDWARE_ALL=y
+# ELINOS_HAS_ACPI is not set
+# ELINOS_HARDWARE_ACPI_ALL is not set
+# ELINOS_WANT_ACPI is not set
+# ELINOS_ACPI is not set
+ELINOS_HAS_SMP=y
+ELINOS_HARDWARE_SMP_ALL=y
+# ELINOS_WANT_SMP is not set
+ELINOS_SMP=y
+ELINOS_SMP_NR_CPUS="8"
+ELINOS_HARDWARE_INPUT_ALL=y
+ELINOS_INPUT=y
+ELINOS_INPUT_KEYBOARD=y
+ELINOS_INPUT_MOUSE=y
+# ELINOS_HAS_ISA is not set
+ELINOS_HAS_STORAGE_SATA=y
+# ELINOS_HAS_STORAGE_CUSTOM is not set
+ELINOS_HAS_STORAGE_MMCSD=y
+ELINOS_STORAGE=y
+
+#
+# Storage devices
+#
+ELINOS_HARDWARE_SATA_ALL=y
+ELINOS_SATA=y
+ELINOS_HARDWARE_MMCSD_ALL=y
+ELINOS_MMCSD=y
+# ELINOS_STORAGE_CUSTOM is not set
+ELINOS_PARTITIONS=y
+# ELINOS_PARTITIONS_MAC is not set
+ELINOS_PARTITIONS_MSDOS=y
+# ELINOS_PARTITIONS_GPT is not set
+
+#
+# Standard partitioning tools
+#
+# ELINOS_PARTITIONS_ALL is not set
+# ELINOS_UTIL_LINUX_sbin_cfdisk is not set
+# ELINOS_UTIL_LINUX_sbin_fdisk is not set
+# ELINOS_UTIL_LINUX_sbin_sfdisk is not set
+# ELINOS_IO_UTILS_gdisk is not set
+
+#
+# USB storage in USB
+#
+
+#
+# Storage utilities
+#
+# ELINOS_MASSUTILS_ALL is not set
+# ELINOS_UTIL_LINUX_sbin_blockdev is not set
+# ELINOS_IO_UTILS_sbin_hdparm is not set
+ELINOS_HARDWARE_MTD_ALL=y
+ELINOS_MTD=y
+# ELINOS_MTD_ALL is not set
+# ELINOS_MTD_sbin_flashcp is not set
+# ELINOS_MTD_sbin_flash_erase is not set
+# ELINOS_MTD_sbin_flash_eraseall is not set
+# ELINOS_MTD_sbin_flash_lock is not set
+# ELINOS_MTD_sbin_flash_unlock is not set
+# ELINOS_MTD_sbin_mtdinfo is not set
+# ELINOS_MTD_sbin_nanddump is not set
+# ELINOS_MTD_sbin_nandtest is not set
+# ELINOS_MTD_sbin_nandwrite is not set
+ELINOS_HAS_PCI=y
+# ELINOS_P4_SECURE_IO is not set
+ELINOS_HARDWARE_PCI_ALL=y
+ELINOS_PCI=y
+ELINOS_PCI_MSI=y
+# ELINOS_PCIUTILS_ALL is not set
+# ELINOS_IO_UTILS_sbin_lspci is not set
+# ELINOS_IO_UTILS_sbin_setpci is not set
+# ELINOS_IO_UTILS_PCI_IDS is not set
+ELINOS_HAS_RTC=y
+ELINOS_HARDWARE_RTC_ALL=y
+ELINOS_RTC=y
+# ELINOS_UTIL_LINUX_sbin_hwclock is not set
+ELINOS_HAS_SENSORS=y
+ELINOS_HARDWARE_SENSORS_ALL=y
+ELINOS_SENSORS=y
+ELINOS_HARDWARE_SER_DRIVER_ALL=y
+ELINOS_SER_DRIVER=y
+# ELINOS_IO_UTILS_bin_setserial is not set
+ELINOS_SOUND_SUPPORT=y
+ELINOS_HAS_SOUND=y
+ELINOS_HARDWARE_SOUND_ALL=y
+ELINOS_SOUND=y
+
+#
+# ALSA tools
+#
+# ELINOS_ALSATOOLS_ALL is not set
+# ELINOS_ALSAUTIL_bin_aconnect is not set
+# ELINOS_ALSAUTIL_bin_alsamixer is not set
+# ELINOS_ALSAUTIL_bin_amidi is not set
+# ELINOS_ALSAUTIL_bin_amixer is not set
+# ELINOS_ALSAUTIL_bin_aplay is not set
+# ELINOS_ALSAUTIL_bin_aplaymidi is not set
+# ELINOS_ALSAUTIL_bin_arecord is not set
+# ELINOS_ALSAUTIL_bin_arecordmidi is not set
+# ELINOS_ALSAUTIL_bin_aseqdump is not set
+# ELINOS_ALSAUTIL_bin_aseqnet is not set
+# ELINOS_ALSAUTIL_bin_iecset is not set
+# ELINOS_ALSAUTIL_bin_speaker_test is not set
+# ELINOS_ALSAUTIL_sbin_alsaconf is not set
+# ELINOS_ALSAUTIL_sbin_alsactl is not set
+# ELINOS_ALSALIB_aserver is not set
+# ELINOS_ALSAUTIL_EXTRA is not set
+ELINOS_ALSA_CONF=y
+# ELINOS_SOUND_SEQUENCER is not set
+ELINOS_HAS_USB=y
+ELINOS_HARDWARE_USB_ALL=y
+ELINOS_USB=y
+
+#
+# USB tools
+#
+# ELINOS_USBUTILS_ALL is not set
+# ELINOS_IO_UTILS_sbin_lsusb is not set
+# ELINOS_IO_UTILS_USB_IDS is not set
+ELINOS_USB_INPUT=y
+ELINOS_USB_INPUT_HID=y
+# ELINOS_USB_INPUT_BOOT is not set
+ELINOS_USB_STORAGE=y
+ELINOS_USB_SERIAL=y
+ELINOS_USB_ACM=y
+ELINOS_HAS_USB_GADGET=y
+ELINOS_HARDWARE_USB_GADGET_ALL=y
+ELINOS_USB_GADGET=y
+ELINOS_USB_GADGET_ZERO=y
+# ELINOS_USB_GADGET_ETH is not set
+# ELINOS_USB_GADGET_FS is not set
+# ELINOS_USB_GADGET_STORAGE is not set
+# ELINOS_USB_GADGET_SERIAL is not set
+# ELINOS_USB_GADGET_SERIAL_ACM is not set
+# ELINOS_HAS_TOUCHSCREEN is not set
+# ELINOS_HARDWARE_TOUCHSCREEN_ALL is not set
+# ELINOS_TOUCHSCREEN is not set
+ELINOS_HAS_WATCHDOG=y
+ELINOS_HARDWARE_WATCHDOG_ALL=y
+ELINOS_WATCHDOG=y
+ELINOS_HAS_MULTIMEDIA_DEVICES=y
+ELINOS_HARDWARE_MULTIMEDIA_ALL=y
+ELINOS_MULTIMEDIA=y
+ELINOS_HAS_I2C=y
+ELINOS_HARDWARE_I2C_ALL=y
+ELINOS_I2C=y
+# ELINOS_I2C_TOOLS is not set
+ELINOS_HAS_SPI=y
+ELINOS_HARDWARE_SPI_ALL=y
+ELINOS_SPI=y
+ELINOS_HAS_CAN=y
+ELINOS_HARDWARE_CAN_ALL=y
+ELINOS_CAN=y
+# ELINOS_CAN_UTILS is not set
+ELINOS_HAS_LED=y
+ELINOS_HARDWARE_LED_ALL=y
+ELINOS_LED=y
+ELINOS_HAS_GPIO=y
+ELINOS_HARDWARE_GPIO_ALL=y
+ELINOS_GPIO=y
+# ELINOS_ARM_TRAP_SUPPORT is not set
+ELINOS_ZCU102_IIO=y
+ELINOS_ZCU102_POWEROFF=y
+ELINOS_ZCU102_CRYPTO=y
+ELINOS_ZCU102_APF=y
+
+#
+# Security options
+#
+ELINOS_SECURITY=y
+# ELINOS_AUDIT is not set
+# ELINOS_SELINUX is not set
+# ELINOS_SELINUX_DEVEL is not set
+# ELINOS_SELINUX_TEMP_FS_ACTIVE is not set
+
+#
+# Note: SELinux Reference Policy not available
+#
+# ELINOS_SELINUX_INIT_HELPER is not set
+# ELINOS_SELINUX_RELABEL is not set
+# ELINOS_SELINUX_PERMISSIVE is not set
+# ELINOS_SELINUX_POLICY_REFPOLICY_USE_PREBUILT is not set
+
+#
+# SELinux utilities
+#
+# ELINOS_SELINUX_TOOLS_ALL is not set
+# ELINOS_SELINUX_BIN is not set
+# ELINOS_SELINUX_SETOOLS is not set
+# ELINOS_SELINUX_POLICYCOREUTILS_PYTHON is not set
+# ELINOS_ANSSI is not set
+# ELINOS_ANSSI_CONFIG_ENHANCED is not set
+# ELINOS_ANSSI_CONFIG_MINIMAL is not set
+# ELINOS_ANSSI_FOR_NETWORK is not set
+# ELINOS_ANSSI_FOR_SSHD is not set
+# ELINOS_ANSSI_TESTSUITE is not set
+
+#
+# Networking
+#
+ELINOS_NETBASE_AF_UNIX=y
+ELINOS_NETBASE=y
+ELINOS_HAS_ETHERNET=y
+# ELINOS_HAS_WIRELESS is not set
+ELINOS_HARDWARE_NETBASE_ALL=y
+ELINOS_BOARD_IFNAME0=""
+
+#
+# Network driver options
+#
+# ELINOS_HAS_ONBOARD_VORTEX is not set
+# ELINOS_HAS_ONBOARD_CS89x0 is not set
+# ELINOS_HAS_ONBOARD_E100 is not set
+# ELINOS_HAS_ONBOARD_TULIP is not set
+# ELINOS_HAS_ONBOARD_NE2K_PCI is not set
+# ELINOS_HAS_ONBOARD_SIS900 is not set
+# ELINOS_HAS_ONBOARD_EPIC100 is not set
+# ELINOS_HAS_ONBOARD_E1000 is not set
+# ELINOS_HAS_ONBOARD_E1000E is not set
+# ELINOS_HAS_ONBOARD_IGB is not set
+# ELINOS_HAS_ONBOARD_BNX2 is not set
+# ELINOS_HAS_ONBOARD_BNX2X is not set
+# ELINOS_HAS_ONBOARD_ATL1 is not set
+# ELINOS_HAS_ONBOARD_R8169 is not set
+ELINOS_HARDWARE_NETETHERNET_ONBOARD_ALL=y
+ELINOS_NETETHERNET=y
+ELINOS_NETETHERNET_ONBOARD=y
+
+#
+# PikeOS network drivers
+#
+# ELINOS_P4VM_NET_PORT is not set
+# ELINOS_P4VM_NET_PORT_ONBOOT is not set
+# ELINOS_P4VM_NET_FP is not set
+# ELINOS_P4VM_NET_FP_ONBOOT is not set
+
+#
+# PCI cards
+#
+
+#
+# ------- 10/100 Mbps -------
+#
+# ELINOS_VORTEX is not set
+# ELINOS_CS89x0 is not set
+# ELINOS_E100 is not set
+# ELINOS_TULIP is not set
+# ELINOS_NE2K_PCI is not set
+# ELINOS_SIS900 is not set
+# ELINOS_EPIC100 is not set
+
+#
+# ------- 1000+ Mbps -------
+#
+# ELINOS_E1000 is not set
+# ELINOS_E1000E is not set
+# ELINOS_IGB is not set
+# ELINOS_I40E is not set
+# ELINOS_BNX2 is not set
+# ELINOS_BNX2X is not set
+# ELINOS_ATL1 is not set
+# ELINOS_R8169 is not set
+
+#
+# USB cards
+#
+# ELINOS_USB_RTL8152 is not set
+# ELINOS_USB_NET_AX88179_178A is not set
+# ELINOS_HARDWARE_NETWIRELESS_ONBOARD_ALL is not set
+# ELINOS_NETWIRELESS is not set
+# ELINOS_NETWIRELESS_CFG80211 is not set
+# ELINOS_NETWIRELESS_SIGNED_REGDB is not set
+# ELINOS_NETWIRELESS_ONBOARD is not set
+# ELINOS_ATH5K is not set
+# ELINOS_ATH9K is not set
+# ELINOS_B43 is not set
+# ELINOS_RT2X00 is not set
+# ELINOS_RT2800PCI is not set
+# ELINOS_RT2800USB is not set
+# ELINOS_RTL_CARDS is not set
+# ELINOS_RTL8821AE is not set
+# ELINOS_RTL8192CE is not set
+# ELINOS_RTL8192EE is not set
+# ELINOS_RTL8188EE is not set
+# ELINOS_RTL8192CU is not set
+# ELINOS_NETDRIVER_MODULE is not set
+ELINOS_NETDRIVER_MODULE_TYPE="y"
+ELINOS_P4BUS_VMNET=y
+ELINOS_P4BUS_VMNET_MAC_ADDR_PREFIX=1
+# ELINOS_NETWIRELESS_AUTO is not set
+
+#
+# TCP/IP settings
+#
+# ELINOS_IFNAME0_BOARD is not set
+ELINOS_IFNAME0_ETH0=y
+# ELINOS_IFNAME0_ETH1 is not set
+# ELINOS_IFNAME0_WLAN0 is not set
+# ELINOS_IFNAME0_CUSTOM is not set
+# ELINOS_NETBASE_NETCONFIG is not set
+# ELINOS_NETCONFIG_CUSTOM is not set
+ELINOS_NETBASE_NONETCONFIG=y
+# ELINOS_NETBASE_DHCPC is not set
+# ELINOS_NETBASE_NONE is not set
+# ELINOS_NETBASE_IP_PNP is not set
+
+#
+# Fixed network configuration
+#
+ELINOS_NETBASE_IP="10.30.3.114"
+# ELINOS_NETBASE_SET_HOSTNAME is not set
+ELINOS_NETBASE_NETMASK="255.255.255.0"
+ELINOS_NETBASE_GATEWAY="10.30.3.1"
+ELINOS_NETBASE_ENABLE_LOOPBACK=y
+ELINOS_NETBASE_DNS=""
+# ELINOS_NETBASE_IPV6 is not set
+# ELINOS_LIBC_NSSWITCH_DNS_RECOMMENDED is not set
+# ELINOS_LIBC_NSSWITCH_DNS is not set
+ELINOS_NETBASE_hosts="$ELINOS_FEATURE_BASE/networking/base/hosts"
+ELINOS_NETBASE_protocols="$ELINOS_FEATURE_BASE/networking/base/protocols"
+ELINOS_NETBASE_services="$ELINOS_FEATURE_BASE/networking/base/services"
+ELINOS_NETBASE_NFS_NETCONFIG="$ELINOS_FEATURE_BASE/networking/base/netconfig"
+ELINOS_NETBASE_PACKET=y
+# ELINOS_NETFILTER is not set
+# ELINOS_NETFILTER_NFTABLES is not set
+# ELINOS_NETFILTER_CONNTRACK is not set
+# ELINOS_NETFILTER_IPTABLES is not set
+ELINOS_NET_CLIENT_UTILS=y
+
+#
+# Network clients
+#
+ELINOS_NETCLIENTS_ALL=y
+ELINOS_NUTIL_ftp=y
+ELINOS_NUTIL_rcp=y
+ELINOS_NUTIL_rlogin=y
+ELINOS_NUTIL_rsh=y
+ELINOS_OPENSSH_scp=y
+ELINOS_OPENSSH_sftp=y
+ELINOS_OPENSSH_ssh=y
+ELINOS_OPENSSH_ssh_agent=y
+ELINOS_OPENSSH_ssh_add=y
+ELINOS_OPENSSH_ssh_keygen=y
+ELINOS_OPENSSH_ssh_keyscan=y
+ELINOS_NUTIL_telnet=y
+ELINOS_NUTIL_tftp=y
+ELINOS_NUTILX_wget=y
+
+#
+# Network tools
+#
+ELINOS_NETTOOL_ALL=y
+
+#
+# Wireless
+#
+# ELINOS_NETTOOL_wireless_wpa is not set
+# ELINOS_NETTOOL_wireless_tools is not set
+ELINOS_NETTOOL_usr_sbin_arp=y
+ELINOS_IPUTILS_usr_bin_arping=y
+ELINOS_IPUTILS_usr_bin_clockdiff=y
+ELINOS_BIND_dig=y
+ELINOS_NETTOOL_bin_dnsdomainname=y
+ELINOS_NETTOOL_bin_domainname=y
+ELINOS_NETTOOL_ethtool=y
+ELINOS_BIND_host=y
+ELINOS_NETTOOL_sbin_ifconfig=y
+ELINOS_NETTOOL_iproute2=y
+ELINOS_NETTOOL_bin_netcat=y
+ELINOS_NETTOOL_bin_netstat=y
+ELINOS_NETTOOL_socat=y
+ELINOS_NETTOOL_bin_nisdomainname=y
+ELINOS_BIND_nslookup=y
+ELINOS_IPUTILS_usr_bin_ping=y
+ELINOS_IPUTILS_usr_bin_ping6=y
+ELINOS_NETTOOL_sbin_plipconfig=y
+ELINOS_NETTOOL_sbin_rarp=y
+ELINOS_NETTOOL_sbin_route=y
+ELINOS_NETTOOL_sbin_slattach=y
+ELINOS_NETTOOL_bin_tcpdump=y
+ELINOS_IPUTILS_usr_bin_tracepath=y
+ELINOS_NUTIL_traceroute=y
+ELINOS_IPUTILS_usr_bin_traceroute6=y
+ELINOS_NETTOOL_bin_ypdomainname=y
+
+#
+# Network servers
+#
+ELINOS_NETSERVERS_ALL=y
+ELINOS_FTPD=y
+ELINOS_FTP_FILESYSTEM=y
+# ELINOS_FTP_ANONYMOUS is not set
+# ELINOS_FTPD_A is not set
+ELINOS_FTPD_t=900
+ELINOS_FTP_USERS=""
+ELINOS_FTP_WELCOME=""
+ELINOS_FTP_MOTD=""
+ELINOS_FTP_NOLOGIN=""
+ELINOS_FTPD_u="027"
+ELINOS_HTTP_SERVER=y
+ELINOS_LIGHTTPD=y
+# ELINOS_APACHE is not set
+
+#
+#   Modules
+#
+ELINOS_LIGHTTPD_MOD_ACCESS=y
+ELINOS_LIGHTTPD_MOD_ACCESSLOG=y
+# ELINOS_LIGHTTPD_MOD_ALIAS is not set
+# ELINOS_LIGHTTPD_MOD_AUTH is not set
+# ELINOS_LIGHTTPD_MOD_AUTHN_FILE is not set
+# ELINOS_LIGHTTPD_MOD_CGI is not set
+# ELINOS_LIGHTTPD_MOD_COMPRESS is not set
+# ELINOS_LIGHTTPD_MOD_EVASIVE is not set
+# ELINOS_LIGHTTPD_MOD_EXPIRE is not set
+# ELINOS_LIGHTTPD_MOD_FASTCGI is not set
+# ELINOS_LIGHTTPD_MOD_PROXY is not set
+# ELINOS_LIGHTTPD_MOD_REDIRECT is not set
+# ELINOS_LIGHTTPD_MOD_REWRITE is not set
+# ELINOS_LIGHTTPD_MOD_RRDTOOL is not set
+# ELINOS_LIGHTTPD_MOD_SCGI is not set
+# ELINOS_LIGHTTPD_MOD_SECDOWNLOAD is not set
+# ELINOS_LIGHTTPD_MOD_SETENV is not set
+# ELINOS_LIGHTTPD_MOD_SIMPLE_VHOST is not set
+# ELINOS_LIGHTTPD_MOD_SSI is not set
+# ELINOS_LIGHTTPD_MOD_STATUS is not set
+# ELINOS_LIGHTTPD_MOD_TRIGGER_B4_DL is not set
+# ELINOS_LIGHTTPD_MOD_USERDIR is not set
+# ELINOS_LIGHTTPD_MOD_WEBDAV is not set
+# ELINOS_LIGHTTPD_CUSTOM_CONFIG is not set
+# ELINOS_HTTPD_PHP is not set
+ELINOS_HTTPD_DOCUMENT_ROOT="/www"
+ELINOS_INETD=y
+ELINOS_INETD_CREATE_CONF=y
+ELINOS_INETD_CUSTOM_CONF=""
+# ELINOS_INETD_d is not set
+ELINOS_INETD_R=1000
+ELINOS_NAMED=y
+ELINOS_NAMED_CONFIG="$ELINOS_FEATURE_BASE/networking/named/named.conf"
+ELINOS_NAMED_RNDC="$ELINOS_FEATURE_BASE/networking/named/rndc.key"
+ELINOS_NAMED_ROOT="$ELINOS_FEATURE_BASE/networking/named/root.hint"
+ELINOS_NFSD=y
+ELINOS_NFSD_V3=y
+ELINOS_NFSD_V4=y
+ELINOS_NFSD_CONFIG="$ELINOS_FEATURE_BASE/networking/nfsd/exports"
+ELINOS_NTP=y
+
+#
+# Network Time Protocol (NTP) support
+#
+ELINOS_NTP_sbin_ntpd=y
+ELINOS_NTPD_CONFIG="$ELINOS_FEATURE_BASE/ntp/ntp.conf"
+ELINOS_NTP_sbin_ntpdate=y
+ELINOS_NTPDATE_OPTIONS=""
+ELINOS_NTP_bin_ntpdc=y
+ELINOS_NTP_bin_ntpq=y
+ELINOS_NTP_bin_ntptrace=y
+ELINOS_RPCBIND=y
+# ELINOS_RPCINFO is not set
+ELINOS_NFS_RPC_STATD=y
+ELINOS_RLOGIND=y
+# ELINOS_RLOGIND_R is not set
+# ELINOS_RLOGIND_a is not set
+# ELINOS_RLOGIND_l is not set
+# ELINOS_RLOGIND_n is not set
+ELINOS_RSHD=y
+# ELINOS_RSHD_a is not set
+# ELINOS_RSHD_l is not set
+# ELINOS_RSHD_L is not set
+# ELINOS_RSHD_n is not set
+ELINOS_SSHD=y
+ELINOS_SSHD_CONFIG_DEFAULT=y
+# ELINOS_SSHD_CONFIG_DEFAULT_PAM is not set
+ELINOS_SSHD_SFTP=y
+ELINOS_SSHD_ARGS=""
+ELINOS_TELNETD=y
+# ELINOS_TELNETD_DEBUG is not set
+# ELINOS_TELNETD_n is not set
+# ELINOS_TELNETD_h is not set
+# ELINOS_TELNETD_U is not set
+ELINOS_TFTPD=y
+ELINOS_TFTPD_dir="/tftpboot"
+# ELINOS_TFTPD_l is not set
+
+#
+# File systems
+#
+
+#
+# Root file system
+#
+ELINOS_ROOTFS=y
+# ELINOS_ROOTFS_NEEDS_CPIO is not set
+# ELINOS_ROOTFS_RAM is not set
+# ELINOS_ROOTFS_INITRAMFS is not set
+# ELINOS_ROOTFS_SQUASHFS is not set
+# ELINOS_ROOTFS_NFS is not set
+# ELINOS_ROOTFS_FLASH is not set
+ELINOS_ROOTFS_CUSTOM=y
+
+#
+# SquashFS configuration
+#
+ELINOS_ROOTFS_CUSTOM_ARG="/dev/mmcblk0p2"
+# ELINOS_ROOTFS_NFSROOT_ENABLE_DEBUG is not set
+ELINOS_ROOTFS_RW=y
+ELINOS_ROOTFS_ROOTWAIT=y
+# ELINOS_ROOTFS_EARLY_USERSPACE is not set
+ELINOS_FILESYSTEMS=y
+ELINOS_BLOCK=y
+
+#
+# File system utilities
+#
+ELINOS_MOUNT=y
+ELINOS_MOUNTA_BOOT=y
+# ELINOS_MOUNT_MOUNT is not set
+ELINOS_MOUNT_BUSYBOX=y
+ELINOS_CUSTOM_FSTAB_ACTION=""
+ELINOS_CUSTOM_FSTAB_FILE=""
+ELINOS_UTIL_LINUX_sbin_mkfs=y
+# ELINOS_UTIL_LINUX_sbin_blkid is not set
+
+#
+# SELinux may require special handling
+#
+# ELINOS_NO_DEV_FS is not set
+# ELINOS_STATIC_DEV_FS is not set
+# ELINOS_MDEV is not set
+# ELINOS_UDEV_ALIAS is not set
+# ELINOS_UDEV_HWDB is not set
+ELINOS_DEVTMPFS=y
+
+#
+# Don't forget to enable necessary features!
+#
+
+#
+# Don't forget to enable necessary features!
+#
+ELINOS_FILESYSTEMS_ALL=y
+ELINOS_E2FSPROGS_SBIN_e2fsck=y
+ELINOS_E2FSPROGS_SBIN_mke2fs=y
+ELINOS_EXT_mke2fs=y
+ELINOS_EXT2=y
+ELINOS_EXT2_FSCK=y
+ELINOS_EXT2_MKFS=y
+ELINOS_EXT3=y
+ELINOS_EXT3_FSCK=y
+ELINOS_EXT3_MKFS=y
+ELINOS_EXT4=y
+# ELINOS_EXT4_USE_FOR_EXT23 is not set
+ELINOS_EXT4_FSCK=y
+ELINOS_EXT4_MKFS=y
+ELINOS_FAT=y
+ELINOS_FAT_MSDOS=y
+ELINOS_FAT_VFAT=y
+ELINOS_FAT_DEFAULT_CODEPAGE=437
+ELINOS_FAT_DEFAULT_NLS="ISO8859_1"
+ELINOS_FAT_MKFS=y
+ELINOS_FAT_mkdosfs=y
+ELINOS_FAT_FSCK=y
+ELINOS_HFS=y
+ELINOS_ISO9660=y
+ELINOS_JOLIET=y
+ELINOS_UTIL_LINUX_usr_bin_isosize=y
+ELINOS_JFFS2=y
+ELINOS_MINIX=y
+ELINOS_MINIX_FSCK=y
+ELINOS_MINIX_MKFS=y
+ELINOS_NFS=y
+ELINOS_NFS_V3=y
+ELINOS_NFS_V4=y
+ELINOS_MOUNT_NFS=y
+ELINOS_PROCFS=y
+ELINOS_SYSFS=y
+ELINOS_TMPFS=y
+ELINOS_UBIFS=y
+ELINOS_UBI_ALL=y
+ELINOS_UBI_MKFS=y
+ELINOS_UBI_sbin_ubiattach=y
+ELINOS_UBI_sbin_ubicrc32=y
+ELINOS_UBI_sbin_ubidetach=y
+ELINOS_UBI_sbin_ubiformat=y
+ELINOS_UBI_sbin_ubinfo=y
+ELINOS_UBI_sbin_ubinize=y
+ELINOS_UBI_sbin_ubimkvol=y
+ELINOS_UBI_sbin_ubirename=y
+ELINOS_UBI_sbin_ubirmvol=y
+ELINOS_UBI_sbin_ubirsvol=y
+ELINOS_UBI_sbin_ubiupdatevol=y
+ELINOS_BTRFS=y
+ELINOS_BTRFS_FSCK=y
+ELINOS_BTRFS_MKFS=y
+
+#
+# Utilities
+#
+ELINOS_UTILS=y
+ELINOS_SELINUX_SUFFIX=""
+
+#
+# Benchmark  utilities
+#
+# ELINOS_BENCHUTIL_ALL is not set
+# ELINOS_BENCHUTIL_iperf is not set
+# ELINOS_BENCHUTIL_netperf is not set
+# ELINOS_BENCHUTIL_lmbench is not set
+ELINOS_PERF_EVENTS=y
+ELINOS_PERF=y
+# ELINOS_BENCHUTIL_unixbench is not set
+
+#
+# Compression utilities (gzip, bzip2, cpio, ...)
+#
+ELINOS_COMPRESS_ALL=y
+ELINOS_COMPRESS_BIN_bunzip2=y
+ELINOS_COMPRESS_BIN_bzcat=y
+ELINOS_COMPRESS_BIN_bzip2=y
+ELINOS_GZIP_bin_gunzip=y
+ELINOS_GZIP_bin_gzexe=y
+ELINOS_GZIP_bin_gzip=y
+ELINOS_GZIP_bin_zcat=y
+ELINOS_GZIP_bin_zcmp=y
+ELINOS_GZIP_bin_zdiff=y
+ELINOS_GZIP_bin_zforce=y
+ELINOS_GZIP_bin_zgrep=y
+ELINOS_GZIP_bin_zmore=y
+ELINOS_GZIP_bin_znew=y
+
+#
+# Editors
+#
+ELINOS_EDITORS=y
+ELINOS_EDITORS_ALL=y
+ELINOS_NANO=y
+ELINOS_VIM=y
+
+#
+# File utilities
+#
+ELINOS_FILEUTIL_ALL=y
+ELINOS_FUTIL_chgrp=y
+ELINOS_FUTIL_chmod=y
+ELINOS_FUTIL_chown=y
+ELINOS_FUTIL_chcon=y
+ELINOS_FUTIL_cp=y
+ELINOS_FUTIL_dd=y
+ELINOS_FUTIL_df=y
+ELINOS_FUTIL_dircolors=y
+ELINOS_FUTIL_du=y
+ELINOS_FUTIL_egrep=y
+ELINOS_FUTIL_grep=y
+ELINOS_FUTIL_install=y
+ELINOS_FUTIL_ln=y
+ELINOS_FUTIL_ls=y
+ELINOS_FUTIL_mkdir=y
+ELINOS_FUTIL_mkfifo=y
+ELINOS_FUTIL_mknod=y
+ELINOS_FUTIL_mktemp=y
+ELINOS_FUTIL_mv=y
+ELINOS_UTIL_LINUX_usr_bin_rename=y
+ELINOS_FUTIL_rm=y
+ELINOS_FUTIL_rmdir=y
+ELINOS_FUTIL_sync=y
+ELINOS_FUTIL_stat=y
+ELINOS_TAR_bin_tar=y
+ELINOS_FUTIL_touch=y
+ELINOS_UTIL_LINUX_usr_bin_whereis=y
+
+#
+# Process analysis tools (ps, top, kill ...)
+#
+ELINOS_PROCPS_ALL=y
+ELINOS_PROCPS_UBIN_free=y
+ELINOS_PROCPS_fuser=y
+ELINOS_PROCPS_BIN_kill=y
+ELINOS_PROCPS_killall=y
+ELINOS_SUTIL_nice=y
+ELINOS_SUTIL_nohup=y
+ELINOS_PROCPS_UBIN_pgrep=y
+ELINOS_PROCPS_UBIN_pkill=y
+ELINOS_PROCPS_UBIN_pmap=y
+ELINOS_PROCPS_BIN_ps=y
+ELINOS_PROCPS_UBIN_pwdx=y
+ELINOS_PROCPS_pstree=y
+ELINOS_UTIL_LINUX_usr_bin_renice=y
+ELINOS_UTIL_LINUX_usr_bin_setsid=y
+ELINOS_PROCPS_UBIN_skill=y
+ELINOS_PROCPS_UBIN_slabtop=y
+ELINOS_PROCPS_SBIN_sysctl=y
+ELINOS_PROCPS_UBIN_tload=y
+ELINOS_PROCPS_UBIN_snice=y
+ELINOS_PROCPS_UBIN_top=y
+ELINOS_PROCPS_UBIN_uptime=y
+ELINOS_PROCPS_UBIN_vmstat=y
+ELINOS_PROCPS_UBIN_w=y
+ELINOS_PROCPS_UBIN_watch=y
+
+#
+# Shell utilities
+#
+ELINOS_SHELLUTIL_ALL=y
+ELINOS_UTIL_LINUX_bin_arch=y
+ELINOS_SUTIL_basename=y
+ELINOS_SUTIL_chroot=y
+ELINOS_SUTIL_date=y
+ELINOS_SUTIL_dirname=y
+ELINOS_SUTIL_echo=y
+ELINOS_SUTIL_env=y
+ELINOS_SUTIL_expr=y
+ELINOS_SUTIL_false=y
+ELINOS_FINDUTILS_find=y
+ELINOS_UTIL_LINUX_usr_bin_getopt=y
+# ELINOS_SUTIL_groups is not set
+ELINOS_SUTIL_hostid=y
+ELINOS_SUTIL_hostname=y
+ELINOS_SUTIL_id=y
+ELINOS_SUTIL_logname=y
+ELINOS_UTIL_LINUX_usr_bin_namei=y
+ELINOS_SUTIL_pathchk=y
+ELINOS_SUTIL_pinky=y
+ELINOS_UTIL_LINUX_sbin_pivot_root=y
+ELINOS_SUTIL_printenv=y
+ELINOS_SUTIL_printf=y
+ELINOS_SUTIL_pwd=y
+ELINOS_SUTIL_readlink=y
+# ELINOS_SUTIL_runcon is not set
+ELINOS_UTIL_LINUX_sbin_runuser=y
+# ELINOS_UTIL_LINUX_usr_bin_setpriv is not set
+ELINOS_SUTIL_seq=y
+ELINOS_SUTIL_sleep=y
+ELINOS_UTIL_DPKG_SBIN_start_stop_daemon=y
+ELINOS_SUTIL_su=y
+ELINOS_SUTIL_tee=y
+ELINOS_SUTIL_test=y
+ELINOS_SUTIL_true=y
+ELINOS_SUTIL_uname=y
+ELINOS_SUTIL_users=y
+ELINOS_SUTIL_who=y
+ELINOS_SUTIL_whoami=y
+ELINOS_UTIL_LINUX_usr_bin_write=y
+ELINOS_SUTIL_yes=y
+
+#
+# Scripting languages
+#
+ELINOS_UTIL_LANG_ALL=y
+ELINOS_LANG_perl=y
+ELINOS_LANG_python=y
+
+#
+# Text processing utilities
+#
+ELINOS_TEXTUTIL_ALL=y
+ELINOS_GAWK_awk=y
+ELINOS_UTIL_LINUX_usr_bin_cal=y
+ELINOS_TUTIL_cat=y
+ELINOS_TUTIL_cksum=y
+ELINOS_DIFFUTILS_bin_cmp=y
+ELINOS_UTIL_LINUX_usr_bin_col=y
+ELINOS_UTIL_LINUX_usr_bin_colrm=y
+ELINOS_UTIL_LINUX_usr_bin_column=y
+ELINOS_TUTIL_comm=y
+ELINOS_TUTIL_csplit=y
+ELINOS_TUTIL_cut=y
+ELINOS_DIFFUTILS_bin_diff=y
+ELINOS_DIFFUTILS_bin_diff3=y
+ELINOS_TUTIL_expand=y
+ELINOS_TUTIL_fmt=y
+ELINOS_TUTIL_fold=y
+ELINOS_GAWK_gawk=y
+ELINOS_TUTIL_head=y
+ELINOS_UTIL_LINUX_usr_bin_hexdump=y
+ELINOS_TUTIL_join=y
+ELINOS_TUTIL_less=y
+ELINOS_UTIL_LINUX_usr_bin_look=y
+ELINOS_TUTIL_md5sum=y
+ELINOS_UTIL_LINUX_bin_more=y
+ELINOS_TUTIL_od=y
+ELINOS_TUTIL_paste=y
+ELINOS_TUTIL_pr=y
+ELINOS_UTIL_LINUX_usr_bin_rev=y
+ELINOS_UTIL_LINUX_usr_bin_script=y
+ELINOS_DIFFUTILS_bin_sdiff=y
+ELINOS_SED_bin_sed=y
+ELINOS_TUTIL_sha1sum=y
+ELINOS_TUTIL_sort=y
+ELINOS_TUTIL_split=y
+ELINOS_TUTIL_sum=y
+ELINOS_TUTIL_tac=y
+ELINOS_TUTIL_tail=y
+ELINOS_TUTIL_tr=y
+ELINOS_UTIL_LINUX_usr_bin_ul=y
+ELINOS_TUTIL_unexpand=y
+ELINOS_TUTIL_uniq=y
+ELINOS_TUTIL_wc=y
+
+#
+# Graphics
+#
+# ELINOS_HAS_FRAMEBUFFER is not set
+ELINOS_HAS_DRM=y
+ELINOS_GRAPHICS=y
+# ELINOS_FRAMEBUFFER is not set
+ELINOS_HARDWARE_DRM_ALL=y
+ELINOS_DRM=y
+ELINOS_DRM_FBDEV_EMULATION=y
+# ELINOS_HARDWARE_FRAMEBUFFER_ALL is not set
+# ELINOS_FRAMEBUFFER_DEVICE is not set
+# ELINOS_FB_FBSET is not set
+# ELINOS_QT_EMBEDDED is not set
+# ELINOS_QT_EGL_PLUGINS is not set
+# ELINOS_QT_WEBENGINE is not set
+# ELINOS_QT_WEB_BROWSER is not set
+# ELINOS_QT_WEB_BROWSER_AUTOSTART is not set
+# ELINOS_XKB is not set
+# ELINOS_XSERVER is not set
+# ELINOS_WM2 is not set
+# ELINOS_XDM is not set
+
+#
+# You need custom passwd database!
+#
+
+#
+# You may want to start this automatically on system boot
+#
+# ELINOS_XSM is not set
+# ELINOS_XSM_SAMPLE_CONFIGURATION is not set
+
+#
+# Additional programs for X
+#
+# ELINOS_XUTIL_ALL is not set
+# ELINOS_UTIL_LINUX_usr_bin_mcookie is not set
+# ELINOS_XUTILS_xauth is not set
+# ELINOS_XUTILS_xclock is not set
+# ELINOS_XUTILS_xconsole is not set
+# ELINOS_XUTILS_xedit is not set
+# ELINOS_XUTILS_xeyes is not set
+# ELINOS_XUTILS_xinit is not set
+# ELINOS_XUTILS_xmessage is not set
+# ELINOS_XUTILS_xrandr is not set
+# ELINOS_XUTILS_xset is not set
+# ELINOS_XUTILS_xsetroot is not set
+# ELINOS_XUTILS_xterm is not set
+# ELINOS_XUTILS_uxterm is not set
+# ELINOS_XUTILS_iceauth is not set
+
+#
+# X Server drivers to use
+#
+# ELINOS_XDRIVER_ALL is not set
+# ELINOS_XDRIVER_FBDEV is not set
+# ELINOS_XDRIVER_VESA is not set
+# ELINOS_XDRIVER_INTEL is not set
+# ELINOS_XDRIVER_RADEON is not set
+# ELINOS_XDRIVER_NOVEAU is not set
+# ELINOS_CUSTOM_XCONFIG is not set
+# ELINOS_CUSTOM_STARTX is not set
+# ELINOS_WESTON is not set
+# ELINOS_WESTON_TERMINAL is not set
+# ELINOS_WESTON_DEMO_APPS is not set
+# ELINOS_MESA_DRI is not set
+# ELINOS_MESA_DRI_DRV_ALL is not set
+# ELINOS_MESA_DRI_SWRAST is not set
+# ELINOS_MESA_DRI_INTEL is not set
+# ELINOS_MESA_DRI_NOUVEAU is not set
+ELINOS_FONTS=y
+# ELINOS_FONTCONFIG is not set
+# ELINOS_FONTCONFIG_tools is not set
+
+#
+# Included fonts
+#
+# ELINOS_FONTS_minimal is not set
+# ELINOS_FONTS_misc is not set
+# ELINOS_FONTS_75dpi is not set
+# ELINOS_FONTS_100dpi is not set
+# ELINOS_HAS_FRAMEBUFFER_VESA is not set
+
+#
+# Debugging
+#
+ELINOS_COREDUMPS=y
+ELINOS_COREDUMPS_SIZE=1024
+ELINOS_GDBSERVER=y
+# ELINOS_GDB is not set
+ELINOS_TRACENG_SUPPORT=y
+ELINOS_TRACENG=y
+# ELINOS_NETCONSOLE is not set
+
+#
+# Netconsole Options
+#
+# ELINOS_LTRACE is not set
+# ELINOS_UTIL_LINUX_usr_sbin_readprofile is not set
+ELINOS_STRACE=y
+ELINOS_ENABLE_PTRACE=y
+ELINOS_DEBUG_KERNEL=y
+# ELINOS_DEBUG_KERNEL_LOCKING is not set
+# ELINOS_DEBUG_KERNEL_GDB is not set
+# ELINOS_KERNEL_TESTS is not set
+ELINOS_HAVE_KPROBES=y
+# ELINOS_KPROBES is not set
+# ELINOS_DEBUG_FS is not set
+
+#
+# D-Bus support
+#
+# ELINOS_DBUS is not set
+
+#
+# D-Bus utilities
+#
+# ELINOS_DBUS_UTIL_dbus_launch is not set
+# ELINOS_DBUS_UTIL_dbus_monitor is not set
+# ELINOS_DBUS_UTIL_dbus_send is not set
+
+#
+# CODEO Support
+#
+ELINOS_CODEO_SUPPORT=y
+ELINOS_TRACETOOL=y
+
+#
+# Docker Support
+#
+# ELINOS_DOCKER_ENGINE is not set
+# ELINOS_ELINOS_INVALID_FEATURE_CONFIGURATION is not set
+ELINOS_HAS_PIKEOS_HWVIRT=y
+
+#
+# PikeOS Virtualization
+#
+# ELINOS_FORCE_HAS_PIKEOS_HWVIRT is not set
+ELINOS_PIKEOS_HWVIRT=y
+ELINOS_VMM=y
+ELINOS_VMM_EARLY_CONSOLE=y
+# ELINOS_VMM_BYPASS is not set
+# ELINOS_VMM_WATCHDOG is not set
+ELINOS_VMM_VMAPI=y
+ELINOS_VMM_SYSINFO=y
+ELINOS_VMM_P4BUS=y
+ELINOS_P4BUS_VMTTY=y
+ELINOS_P4BUS_VMCHAR=y
+ELINOS_P4BUS_VMBLOCK=y
+ELINOS_P4BUS_VMPCI=y
+
+#
+# Extra file systems
+#
+# ELINOS_NTFS3G is not set

@@ -1,0 +1,26 @@
+LTTNG=$(shell grep '\<ELINOS_TRACENG\>' $(ELINOS_PROJECT)/.features |awk 'BEGIN {FS="="}; {print $$2}')
+
+CFLAGS = -g3 -O0 -Wall
+
+ifeq "$(LTTNG)" "y"
+uevents: lttng_uevents.o
+	$(CC) $(CFLAGS) $(LFLAGS) $^ -o $@
+else
+uevents:
+	-echo "Tracing is disabled. Don't create files."
+endif
+
+all: uevents
+
+install: uevents
+ifeq "$(LTTNG)" "y"
+	mkdir -p $(ELINOS_PROJECT)/app.rootfs/bin
+	cp $^ $(ELINOS_PROJECT)/app.rootfs/bin/.
+endif
+
+
+clean:
+	rm -f *~ *.o uevents
+	rm -f .depend
+
+distclean:
