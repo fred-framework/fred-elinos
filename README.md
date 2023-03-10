@@ -6,7 +6,7 @@ Please go through all four ElinOS/PikeOS projects for more details.
 
 ## Generating the image
 
-Run `make all` to build all four projects and burn the Linux image into the sd-card.
+Run `make all` to build all four projects and `make install` to write the Linux image into the sd-card.
 
 ## Booting the ZCU102 Board
 
@@ -41,7 +41,7 @@ Make sure the device tree was generated with symbols included. This is not the d
 make -C $(ELINOS_PROJECT)/linux ARCH=arm64 CROSS_COMPILE=$(CROSS_COMPILE) -j${ELINOS_MAKE_NUM_JOBS} $(DTB_FILE) DTC_FLAGS=-@
 ```
 
-Finally, when testing the device tree feature, make sure that the current device tree does not already has slot0 and pr_decoupler0 defined.
+Finally, when testing the device tree feature, make sure that the current device tree does not already has `slot0` and `pr_decoupler0` defined.
 
 ## Testing FRED with Fixed Device Tree
 
@@ -64,7 +64,7 @@ These commands lauch FRED device drivers, set the bitstream, launch the server a
 
 The projects fred-lib.app and fred-server.app were made to enable step-by-step debug of both FRED client and server within CODEO.
 
-TBD
+**TBD how to setup CODEO for debug**
 
 ## Acknowledgement
 
