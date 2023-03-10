@@ -10,7 +10,7 @@ Now these kernel features are [documented](https://github.com/fred-framework/met
 if FRED is ported to newer versions of Linux OS in the future.
 
 Besides configuring Elinos for FRED, this project also add external tools to the image (tree, dtc, rsync, cpufreq, etc 
-located in zcu102_hwvirt_linux.app/app.rootfs/) and it also compiles the FRED kernel modules ([fpga-mgr-fmod](https://github.com/fred-framework/fred-linux-fpga-mgr-fmod/commit/e7f9bb0cca1227eb34819acb8f9b29c6bac69ef7) and [buffctl](https://github.com/fred-framework/fred-linux-buffctl-kmod/commit/9c0b9677ad830c1bb520853afe4318efcdc9907f) in src/kernel-modules.
+located in zcu102_hwvirt_linux.app/app.rootfs/) and it also compiles the FRED kernel modules ([fpga-mgr-fmod](https://github.com/fred-framework/fred-linux-fpga-mgr-fmod/commit/e7f9bb0cca1227eb34819acb8f9b29c6bac69ef7) and [buffctl](https://github.com/fred-framework/fred-linux-buffctl-kmod/commit/9c0b9677ad830c1bb520853afe4318efcdc9907f)) in src/kernel-modules.
 
 If you need to add more tools to the image that are not promptly available in Elinos, I recommend
 you copy the required binaries and libraries out of a Petalinux project. Petalinux by default enables much more tools than Elinos, and it is most probably already compiled there. That's what I did for tree, dtc, and cpufreq.
