@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.sysgo.elinos.tools.application.debug.1777951945">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.sysgo.elinos.tools.application.debug.1777951945" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.sysgo.elinos.tools.projectbuilder.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="$(PROG)" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,com.sysgo.codeo.tools.projectbuilder.buildArtefactType=com.sysgo.elinos.tools.projectbuilder.buildArtefactType.elinos.exe" description="" id="com.sysgo.elinos.tools.application.debug.1777951945" name="Debug" parent="com.sysgo.elinos.tools.application.debug">
+					<folderInfo id="com.sysgo.elinos.tools.application.debug.1777951945." name="/" resourcePath="">
+						<toolChain id="com.sysgo.elinos.tools.application.debug.toolchain.2007183725" name="ELinOS Toolchain for Applications" superClass="com.sysgo.elinos.tools.application.debug.toolchain">
+							<targetPlatform id="com.sysgo.elinos.tools.application.debug.linux.1527242565" name="ELinOS" superClass="com.sysgo.elinos.tools.application.debug.linux"/>
+							<builder command="/opt/elinos-7.1/bin/make" id="com.sysgo.elinos.tools.application.debug.builder.1827710347" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="ELinOS Application Builder" superClass="com.sysgo.elinos.tools.application.debug.builder"/>
+							<tool id="com.sysgo.elinos.tools.application.debug.ccompiler.1044487173" name="ELinOS C Compiler" superClass="com.sysgo.elinos.tools.application.debug.ccompiler">
+								<option defaultValue="gnu.c.optimization.level.none" id="com.sysgo.elinos.tools.application.debug.ccompiler.optimization.level.1602761285" name="Optimization Level" superClass="com.sysgo.elinos.tools.application.debug.ccompiler.optimization.level" valueType="enumerated"/>
+								<option defaultValue="gnu.c.debugging.level.max" id="com.sysgo.elinos.tools.application.debug.ccompiler.debug.level.192632876" name="Debug Level" superClass="com.sysgo.elinos.tools.application.debug.ccompiler.debug.level" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1035020908" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.debug.cppcompiler.141242292" name="ELinOS C++ Compiler" superClass="com.sysgo.elinos.tools.application.debug.cppcompiler">
+								<option id="com.sysgo.elinos.tools.application.debug.cppcompiler.optimization.level.930120731" name="Optimization Level" superClass="com.sysgo.elinos.tools.application.debug.cppcompiler.optimization.level"/>
+								<option defaultValue="gnu.cpp.compiler.debugging.level.max" id="com.sysgo.elinos.tools.application.debug.cppcompiler.debug.level.1380028706" name="Debug Level" superClass="com.sysgo.elinos.tools.application.debug.cppcompiler.debug.level" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.910444258" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.debug.assembler.895401412" name="ELinOS Assembler" superClass="com.sysgo.elinos.tools.application.debug.assembler">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2098881480" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.debug.clinker.669156619" name="ELinOS C Linker" superClass="com.sysgo.elinos.tools.application.debug.clinker">
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1407752295" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.debug.cpplinker.1370343271" name="ELinOS C++ Linker" superClass="com.sysgo.elinos.tools.application.debug.cpplinker">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.419523583" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.archiver.elinos.1208158902" name="ELinOS Archiver" superClass="com.sysgo.elinos.tools.archiver.elinos"/>
+							<tool id="com.sysgo.elinos.tools.application.debug.mkefs.171968205" name="Embeddable file system generator" superClass="com.sysgo.elinos.tools.application.debug.mkefs"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.sysgo.elinos.tools.application.release.290175716">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.sysgo.elinos.tools.application.release.290175716" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.sysgo.elinos.tools.projectbuilder.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="$(PROG)" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,com.sysgo.codeo.tools.projectbuilder.buildArtefactType=com.sysgo.elinos.tools.projectbuilder.buildArtefactType.elinos.exe" description="" id="com.sysgo.elinos.tools.application.release.290175716" name="Release" parent="com.sysgo.elinos.tools.application.release">
+					<folderInfo id="com.sysgo.elinos.tools.application.release.290175716." name="/" resourcePath="">
+						<toolChain id="com.sysgo.elinos.tools.application.release.toolchain.671202432" name="ELinOS Toolchain for Applications" superClass="com.sysgo.elinos.tools.application.release.toolchain">
+							<targetPlatform id="com.sysgo.elinos.tools.application.release.linux.1560654861" name="ELinOS" superClass="com.sysgo.elinos.tools.application.release.linux"/>
+							<builder command="/opt/elinos-7.1/bin/make" id="com.sysgo.elinos.tools.application.release.builder.182025915" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="ELinOS Application Builder" superClass="com.sysgo.elinos.tools.application.release.builder"/>
+							<tool id="com.sysgo.elinos.tools.application.release.ccompiler.545997469" name="ELinOS C Compiler" superClass="com.sysgo.elinos.tools.application.release.ccompiler">
+								<option defaultValue="gnu.c.optimization.level.most" id="com.sysgo.elinos.tools.application.release.ccompiler.optimization.level.378259498" name="Optimization Level" superClass="com.sysgo.elinos.tools.application.release.ccompiler.optimization.level" valueType="enumerated"/>
+								<option defaultValue="gnu.c.debugging.level.none" id="com.sysgo.elinos.tools.application.release.ccompiler.debug.level.851137733" name="Debug Level" superClass="com.sysgo.elinos.tools.application.release.ccompiler.debug.level" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.919927635" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.release.cppcompiler.1943422336" name="ELinOS C++ Compiler" superClass="com.sysgo.elinos.tools.application.release.cppcompiler">
+								<option id="com.sysgo.elinos.tools.application.release.cppcompiler.optimization.level.30619166" name="Optimization Level" superClass="com.sysgo.elinos.tools.application.release.cppcompiler.optimization.level"/>
+								<option defaultValue="gnu.cpp.compiler.debugging.level.none" id="com.sysgo.elinos.tools.application.release.cppcompiler.debug.level.935887257" name="Debug Level" superClass="com.sysgo.elinos.tools.application.release.cppcompiler.debug.level" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1558179920" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.release.assembler.508211388" name="ELinOS Assembler" superClass="com.sysgo.elinos.tools.application.release.assembler">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1680101709" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.release.clinker.947028046" name="ELinOS C Linker" superClass="com.sysgo.elinos.tools.application.release.clinker">
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.874360647" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.application.release.cpplinker.1182798122" name="ELinOS C++ Linker" superClass="com.sysgo.elinos.tools.application.release.cpplinker">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.119555623" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.sysgo.elinos.tools.archiver.elinos.2000230900" name="ELinOS Archiver" superClass="com.sysgo.elinos.tools.archiver.elinos"/>
+							<tool id="com.sysgo.elinos.tools.application.release.mkefs.215375976" name="Embeddable file system generator" superClass="com.sysgo.elinos.tools.application.release.mkefs"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="fred-lib.app.null.958892579" name="fred-lib.app" projectType="com.sysgo.elinos.tools.application"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+		<buildTargets>
+			<target name="all" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>/opt/elinos-7.1/bin/make</buildCommand>
+				<buildArguments/>
+				<buildTarget>all</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="clean" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>/opt/elinos-7.1/bin/make</buildCommand>
+				<buildArguments/>
+				<buildTarget>clean</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+		</buildTargets>
+	</storageModule>
+</cproject>
