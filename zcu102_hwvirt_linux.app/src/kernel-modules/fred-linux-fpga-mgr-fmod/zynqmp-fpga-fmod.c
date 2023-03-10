@@ -141,6 +141,11 @@ static int zynqmp_fpga_ops_write_init(struct fpga_manager *mgr,
 	return 0;
 }
 
+/*
+// It is not clear which version of this function work in Elinos: the modified for FRED w the patch applied, 
+// or the original by Elinos 7.1
+
+// This is patched code
 static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 					const char *buf, size_t size)
 {
@@ -150,10 +155,10 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 	dma_addr_t dma_addr;
 	int ret;
 
-/*---------------------------------- FMOD ------------------------------------*/
+//---------------------------------- FMOD ------------------------------------
 	ktime_t rcfg_start_time;
 	ktime_t rcfg_end_time;
-/*----------------------------------------------------------------------------*/
+//----------------------------------------------------------------------------
 
 	priv = mgr->priv;
 	priv->size = size;
@@ -161,11 +166,12 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 	if (!mutex_trylock(&priv->lock))
 		return -EBUSY;
 
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 1\n");
+	//dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 1\n");
+	printk("zynqmp_fpga_ops_write: 1\n");
 	ret = clk_enable(priv->clk);
 	if (ret)
 		goto err_unlock;
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 2\n");
+	printk("zynqmp_fpga_ops_write: 2\n");
 	if (priv->flags & IXR_FPGA_ENCRYPTION_EN)
 		dma_size = size + ENCRYPTED_KEY_LEN;
 	else
@@ -176,35 +182,70 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 		ret = -ENOMEM;
 		goto disable_clk;
 	}
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 3\n");
+	printk("zynqmp_fpga_ops_write: 3\n");
 	memcpy(kbuf, buf, size);
 
 	if (priv->flags & IXR_FPGA_ENCRYPTION_EN)
 		memcpy(kbuf + size, priv->key, ENCRYPTED_KEY_LEN);
 
-	wmb(); /* ensure all writes are done before initiate FW call */
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 4\n");
-/*---------------------------------- FMOD ------------------------------------*/
+	wmb(); // ensure all writes are done before initiate FW call
+	printk("zynqmp_fpga_ops_write: 4\n");
+//---------------------------------- FMOD ------------------------------------
 	rcfg_start_time = ktime_get();
-/*----------------------------------------------------------------------------*/
+//----------------------------------------------------------------------------
 
 	if (priv->flags & IXR_FPGA_ENCRYPTION_EN)
 		ret = zynqmp_pm_fpga_load(dma_addr, dma_addr + size,
 					  priv->flags);
 	else
 		ret = zynqmp_pm_fpga_load(dma_addr, size, priv->flags);
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 5\n");
-/*---------------------------------- FMOD ------------------------------------*/
+	printk("zynqmp_fpga_ops_write: 5\n");
+//---------------------------------- FMOD ------------------------------------
 	rcfg_end_time = ktime_get();
 	priv->rcfg_delta_us = ktime_us_delta(rcfg_end_time, rcfg_start_time);
-/*----------------------------------------------------------------------------*/
+//----------------------------------------------------------------------------
 
 	dma_free_coherent(priv->dev, dma_size, kbuf, dma_addr);
-	dev_dbg(priv->dev, "zynqmp_fpga_ops_write: 6\n");
+	printk("zynqmp_fpga_ops_write: 6\n");
 disable_clk:
 	clk_disable(priv->clk);
 err_unlock:
 	mutex_unlock(&priv->lock);
+	return ret;
+}
+*/
+
+// original code for elinos 7.1
+static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
+				 const char *buf, size_t size)
+{
+	struct zynqmp_fpga_priv *priv;
+	dma_addr_t dma_addr;
+	u32 eemi_flags = 0;
+	char *kbuf;
+	int ret;
+
+	priv = mgr->priv;
+
+	printk("zynqmp_fpga_ops_write (elinos): 1\n");
+	kbuf = dma_alloc_coherent(priv->dev, size, &dma_addr, GFP_KERNEL);
+	if (!kbuf)
+		return -ENOMEM;
+
+	printk("zynqmp_fpga_ops_write (elinos): 2\n");
+	memcpy(kbuf, buf, size);
+
+	printk("zynqmp_fpga_ops_write (elinos): 3\n");
+	wmb(); /* ensure all writes are done before initiate FW call */
+	printk("zynqmp_fpga_ops_write (elinos): 4\n");
+
+	if (priv->flags & FPGA_MGR_PARTIAL_RECONFIG)
+		eemi_flags |= XILINX_ZYNQMP_PM_FPGA_PARTIAL;
+
+	ret = zynqmp_pm_fpga_load(dma_addr, size, eemi_flags);
+	printk("zynqmp_fpga_ops_write (elinos): 5\n");
+	dma_free_coherent(priv->dev, size, kbuf, dma_addr);
+	printk("zynqmp_fpga_ops_write (elinos): 6\n");
 	return ret;
 }
 

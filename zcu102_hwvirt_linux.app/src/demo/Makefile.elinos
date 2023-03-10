@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall
+CFLAGS = -ggdb3 -Wall
 demo_files = hanoi
 
 all: $(demo_files)

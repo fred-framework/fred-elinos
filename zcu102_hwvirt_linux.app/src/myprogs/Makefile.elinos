@@ -1,7 +1,7 @@
 INSTALL_PATH    = $(ELINOS_PROJECT)/app.rootfs
 ELINOS          = ELinOS
 
-CFLAGS         = -Wall -DELINOS="\"$(ELINOS)\""
+CFLAGS         = -Wall -DELINOS="\"$(ELINOS)\"" -ggdb3
 
 # utilities to be built from a single C source
 PROGRAMS        = hello_world welcome_elinos
