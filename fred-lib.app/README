@@ -30,4 +30,7 @@ and its hardware design is in https://github.com/fred-framework/dart_ips/tree/ma
 
 In the future, use git submodule instead of copying the code.
 
-
+Note that fred-lib is compiled for debug by default. If you want to do performance evaluation, change this in the Makefile:
+ - DEBUG=YES => DEBUG=NO
+ 
+A. Amory
