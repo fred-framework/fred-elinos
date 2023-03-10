@@ -65,5 +65,8 @@ burn:
 	umount /media/ubuntu/ROOT
 	umount /media/ubuntu/ROOT1
 
+diffconfig:
+	echo "TBD !!!"
+
 # endif (ELINOS_PROJECT)
 endif
