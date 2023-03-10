@@ -1,0 +1,103 @@
+ELINOS_SAVED_DOSNAME=""
+ELINOS_SAVED_BOARD="custom"
+ELINOS_SAVED_KERNELPATH=""
+ELINOS_PROJECT_PRJTYPE="application"
+ELINOS_PROJECT_ARCH="v8hf"
+ELINOS_PROJECT_BOARD="custom"
+ELINOS_PROJECT_CPU="arm"
+ELINOS_PROJECT_LIBC="glibc"
+ELINOS_PROJECT_VERSION="7.1"
+# ELINOS_BOARD_000eli is not set
+# ELINOS_BOARD_foundation_v8 is not set
+# ELINOS_BOARD_foundation_v8_hwvirt is not set
+# ELINOS_BOARD_juno_a57 is not set
+# ELINOS_BOARD_juno_a57_hwvirt is not set
+# ELINOS_BOARD_ls1028ardb is not set
+# ELINOS_BOARD_ls1043ardb is not set
+# ELINOS_BOARD_ls1043ardb_hwvirt is not set
+# ELINOS_BOARD_imx6_sa_dtb is not set
+# ELINOS_BOARD_imx6_sd_dtb is not set
+# ELINOS_BOARD_jetson_tk1 is not set
+# ELINOS_BOARD_jetson_tk1_hwvirt is not set
+# ELINOS_BOARD_jetson_tx1 is not set
+# ELINOS_BOARD_imx8_qxp_mek is not set
+# ELINOS_BOARD_imx8_qxp_mek_hwvirt is not set
+# ELINOS_BOARD_pikeos_arm_secure_io_v7hf is not set
+# ELINOS_BOARD_pikeos_arm_secure_io_v8hf is not set
+# ELINOS_BOARD_pikeos_hwvirt_secure_v7hf is not set
+# ELINOS_BOARD_pikeos_hwvirt_secure_v8hf is not set
+# ELINOS_BOARD_qemu_arm_v7hf is not set
+# ELINOS_BOARD_qemu_arm_v8hf is not set
+# ELINOS_BOARD_rpi_3_b_64bit is not set
+# ELINOS_BOARD_rpi_3_bplus_64bit is not set
+# ELINOS_BOARD_rpi_4_b_64bit is not set
+# ELINOS_BOARD_renesas_salvator_x is not set
+# ELINOS_BOARD_renesas_salvator_x_hwvirt is not set
+# ELINOS_BOARD_tqma8xqp_mba8xx is not set
+# ELINOS_BOARD_zynq_zc702 is not set
+# ELINOS_BOARD_zynq_zcu102 is not set
+# ELINOS_BOARD_zynq_zcu102_hwvirt is not set
+ELINOS_BOARD_zzzcust=y
+# ELINOS_CPU_000eli is not set
+ELINOS_CPU_arm=y
+# ELINOS_ARCH_000eli is not set
+# ELINOS_ARCH_v7hf is not set
+ELINOS_ARCH_v8hf=y
+ELINOS_LIB_glibc=y
+ELINOS_HAS_ARCH_v7hf=y
+ELINOS_HAS_ARCH_v8hf=y
+ELINOS_HAS_CPU_arm=y
+ELINOS_HAS_LIBC="glibc"
+# ELINOS_FORCE_BOOT_NOMULTI is not set
+# ELINOS_FORCE_P4 is not set
+# ELINOS_DISABLE_CPU_ARM is not set
+# ELINOS_DISABLE_CPU_MIPS is not set
+# ELINOS_DISABLE_CPU_PPC is not set
+# ELINOS_DISABLE_CPU_SH is not set
+# ELINOS_DISABLE_CPU_SPARC is not set
+# ELINOS_DISABLE_CPU_X86 is not set
+ELINOS_MAKE_NUM_JOBS_AUTODETECTED=y
+ELINOS_MAKE_NUM_JOBS=9
+# ELINOS_HIDE_BSP is not set
+
+#
+# Custom Pool
+#
+
+#
+# Tools
+#
+
+#
+# Configure mkefs
+#
+ELINOS_MKEFS_AUTO_STRIP=y
+ELINOS_MKEFS_AUTO_INCLUDE=y
+ELINOS_MKEFS_ADD_SEARCH_PATH=""
+# ELINOS_MKEFS_REPORT_INODES is not set
+ELINOS_MKEFS_VERBOSITY_NONE=y
+# ELINOS_MKEFS_VERBOSITY_NORMAL is not set
+# ELINOS_MKEFS_VERBOSITY_MORE is not set
+# ELINOS_MKEFS_VERBOSITY_MOST is not set
+ELINOS_MKEFS_SIGN=""
+# ELINOS_MKEFS_ALLOW_DUPLICATE_FILES is not set
+ELINOS_MKEFS_ADD_PARAMETERS=""
+
+#
+# Configure validation
+#
+# ELINOS_VALIDATION_ALWAYS is not set
+# ELINOS_VALIDATION_FILE_SYSTEM is not set
+# ELINOS_VALIDATION_KERNEL is not set
+# ELINOS_VALIDATION_ELINOS is not set
+# ELINOS_VALIDATION_CROSS is not set
+
+#
+# Configure the build process
+#
+# ELINOS_MAKE_VERBOSE is not set
+# ELINOS_FORCE_LINK is not set
+
+#
+# Configure mkimage
+#
