@@ -1,0 +1,59 @@
+# Project Name #
+Hardware Virtualization with a Linux secure IO guest integration project
+
+## Member Project(s) ##
+ELinOS System Project using a PikeOS HWVIRT enabled secure I/O BSP
+
+## Description ##
+This integration project contains one HWVIRT partition, one HWVIRT
+Linux guest process and two p4bus-Linux-devices. This project needs to
+be used with a board supporting the Hardware Virtualization.
+
+## Configuration of the Guest ##
+_**Some configuration parameters of this demo depend on the used board therefore it**_
+_**can not be completely automated and some manual steps are necessary.**_
+_**Those are mandatory steps to build and run the demonstration.**_
+
+* The integration project expects the output of a ELinOS System Project
+    using a PikeOS secure I/O BSP for the used hardware and HWVIRT
+    enabled.
+    The location of the generated guest boot image has to be set in the
+    HWVIRT host integration project. This has to be done by setting
+    the 'Guest binary' option of the HWVIRT host. Additionally the
+    pathes for the DTB and parameter file have to be adapted in the
+    'Linux Boot' option.
+
+* The ELinOS System Project should have enabled the TrustZone/HWVIRT
+    P4Bus drivers for the console and network. This should be enabled by
+    default.
+    The network capabilties of the project may need to be set manually, if
+    during creation of the sytsem project the 'Networking' option wasn't
+    selected. Note that the usage of the networking feature is optional
+    but recommended.
+
+* The guest process component has a dependency to the used kernel
+    component of the BSP. This dependency may have to be set manually.
+    For this select the process component and in the dependency view
+    look for the 'Depend: KERNEL' option and set it to the
+    'hwvirt-kernel' dependency option.
+
+* The HWVIRT guest has two P4Bus devices pre-configured. One will
+    be used to provide a character device to the guest as a console. This
+    is mapped to a MUXA channel. This is already done by default.
+    The second device is pre-configured as a network device. This needs
+    to be manually connected to one of the available network device files
+    in the project. Please make sure to connect the P4Bus device to a
+    network driver. The tools will allow to connect it to any file-provider.
+    This may cause problems, if the wrong file is assigned.
+
+## Configured devices ##
+* guest1-dev1:
+    - Host Type: vmfile (connected to muxa channel guest1)
+    - Guest Type: vmtty
+    - Guest Name: vmconsole
+
+* guest1-dev2
+    - Host Type: vmfile (must be connected to an Ethernet file-provider)
+    - Guest Type: vmnet
+    - Guest Name: eth0
+

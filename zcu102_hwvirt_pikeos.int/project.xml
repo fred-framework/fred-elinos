@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<Project xmlns="http://www.sysgo.com/xsd/prj/project-5.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" productversion="5.1">
+  <Integration name="hwvirt-linux" profile="integration" target="arm_v8hf">
+    <PathTable/>
+    <ConfigurationDomainTable>
+      <!--start here-->
+      <!--use CTRL + SPACE for suggestions-->
+      <!--use 'validate' from the right click menu to validate your code-->
+      <Group name="README">
+        <Description>This demo requires manual adaptation as it depends on the used board. This mean it will not validate and build out-of-the-box. Please consult the 'README.demo' file that is delivered with this demo for further information.</Description>
+      </Group>
+      <Group name="Default">
+        <ComponentInstance name="service.partition" ref="service.partition">
+          <VmitConfigurationTable>
+            <VmitConfiguration condition="true">
+              <Partition Abilities="VM_AB_TIMEPART_CHANGE VM_AB_MONITOR VM_AB_PSP_CONSOLE VM_AB_TIMEPART_SETUP VM_AB_HM_INJECT_OTHER VM_AB_PART_SET_MODE VM_AB_MEM_CREATE VM_AB_PSP_RESET VM_AB_TRACE VM_AB_CACHE_CHANGE VM_AB_ULOCK_SHARED" CpuMask="-1" Identifier="1" MaxChildTaskCount="20" MaxFDCount="128" MaxPrio="102" MultiPartitionHMTableID="0" Name="service" SchedChangeAction="VM_SCHED_CHANGE_IGNORE" StartupMode="VM_PART_MODE_COLD_START" TimePartitionID="0">
+                <FileAccessTable>
+                  <FileAccess AccessMode="VM_O_RD VM_O_WR" FileName="con:"/>
+                  <ComponentReference ref="monitor"/>
+                  <ComponentReference ref="traceserver"/>
+                  <ComponentReference ref="muxa"/>
+                </FileAccessTable>
+                <MemoryRequirementTable>
+                  <MemoryRequirement AccessMode="VM_MEM_ACCESS_RD VM_MEM_ACCESS_WR VM_MEM_ACCESS_EXEC" Alignment="-1" CacheMode="VM_MEM_CACHE_CB" Contiguous="false" IsPool="true" MemRegionID="-1" MemRegionPartition="-1" Name="_RAM_" PhysicalAddress="-1" Size="0x200000" Type="VM_MEM_TYPE_RAM" ZeroCount="0"/>
+                  <MemoryRequirement AccessMode="VM_MEM_ACCESS_RD VM_MEM_ACCESS_WR VM_MEM_ACCESS_EXEC" Alignment="-1" CacheMode="VM_MEM_CACHE_CB" Contiguous="false" IsPool="false" MemRegionID="-1" MemRegionPartition="-1" Name="_KMEM_" PhysicalAddress="-1" Size="0x320000" Type="VM_MEM_TYPE_KMEM" ZeroCount="0"/>
+                  <ComponentReference ref="monitor"/>
+                  <ComponentReference ref="traceserver"/>
+                  <ComponentReference ref="muxa"/>
+                </MemoryRequirementTable>
+                <ProcessTable>
+                  <ComponentReference ref="monitor"/>
+                  <ComponentReference ref="traceserver"/>
+                  <ComponentReference ref="muxa"/>
+                </ProcessTable>
+                <QueuingPortTable>
+                  <ComponentReference ref="monitor"/>
+                  <ComponentReference ref="traceserver"/>
+                  <ComponentReference ref="muxa"/>
+                </QueuingPortTable>
+                <SamplingPortTable>
+                  <ComponentReference ref="monitor"/>
+                  <ComponentReference ref="traceserver"/>
+                  <ComponentReference ref="muxa"/>
+                </SamplingPortTable>
+                <HMTable>
+                  <DefaultSwitch>
+                    <Default Action="P4_HM_PAC_IDLE" Code="0" Level="P4_HM_LEVEL_USER" Notify="0"/>
+                  </DefaultSwitch>
+                </HMTable>
+              </Partition>
+            </VmitConfiguration>
+          </VmitConfigurationTable>
+        </ComponentInstance>
+      </Group>
+      <Group filename="driver/misc/devel.dom" name="Development Tools" path_id="PIKEOS_POOL">
+        <Description>
+          <p>
+            <b>PikeOS Development Tools</b>
+          </p>
+          <p>This group contains tools commonly needed during development of
+      systems.</p>
+          <p>The applications contained in this group are:</p>
+          <li>
+            <b>muxa:</b>
+            A file-provider used by the GDB-Stub in the
+      applications, while debugging, and the tools contained in this
+      group. It is used to communicate with applications (like CODEO)
+      on the development host.
+            <br/>
+            See the
+            <a href="PIKEOS/documentation/pikeos-user-manual.pdf">user-manual</a>
+            chapter
+            <b>PikeOS MUXA</b>
+            for details.
+          </li>
+          <li>
+            <b>monitor:</b>
+            The monitor allows inspection and management of
+      PikeOS partitions. It shows system run-time information, can
+      restart/shutdown partitions and monitors the CPU usage.
+            <br/>
+            See the
+            <a href="PIKEOS/documentation/pikeos-user-manual.pdf">user-manual</a>
+            chapter
+            <b>PikeOS Monitor</b>
+            for details.
+          </li>
+          <li>
+            <b>traceserver:</b>
+            The traceserver is the end-point of the CODEO
+      Trace Server it is used to control and configure the tracing
+      infrastructure in the kernel and the user-space applications.
+            <br/>
+            See the
+            <a href="PIKEOS/documentation/pikeos-user-manual.pdf">user-manual</a>
+            chapter
+            <b>CODEO Trace Tool</b>
+            for details.
+          </li>
+        </Description>
+        <ComponentInstance name="monitor" ref="monitor">
+          <AssignedDependencyTable>
+            <AssignedDependency cmp="muxa" dependId="MONBIN" provideId="monitor"/>
+            <AssignedDependency cmp="muxa" dependId="MONCON" provideId="mon_con"/>
+            <AssignedDependency cmp="Monitor Master" dependId="MON_MASTER" provideId="imon-master"/>
+          </AssignedDependencyTable>
+        </ComponentInstance>
+        <ComponentInstance name="traceserver" ref="traceserver">
+          <AssignedDependencyTable>
+            <AssignedDependency cmp="muxa" dependId="MUXA Channel" provideId="traceserver"/>
+          </AssignedDependencyTable>
+        </ComponentInstance>
+        <ComponentInstance name="muxa" ref="muxa">
+          <ParameterValue name="Channel1_Name" value="guest1"/>
+          <ParameterValue name="Channel1_Protocol" value="telnet"/>
+          <AssignedDependencyTable/>
+        </ComponentInstance>
+      </Group>
+      <Group filename="virtualization/hwvirt.linux.dtb.dom" name="linux-guest" path_id="PIKEOS_POOL">
+        <Description>
+          <p>Hardware virtualized linux guest with DTB support.</p>
+          <p>The Device tree blob is used to carry the hardware informations to the Linux kernel</p>
+        </Description>
+        <ComponentInstance name="linux-part" ref="virtualization partition">
+          <ParameterValue name="PARTNAME" value="linux_part"/>
+          <VmitConfigurationTable>
+            <VmitConfiguration condition="true">
+              <Partition Abilities="VM_AB_CACHE_CHANGE VM_AB_TRACE VM_AB_ULOCK_SHARED" CpuMask="$(CPUMASK)" Identifier="$(PARTID)" MaxChildTaskCount="1" MaxFDCount="32" MaxPrio="101" MultiPartitionHMTableID="0" Name="$(PARTNAME)" SchedChangeAction="VM_SCHED_CHANGE_IGNORE" StartupMode="VM_PART_MODE_COLD_START" TimePartitionID="0">
+                <FileAccessTable>
+                  <ComponentReference ref="linux-proc"/>
+                </FileAccessTable>
+                <HMTable>
+                  <DefaultSwitch>
+                    <Default Action="$(ACT_DEFAULT)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                  </DefaultSwitch>
+                  <Domain Identifier="8">
+                    <Switch>
+                      <Default Action="$(ACT_DEFAULT)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      <!--HYPERVISOR_GUEST (0x10000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x10000">
+                        <Then Action="$(HWVIRT_T_HYPERVISOR_GUEST)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_CONFIG (0x20000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x20000">
+                        <Then Action="$(HWVIRT_T_MANAGER_CONFIG)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_DIRECTIO (0x30000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x30000">
+                        <Then Action="$(HWVIRT_T_MANAGER_DIRECTIO)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_FDT (0x40000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x40000">
+                        <Then Action="$(HWVIRT_T_MANAGER_FDT)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_DTB (0x50000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x50000">
+                        <Then Action="$(HWVIRT_T_MANAGER_DTB)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_GUEST (0x60000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x60000">
+                        <Then Action="$(HWVIRT_T_MANAGER_GUEST)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_VMM_WTD (0x70000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x70000">
+                        <Then Action="$(HWVIRT_T_VMM_WATCHDOG)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_VMM (0x80000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x80000">
+                        <Then Action="$(HWVIRT_T_MANAGER_VMM)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_P4BUS (0x90000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0x90000">
+                        <Then Action="$(HWVIRT_T_MANAGER_P4BUS)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_CPU (0xA0000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0xA0000">
+                        <Then Action="$(HWVIRT_T_MANAGER_CPU)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                      <!--MANAGER_GENERIC (0xB0000) error action-->
+                      <If Type="P4_HM_TYPE_UINT" Value="0xB0000">
+                        <Then Action="$(HWVIRT_T_MANAGER_GENERIC)" Code="0" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+                      </If>
+                    </Switch>
+                  </Domain>
+                </HMTable>
+                <MemoryRequirementTable>
+                  <ComponentReference ref="linux-proc"/>
+                </MemoryRequirementTable>
+                <ProcessTable>
+                  <ComponentReference ref="linux-proc"/>
+                </ProcessTable>
+                <QueuingPortTable>
+                  <ComponentReference ref="linux-proc"/>
+                </QueuingPortTable>
+                <SamplingPortTable>
+                  <ComponentReference ref="linux-proc"/>
+                </SamplingPortTable>
+              </Partition>
+            </VmitConfiguration>
+          </VmitConfigurationTable>
+          <RomimageTable>
+            <Romimage condition="true">
+              <properties/>
+            </Romimage>
+          </RomimageTable>
+        </ComponentInstance>
+        <ComponentInstance name="linux-proc" ref="virtualization process">
+          <ParameterValue name="GUEST_NAME" value="Linux-DTB"/>
+          <ParameterValue name="GUEST_TYPE" value="Linux"/>
+          <ParameterValue name="GUEST_BIN" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.kernel"/>
+          <AssignedDependencyTable>
+            <AssignedDependency cmp="Memory Configuration" dependId="Host Memory Provider" provideId="Host Memory Provider"/>
+            <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
+          </AssignedDependencyTable>
+          <SubcomponentInstanceTable>
+            <!--Host memory (and base configuration)-->
+            <SubcomponentInstance name="Memory Configuration" ref="Memory Configuration">
+              <ParameterValue name="RAM_IPA_PHYS" value="true"/>
+              <ParameterValue name="VMEM_IPA_PHYS" value="true"/>
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="Memory" provideId="memory_provide"/>
+                <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+            <!--Guest Memory-->
+            <SubcomponentInstance name="ARM Specific Configuration" ref="ARM Specific Configuration">
+              <ParameterValue name="IRQ_AUTO" value="false"/>
+              <ParameterValue name="GIC_OVERRID_REG" value="true"/>
+              <ParameterValue name="GIC_DIST_ADDR" value="0xf9010000"/>
+              <ParameterValue name="GIC_CPU_ADDR" value="0xf9020000"/>
+              <ParameterValue name="GUEST_ALLOW_PERF" value="true"/>
+              <ParameterValue name="GUEST_ALLOW_TRACE" value="true"/>
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="ARM_params" provideId="arm_params_provide"/>
+                <AssignedDependency cmp="linux-proc" dependId="interrupt_controller_provide" provideId="interrupt_controller_provide"/>
+                <AssignedDependency cmp="linux-proc" dependId="Registers" provideId="registers_provide"/>
+                <AssignedDependency cmp="Boot and debugging" dependId="Linux_Boot" provideId="Linux_Boot_provider"/>
+                <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+            <SubcomponentInstance name="Extra Virtualization Features" ref="Extra Virtualization Features">
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="Virtual_Watchdog" provideId="virtual_watchdog_provide"/>
+                <AssignedDependency cmp="linux-proc" dependId="Virtual_IO" provideId="virtual_io_provide"/>
+                <AssignedDependency cmp="linux-proc" dependId="P4Bus" provideId="p4bus"/>
+                <AssignedDependency cmp="linux-proc" dependId="IOMMU" provideId="iommu_provide"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+            <SubcomponentInstance name="Boot and debugging" ref="Boot and Debugging">
+              <ParameterValue name="LINUX_DTB" value="true"/>
+              <ParameterValue name="CMD_FILE" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.params"/>
+              <ParameterValue name="DTB_FILE" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.dtb"/>
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="Debugging" provideId="debugging_provide"/>
+                <AssignedDependency cmp="linux-proc" dependId="Linux_Boot" provideId="linux_boot_provide"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+            <!--P4BUS VMTTY on MUXA-->
+            <SubcomponentInstance name="guest1-dev1" ref="p4bus device">
+              <ParameterValue name="DEV_NAME" value="guest1-dev1"/>
+              <ParameterValue name="HOST_TYPE" value="vmfile"/>
+              <ParameterValue name="HOST_FP" value="true"/>
+              <ParameterValue name="GUEST_TYPE" value="vmtty"/>
+              <ParameterValue name="GUEST_NAME" value="vmtty0"/>
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="P4BUS" provideId="p4bus"/>
+                <!--<AssignedDependency cmp="PikeOS-process" dependId="FP" provideId="port"/>-->
+                <AssignedDependency cmp="Standard Console" dependId="FP" provideId="port"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+          </SubcomponentInstanceTable>
+        </ComponentInstance>
+      </Group>
+      <Bsp align="0x00001000" arch="arm" boot="uboot_dtb" bootstrats="uboot_dtb_unc,uboot_dtb,elf,raw,uboot,uboot_unc" endian="little" filename="board/zynq-zcu102-hwvirt.bsp.dom" name="zynq-zcu102-hwvirt" path_id="PIKEOS_POOL" proc="v8hf" wrdsz="64">
+        <Description>Xilinx Zynq ZCU102 Board (Cortex A53 Ultrascale) with Hardware Virtualization support.</Description>
+        <Group name="Monitor Kernel Drivers">
+          <ComponentInstance name="Monitor Master" ref="imon-master"/>
+          <ComponentInstance name="Monitor Kernel" ref="imon-kern"/>
+          <ComponentInstance name="Monitor PSSW" ref="imon-ssw"/>
+          <ComponentInstance name="PSSW IMON" ref="pssw-imon"/>
+        </Group>
+        <ComponentInstance name="PikeOS SMP Kernel" ref="PikeOS Kernel">
+          <ParameterValue name="PIKEOS_KERNEL_DIR" value="PIKEOS_POOL/object/bsp/cortex-a5x-hwvirt-ultrascale"/>
+        </ComponentInstance>
+        <ComponentInstance name="System Software" ref="generic-pssw">
+          <ParameterValue name="PIKEOS_PSSW_BIN" value="PIKEOS_POOL/pssw/object/standard/pssw.elf"/>
+        </ComponentInstance>
+        <ComponentInstance name="cortex-a5x.psp" ref="cortex-a5x.psp">
+          <ParameterValue name="IO_AREA0_ADDR" value="0xff060000"/>
+          <ParameterValue name="BOARD_NAME" value="Xilinx Zynq ZCU102 (Ultrascale A53)"/>
+          <ParameterValue name="RAM_BASE" value="0x0"/>
+          <ParameterValue name="GIC_CPU_ADDR" value="0xf902f000"/>
+          <ParameterValue name="CADENCE_ENABLE" value="true"/>
+          <ParameterValue name="IO_AREA3_ADDR" value="0xFF5E0000"/>
+          <ParameterValue name="PSCI_ENABLE" value="true"/>
+          <ParameterValue name="GIC_CTRL_ADDR" value="0xf9040000"/>
+          <ParameterValue name="IO_AREA2_SIZE" value="0x1000"/>
+          <ParameterValue name="CADENCE_UART1_ADDR" value="0xff000000"/>
+          <ParameterValue name="CADENCE_UART2_ADDR" value="0xff010000"/>
+          <ParameterValue name="IO_AREA2_ADDR" value="0xFD1A0000"/>
+          <ParameterValue name="PSP_ID" value="zynq-zcu102"/>
+          <ParameterValue name="IO_AREA1_SIZE" value="0x1000"/>
+          <ParameterValue name="PSP_DEBUG_PORT" value="0"/>
+          <ParameterValue name="IO_AREA0_SIZE" value="0x1000"/>
+          <ParameterValue name="CADENCE_CLKRATE" value="100000000"/>
+          <ParameterValue name="GIC_VCPU_ADDR" value="0xf906f000"/>
+          <ParameterValue name="IO_AREA1_ADDR" value="0xff070000"/>
+          <ParameterValue name="IO_AREA3_SIZE" value="0x1000"/>
+          <ParameterValue name="GIC_DIST_ADDR" value="0xf9010000"/>
+          <ParameterValue name="PSP_CONSOLE_INPUT" value="true"/>
+        </ComponentInstance>
+        <ComponentInstance name="HWVIRT Hypervisor KDEV" ref="HWVIRT Hypervisor KDEV">
+          <ParameterValue name="GIC_USE_PSP" value="true"/>
+          <AssignedDependencyTable>
+            <AssignedDependency cmp="cortex-a5x.psp" dependId="psp-gic" provideId="psp-gic"/>
+          </AssignedDependencyTable>
+        </ComponentInstance>
+        <ComponentInstance name="smc-bypass" ref="smc-bypass"/>
+        <ComponentInstance name="HM Event Subscription" ref="hmev"/>
+        <ComponentInstance name="Standard Console" ref="Standard Console"/>
+        <ComponentInstance name="Ultrascale Clock Manager" ref="UltraScale Clock Manager"/>
+        <ComponentInstance name="Zynq ZCU102 directio Devices" ref="Zynq ZCU102 directio Devices">
+          <ParameterValue name="ALL_DEV" value="true"/>
+          <AssignedDependencyTable>
+            <AssignedDependency cmp="linux-proc" dependId="APP" provideId="directio-hwvirt"/>
+          </AssignedDependencyTable>
+        </ComponentInstance>
+        <Info>
+          <Cpu name="Zynq(R) UltraScale+(TM) (Cortex A53)"/>
+          <Vendor data="Xilinx"/>
+          <Platman manual="documentation/platform/platform-manual-ARM_64bit.pdf"/>
+          <Uri link="http://www.xilinx.com/products/technology/ultrascale-mpsoc.html"/>
+          <Project label="PSSW Fusion Project" profile="fusion-pssw" template="standard" variable="FUSION_PSSW"/>
+          <Project label="Kernel Fusion Project" profile="fusion-kernel" template="cortex-a5x-hwvirt-ultrascale" variable="FUSION_KERNEL"/>
+          <Project label="PSP Project" profile="psp" template="cortex-a5x" variable="PSP"/>
+        </Info>
+      </Bsp>
+    </ConfigurationDomainTable>
+    <Vmit>
+      <!--the master VMIT-->
+      <Configuration PartitionID="0" Version="VM_VMIT_VERSION_CURRENT">
+        <ConnectionTable>
+          <PartitionChannelTable>
+            <ComponentReference ref="service.partition"/>
+            <ComponentReference ref="monitor"/>
+            <ComponentReference ref="traceserver"/>
+            <ComponentReference ref="muxa"/>
+            <ComponentReference ref="linux-part"/>
+            <ComponentReference ref="linux-proc"/>
+            <ComponentReference ref="Monitor Master"/>
+            <ComponentReference ref="Monitor Kernel"/>
+            <ComponentReference ref="Monitor PSSW"/>
+            <ComponentReference ref="PSSW IMON"/>
+            <ComponentReference ref="PikeOS SMP Kernel"/>
+            <ComponentReference ref="System Software"/>
+            <ComponentReference ref="cortex-a5x.psp"/>
+            <ComponentReference ref="HWVIRT Hypervisor KDEV"/>
+            <ComponentReference ref="smc-bypass"/>
+            <ComponentReference ref="HM Event Subscription"/>
+            <ComponentReference ref="Standard Console"/>
+            <ComponentReference ref="Ultrascale Clock Manager"/>
+            <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+          </PartitionChannelTable>
+          <GateChannelTable>
+            <ComponentReference ref="service.partition"/>
+            <ComponentReference ref="monitor"/>
+            <ComponentReference ref="traceserver"/>
+            <ComponentReference ref="muxa"/>
+            <ComponentReference ref="linux-part"/>
+            <ComponentReference ref="linux-proc"/>
+            <ComponentReference ref="Monitor Master"/>
+            <ComponentReference ref="Monitor Kernel"/>
+            <ComponentReference ref="Monitor PSSW"/>
+            <ComponentReference ref="PSSW IMON"/>
+            <ComponentReference ref="PikeOS SMP Kernel"/>
+            <ComponentReference ref="System Software"/>
+            <ComponentReference ref="cortex-a5x.psp"/>
+            <ComponentReference ref="HWVIRT Hypervisor KDEV"/>
+            <ComponentReference ref="smc-bypass"/>
+            <ComponentReference ref="HM Event Subscription"/>
+            <ComponentReference ref="Standard Console"/>
+            <ComponentReference ref="Ultrascale Clock Manager"/>
+            <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+          </GateChannelTable>
+        </ConnectionTable>
+        <PartitionTable>
+          <ComponentReference ref="service.partition"/>
+          <ComponentReference ref="linux-part"/>
+        </PartitionTable>
+        <ScheduleTable>
+          <ComponentReference ref="service.partition"/>
+          <ComponentReference ref="monitor"/>
+          <ComponentReference ref="traceserver"/>
+          <ComponentReference ref="muxa"/>
+          <ComponentReference ref="linux-part"/>
+          <ComponentReference ref="linux-proc"/>
+          <ComponentReference ref="Monitor Master"/>
+          <ComponentReference ref="Monitor Kernel"/>
+          <ComponentReference ref="Monitor PSSW"/>
+          <ComponentReference ref="PSSW IMON"/>
+          <ComponentReference ref="PikeOS SMP Kernel"/>
+          <ComponentReference ref="System Software"/>
+          <ComponentReference ref="cortex-a5x.psp"/>
+          <ComponentReference ref="HWVIRT Hypervisor KDEV"/>
+          <ComponentReference ref="smc-bypass"/>
+          <ComponentReference ref="HM Event Subscription"/>
+          <ComponentReference ref="Standard Console"/>
+          <ComponentReference ref="Ultrascale Clock Manager"/>
+          <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+        </ScheduleTable>
+        <SharedMemoryTable>
+          <ComponentReference ref="service.partition"/>
+          <ComponentReference ref="monitor"/>
+          <ComponentReference ref="traceserver"/>
+          <ComponentReference ref="muxa"/>
+          <ComponentReference ref="linux-part"/>
+          <ComponentReference ref="linux-proc"/>
+          <ComponentReference ref="Monitor Master"/>
+          <ComponentReference ref="Monitor Kernel"/>
+          <ComponentReference ref="Monitor PSSW"/>
+          <ComponentReference ref="PSSW IMON"/>
+          <ComponentReference ref="PikeOS SMP Kernel"/>
+          <ComponentReference ref="System Software"/>
+          <ComponentReference ref="cortex-a5x.psp"/>
+          <ComponentReference ref="HWVIRT Hypervisor KDEV"/>
+          <ComponentReference ref="smc-bypass"/>
+          <ComponentReference ref="HM Event Subscription"/>
+          <ComponentReference ref="Standard Console"/>
+          <ComponentReference ref="Ultrascale Clock Manager"/>
+          <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+        </SharedMemoryTable>
+        <SystemExtensionTable>
+          <FileProviderTable/>
+          <GateProviderTable>
+            <ComponentReference ref="Monitor Master"/>
+            <ComponentReference ref="PSSW IMON"/>
+            <ComponentReference ref="HWVIRT Hypervisor KDEV"/>
+            <ComponentReference ref="smc-bypass"/>
+            <ComponentReference ref="HM Event Subscription"/>
+            <ComponentReference ref="Standard Console"/>
+            <ComponentReference ref="Ultrascale Clock Manager"/>
+          </GateProviderTable>
+        </SystemExtensionTable>
+        <ModuleHMTable>
+          <DefaultSwitch>
+            <Default Action="P4_HM_MAC_SHUTDOWN" Notify="0"/>
+          </DefaultSwitch>
+        </ModuleHMTable>
+        <MultiPartitionHMTable>
+          <Table Identifier="0">
+            <DefaultSwitch>
+              <Default Action="P4_HM_MAC_SHUTDOWN" Level="P4_HM_LEVEL_PARTITION" Notify="0"/>
+            </DefaultSwitch>
+          </Table>
+        </MultiPartitionHMTable>
+      </Configuration>
+    </Vmit>
+    <DefinitionTable>
+      <Definition filename="partition/service_partition.cmp" name="service.partition" path_id="PIKEOS_POOL"/>
+      <Definition filename="driver/misc/monitor.cmp" name="monitor" path_id="PIKEOS_POOL"/>
+      <Definition filename="driver/misc/traceserver.cmp" name="traceserver" path_id="PIKEOS_POOL"/>
+      <Definition filename="driver/misc/muxa.cmp" name="muxa" path_id="PIKEOS_POOL"/>
+      <Definition filename="virtualization/partition/virtualization.partition.cmp" name="virtualization partition" path_id="PIKEOS_POOL"/>
+      <Definition filename="virtualization/process/virtualization.process.cmp" name="virtualization process" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/imon/imon-master.cmp" name="imon-master" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/imon/imon-kern.cmp" name="imon-kern" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/imon/imon-ssw.cmp" name="imon-ssw" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/pssw_imon/pssw_imon.cmp" name="pssw-imon" path_id="PIKEOS_POOL"/>
+      <Definition filename="kernel/kernel-smp.cmp" name="PikeOS Kernel" path_id="PIKEOS_POOL"/>
+      <Definition filename="pssw/pssw.cmp" name="generic-pssw" path_id="PIKEOS_POOL"/>
+      <Definition filename="psp/cortex-a5x.psp.cmp" name="cortex-a5x.psp" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/hwvirt-hypervisor.cmp" name="HWVIRT Hypervisor KDEV" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/hwvirt-except-handler/smc-bypass.cmp" name="smc-bypass" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/hmev.cmp" name="hmev" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/stdcon.cmp" name="Standard Console" path_id="PIKEOS_POOL"/>
+      <Definition filename="kerneldriver/us_clk-prov_kdev.cmp" name="UltraScale Clock Manager" path_id="PIKEOS_POOL"/>
+      <Definition filename="board/zynq-zcu102-hwvirt/zynq-zcu102-directio.cmp" name="Zynq ZCU102 directio Devices" path_id="PIKEOS_POOL"/>
+    </DefinitionTable>
+  </Integration>
+</Project>
