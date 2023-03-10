@@ -57,13 +57,6 @@ filesystem: filesystem_common
 help: help_common
 
 install: install_common
-# change the partition names according to your sd-card. In this example, ROOT is the boot, and ROOT1 is rootfs
-burn:
-	cp ../pool/images/hwvirt-linux-zynq-zcu102-hwvirt-uboot_dtb /media/ubuntu/ROOT
-	sudo tar -zxvf ./rootfs.tgz -C /media/ubuntu/ROOT1/
-	sync
-	umount /media/ubuntu/ROOT
-	umount /media/ubuntu/ROOT1
 
 diffconfig:
 	echo "TBD !!!"

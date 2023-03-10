@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="us-ascii" standalone="no"?>
 <Project xmlns="http://www.sysgo.com/xsd/prj/project-5.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" productversion="5.1">
   <Integration name="hwvirt-linux" profile="integration" target="arm_v8hf">
-    <PathTable/>
+    <PathTable>
+      <Path id="PIKEOS" location="/opt/pikeos-5.1/"/>
+      <Path id="PIKEOS_POOL" location="/opt/pikeos-5.1/target/arm/v8hf/"/>
+    </PathTable>
     <ConfigurationDomainTable>
       <!--start here-->
       <!--use CTRL + SPACE for suggestions-->
