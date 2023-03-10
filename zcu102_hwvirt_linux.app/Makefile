@@ -34,7 +34,7 @@ else
 
 include $(ELINOS_PREFIX)/scripts/system.mk
 
-.PHONY: boot clean distclean filesystem help install burn
+.PHONY: boot clean distclean filesystem help install burn diffconfig
 .DEFAULT: help
 
 ### common make targets ###
