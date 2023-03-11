@@ -77,7 +77,7 @@ Then, as shown in the next image, set the static IP, which is configured to `10.
 
 ### Debug Configuration
 
-It's necessary to create a Debug Configuration for each ElinOS Application Project, in this case `fred-lib.app` and `fred-server.app`. in CODEO, go to menu `Run -> Debug Configurations...`. Then add two *C/C++ ELinOS Remote Applications*. The first one called *fred-server* and the second one called *sum-vec*. For  fred-server, the relevant tabs are shown next. 
+It's necessary to create a Debug Configuration for each ElinOS Application Project, in this case `fred-lib.app` and `fred-server.app`. In CODEO, go to menu `Run -> Debug Configurations...`. Then add two *C/C++ ELinOS Remote Applications*. The first one called *fred-server* and the second one called *sum-vec*. For  fred-server, the relevant tabs are shown next. 
 
 
 ![Alt text](./images/fred-server-dbg-main-tab.png "fred-server Main tab")
@@ -97,7 +97,7 @@ Since `fred-lib.app` and `fred-server.app` communicate with each other via socke
 ### Current error
 
 Currently, fred-server is crashing in the part of the code where the partial bitstream is copied to the fpga-mrg-fmod driver. To reproduce the error, the server is waiting requests.
-The client starts its initialization with *fred_init*, *fred_bind*, and *fred_map_buff*. All goes well so far. When the client call fred_accel, it causes this call stack to be generated from the server side:
+The client starts its initialization with *fred_init*, *fred_bind*, and *fred_map_buff*. All goes well so far. When the client call fred_accel, it causes this cals stack to be generated from the server side:
 
 #### UIO activation
 
@@ -142,7 +142,7 @@ fred_sys_init() at fred_sys.c:466 0x5555555ac8  
 main() at main.c:49 0x5555551af4    
 ```
 
-In the end of `function uio_dev_init`, the following mmap allocates the 0x7ff7e37000 address.
+In the end of function `uio_dev_init`, the following mmap allocates the 0x7ff7e37000 address.
 
 ```
    // Map into the process memory space
@@ -170,9 +170,7 @@ And this is the error message raised before ELinOS crashes.
 #### pnotify=0x0, mnotify=0x0
 ```
 
-Looking at this msg "
-msg="[P4HWVIRT_E_MNG_CPU_IOACCESS]: Guest tried to access data at invalid address"
-". It seem to be PikeOS that it blocking this mem access. If so, how can we enable this mem access ?
+Looking at this msg *msg="[P4HWVIRT_E_MNG_CPU_IOACCESS]: Guest tried to access data at invalid address"*. It seem to be PikeOS that it blocking this mem access. If so, how can we enable this mem access ?
 
 ## Acknowledgement
 
