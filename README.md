@@ -1,6 +1,6 @@
 # fred-elinos
 
-This is Elinos (by SysGo) realtime OS setup for the FRED framework. 
+This is [ELinOS](https://www.sysgo.com/elinos) (by SysGo) realtime OS setup for the [FRED framework](https://fred-framework-docs.readthedocs.io/en/latest/index.html). 
 
 Please go through all four ElinOS/PikeOS projects for more details.
 
