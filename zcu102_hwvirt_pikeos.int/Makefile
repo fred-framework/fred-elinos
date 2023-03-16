@@ -55,7 +55,9 @@ install: all
 	cp boot/hwvirt-linux-zynq-zcu102-hwvirt-uboot_dtb /media/ubuntu/ROOT
 	sudo tar -zxvf ../zcu102_hwvirt_linux.app/rootfs.tgz -C /media/ubuntu/ROOT1/
 	sync
+	sleep 1
 	umount /media/ubuntu/ROOT
+	sleep 1
 	umount /media/ubuntu/ROOT1
 
 #

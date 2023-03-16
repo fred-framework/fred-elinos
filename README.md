@@ -54,6 +54,7 @@ mkdir -p /lib/firmware
 cp /opt/fredsys/dart_fred/bits/static.bin /lib/firmware/
 echo 0 > /sys/class/fpga_manager/fpga0/flags
 cd /opt/fredsys
+tar -xzf fred.tar.gz .
 fred-server &
 sum-vec
 ```
