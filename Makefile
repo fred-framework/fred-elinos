@@ -4,17 +4,14 @@
 
 # prepare the linux image w FRED
 all:
-	make -C fred-lib.app install
-	make -C fred-server.app install
-	make -C zcu102_hwvirt_linux.app boot
-	make -C zcu102_hwvirt_pikeos.int all
+	@echo "Run ./build.sh to build the ELinOS image for FRED"
+	exit 0
 
 # this will write in the SD card
 install:
+	@echo "Run ./burn.sh to write the image into the SD card. You might need to change the partition names"
 	make -C zcu102_hwvirt_pikeos.int install
 
 distclean:
-	make -C fred-lib.app distclean
-	make -C fred-server.app distclean
-	make -C zcu102_hwvirt_linux.app distclean
-	make -C zcu102_hwvirt_pikeos.int distclean
+	@echo "Run ./clean.sh to clean all ELinOS projects"
+	exit 0
