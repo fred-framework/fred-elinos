@@ -6,7 +6,7 @@ Please go through all four ElinOS/PikeOS projects for more details.
 
 ## Generating the image
 
-Run `make all` to build all four projects and `make install` to write the Linux image into the sd-card.
+In the home repository dir, run `./build.sh` to build all four projects and `./burn.sh` to write the Linux image into the sd-card.
 
 ## Booting the ZCU102 Board
 
