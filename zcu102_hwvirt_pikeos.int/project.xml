@@ -210,7 +210,7 @@
         <ComponentInstance name="linux-proc" ref="virtualization process">
           <ParameterValue name="GUEST_NAME" value="Linux-DTB"/>
           <ParameterValue name="GUEST_TYPE" value="Linux"/>
-          <ParameterValue name="GUEST_BIN" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.kernel"/>
+          <ParameterValue name="GUEST_BIN" value="PROJECT/../zcu102_hwvirt_linux.app/boot/linux.kernel"/>
           <AssignedDependencyTable>
             <AssignedDependency cmp="Memory Configuration" dependId="Host Memory Provider" provideId="Host Memory Provider"/>
             <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
@@ -220,7 +220,8 @@
             <SubcomponentInstance name="Memory Configuration" ref="Memory Configuration">
               <ParameterValue name="RAM_IPA_PHYS" value="true"/>
               <ParameterValue name="VMEM_IPA_PHYS" value="true"/>
-              <ParameterValue name="RAM_SIZE" value="0x20000000"/><AssignedDependencyTable>
+              <ParameterValue name="RAM_SIZE" value="0x20000000"/>
+              <AssignedDependencyTable>
                 <AssignedDependency cmp="linux-proc" dependId="Memory" provideId="memory_provide"/>
                 <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
               </AssignedDependencyTable>
@@ -251,8 +252,8 @@
             </SubcomponentInstance>
             <SubcomponentInstance name="Boot and debugging" ref="Boot and Debugging">
               <ParameterValue name="LINUX_DTB" value="true"/>
-              <ParameterValue name="CMD_FILE" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.params"/>
-              <ParameterValue name="DTB_FILE" value="FILESYSTEM/home/ubuntu/repos/pikeos/workspace7.3-2/zcu102_hwvirt_linux.app/boot/linux.dtb"/>
+              <ParameterValue name="CMD_FILE" value="PROJECT/../zcu102_hwvirt_linux.app/boot/linux.params"/>
+              <ParameterValue name="DTB_FILE" value="PROJECT/../zcu102_hwvirt_linux.app/boot/linux.dtb"/>
               <AssignedDependencyTable>
                 <AssignedDependency cmp="linux-proc" dependId="Debugging" provideId="debugging_provide"/>
                 <AssignedDependency cmp="linux-proc" dependId="Linux_Boot" provideId="linux_boot_provide"/>
