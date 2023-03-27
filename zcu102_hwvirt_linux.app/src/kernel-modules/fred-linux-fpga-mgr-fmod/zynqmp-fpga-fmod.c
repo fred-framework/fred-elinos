@@ -141,7 +141,7 @@ static int zynqmp_fpga_ops_write_init(struct fpga_manager *mgr,
 	return 0;
 }
 
-/*
+
 // It is not clear which version of this function work in Elinos: the modified for FRED w the patch applied, 
 // or the original by Elinos 7.1
 
@@ -213,9 +213,10 @@ err_unlock:
 	mutex_unlock(&priv->lock);
 	return ret;
 }
-*/
+
 
 // original code for elinos 7.1
+/*
 static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 				 const char *buf, size_t size)
 {
@@ -236,7 +237,7 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 	memcpy(kbuf, buf, size);
 
 	printk("zynqmp_fpga_ops_write (elinos): 3\n");
-	wmb(); /* ensure all writes are done before initiate FW call */
+	wmb(); // ensure all writes are done before initiate FW call 
 	printk("zynqmp_fpga_ops_write (elinos): 4\n");
 
 	if (priv->flags & FPGA_MGR_PARTIAL_RECONFIG)
@@ -248,6 +249,7 @@ static int zynqmp_fpga_ops_write(struct fpga_manager *mgr,
 	printk("zynqmp_fpga_ops_write (elinos): 6\n");
 	return ret;
 }
+*/
 
 static int zynqmp_fpga_ops_write_complete(struct fpga_manager *mgr,
 					  struct fpga_image_info *info)

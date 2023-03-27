@@ -11,6 +11,16 @@
     <interrupt>165</interrupt>
   </device>
   <device>
+    <label>2xuio</label>
+    <id>0xa0000000</id>
+    <memory>
+      <base>0xa0000000</base>
+      <offset>0x0</offset>
+      <size>0x20000</size>
+    </memory>
+    <interrupt>0</interrupt>
+  </device>
+  <device>
     <label>dev_vcu0</label>
     <id>0xa0009000</id>
     <memory>

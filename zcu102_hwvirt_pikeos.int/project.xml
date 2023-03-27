@@ -220,7 +220,7 @@
             <SubcomponentInstance name="Memory Configuration" ref="Memory Configuration">
               <ParameterValue name="RAM_IPA_PHYS" value="true"/>
               <ParameterValue name="VMEM_IPA_PHYS" value="true"/>
-              <AssignedDependencyTable>
+              <ParameterValue name="RAM_SIZE" value="0x20000000"/><AssignedDependencyTable>
                 <AssignedDependency cmp="linux-proc" dependId="Memory" provideId="memory_provide"/>
                 <AssignedDependency cmp="HWVIRT Hypervisor KDEV" dependId="hypervisor" provideId="p4hwvirt-kdev"/>
               </AssignedDependencyTable>
@@ -269,6 +269,14 @@
                 <AssignedDependency cmp="linux-proc" dependId="P4BUS" provideId="p4bus"/>
                 <!--<AssignedDependency cmp="PikeOS-process" dependId="FP" provideId="port"/>-->
                 <AssignedDependency cmp="Standard Console" dependId="FP" provideId="port"/>
+              </AssignedDependencyTable>
+            </SubcomponentInstance>
+            <SubcomponentInstance name="linux-proc hwvirt custom direct IO" ref="hwvirt custom direct IO">
+              <ParameterValue name="ADDR" value="0xA0000000"/>
+              <ParameterValue name="SIZE" value="0x20000"/>
+              <ParameterValue name="NAME" value="2xUIO"/>
+              <AssignedDependencyTable>
+                <AssignedDependency cmp="linux-proc" dependId="custom_direct_io" provideId="directio-hwvirt"/>
               </AssignedDependencyTable>
             </SubcomponentInstance>
           </SubcomponentInstanceTable>
@@ -363,6 +371,7 @@
             <ComponentReference ref="Standard Console"/>
             <ComponentReference ref="Ultrascale Clock Manager"/>
             <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+            <ComponentReference ref="linux-proc hwvirt custom direct IO"/>
           </PartitionChannelTable>
           <GateChannelTable>
             <ComponentReference ref="service.partition"/>
@@ -384,6 +393,7 @@
             <ComponentReference ref="Standard Console"/>
             <ComponentReference ref="Ultrascale Clock Manager"/>
             <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+            <ComponentReference ref="linux-proc hwvirt custom direct IO"/>
           </GateChannelTable>
         </ConnectionTable>
         <PartitionTable>
@@ -410,6 +420,7 @@
           <ComponentReference ref="Standard Console"/>
           <ComponentReference ref="Ultrascale Clock Manager"/>
           <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+          <ComponentReference ref="linux-proc hwvirt custom direct IO"/>
         </ScheduleTable>
         <SharedMemoryTable>
           <ComponentReference ref="service.partition"/>
@@ -431,6 +442,7 @@
           <ComponentReference ref="Standard Console"/>
           <ComponentReference ref="Ultrascale Clock Manager"/>
           <ComponentReference ref="Zynq ZCU102 directio Devices"/>
+          <ComponentReference ref="linux-proc hwvirt custom direct IO"/>
         </SharedMemoryTable>
         <SystemExtensionTable>
           <FileProviderTable/>
