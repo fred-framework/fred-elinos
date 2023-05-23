@@ -1,34 +1,52 @@
+# FRED-Library and FRED Client Applications
 
-# FRED-lib and sum-vec
+This ElinOS App Project contains some FRED Client Applications useful to
+test and debug FRED when running on ElinOS.
 
-This Elinos App Project is only created to enable debug on the board. Somehow, debug does not work in a Elinos System Project.
-If one learn how to debug it in the Elinos System Project, it would be easier since we dont need to manage multiple Elinos projects.
+> **Please refrain from manually building this project by itself. Instead,
+> use the `build.sh` and the `burn.sh` scripts in the top-level directory
+> to do so. Refer to [../README.md](../README.md) for further info.**
 
-Run `make install` to generate these files
+___________________________________________________________________________
 
+## Useful information for debugging purposes
+
+### Building in Debug/Release Mode
+
+By default, the project is built in debug mode. This can be changed by
+editing the [Makefile], so that:
+```Makefile
+DEBUG=NO
 ```
-app.rootfs/
-└── usr
-    ├── bin
-    │   └── sum-vec
-    ├── include
-    │   └── fred_lib.h
-    └── lib
-        ├── libfred.a
-        └── libfred.so
-```
 
-The same binary files are also copied to `../zcu102_hwvirt_linux.app`, to add them to the Linux image. 
-Make sure the project names keep the same to avoid changing the makefiles.
+### Changing FRED/DART IPs
 
-Run `make distclean` to prepare the project to update the repository. 
+FRED/DART IPs are not contained in this project and must be built
+separately. The result of the build process is a `tar` archive that should
+be placed in [this
+location](../zcu102_hwvirt_linux.app/app.rootfs/opt/fredsys/fred.tar.gz).
+Notice that the file is NOT part of this project, but part of the [ElinOS
+Project for FRED](../zcu102_hwvirt_linux.app/).
 
-The fred-lib source code is from this [repo/commit](https://github.com/fred-framework/fred-linux-client-lib/commit/bffd5141f86cd3ed1f2626bac84f1ceadfaf8d0c)
-while the example app is from [here](https://github.com/fred-framework/meta-fred/tree/main/recipes-example/sum-vec/files) and [here](https://github.com/fred-framework/meta-fred/commit/bd210b3c1966a9e5509a4cd051be84aa96601aaf) and its [hardware design](https://github.com/fred-framework/dart_ips/tree/master/ips/sum_vec/hw).
+> **TODO**: Further information on how to re-build and change IPs should be
+> included here.
 
-In the future, use git submodule instead of copying the code.
+### Project Targets
 
-Note that fred-lib is compiled for debug by default. If you want to do performance evaluation, change this in the Makefile:
- - DEBUG=YES => DEBUG=NO
- 
-A. Amory
+This project builds the FRED Client Library and multiple client
+applications. Target binaries are located in [app.rootfs](app.rootfs) and
+copied automatically to the correct location in
+[../zcu102_hwvirt_linux.app/].
+
+The FRED Client Libraries and the client applications included in this
+project are copied from other projects (with some minor changes). The
+following table summarizes the sources of each subproject.
+
+| Subproject          | URL                 | Commit SHA                               |
+| :------------------ | :------------------ | :--------------------------------------- |
+| Fred Client Library | [URL][fred-cli-lib] | bffd5141f86cd3ed1f2626bac84f1ceadfaf8d0c |
+| Sum Vec Application | [URL][sum-vec]      | bd210b3c1966a9e5509a4cd051be84aa96601aaf |
+
+
+[fred-cli-lib]: https://github.com/fred-framework/fred-linux-client-lib
+[sum-vec]: https://github.com/fred-framework/meta-fred/tree/main/recipes-example/sum-vec/files

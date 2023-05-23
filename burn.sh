@@ -89,7 +89,7 @@ function main() {
     SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
     cd "$SCRIPT_DIR"
 
-    echo " + Setting target directories as instructed..."
+    echo " +-- Setting target directories as instructed..."
     # Substitute destination directories
     MAKEFILE="zcu102_hwvirt_pikeos.int/Makefile"
     tmpfile=$(mktemp)
@@ -101,11 +101,16 @@ function main() {
     cp "$tmpfile" "$MAKEFILE.tmp"
     rm -f "$tmpfile"
 
-    echo " + Cleaning target directories..."
+    echo " +-- Restarting the license server"
+    systemctl stop lmxserv51
+    rm -f /usr/lmx-5.1/lmx-serv.pid
+    systemctl start lmxserv51
+
+    echo " +-- Cleaning target directories..."
     rm -rf "${DESTINATION_UBOOT:?}"/*
     rm -rf "${DESTINATION_ROOTFS:?}"/*
 
-    echo " + Burning on target directories..."
+    echo " +-- Burning on target directories..."
     cd zcu102_hwvirt_pikeos.int
     # source ELINOS.sh
     source PikeOS.sh
@@ -117,7 +122,8 @@ function main() {
     cp uboot/* "$DESTINATION_UBOOT"
     umount "$DESTINATION_UBOOT"
     umount "$DESTINATION_ROOTFS"
-    echo " + Success"
+
+    echo ' +-- Success!'
 }
 
 (

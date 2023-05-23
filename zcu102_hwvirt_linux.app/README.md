@@ -1,45 +1,108 @@
-# FRED for Elinos 7.1
+# ElinOS Project for FRED
 
-This Elinos System Project, where ELinos is configure to work with the FRED Framework. 
-This is also where the Linux kernel and image are configured.
+This ElinOS project contains all information needed to build a working
+ElinOS kernel (together with the corresponding root file system) to use the
+FRED Framework on a Xilinx Ultrascale+ ZCU102 Evaluation Board.
 
-One of the most timing consuming part of this configuration was to figure out which are the Kernel requirements to work with FRED.
-It turns out that the default Petalinux kernel configuration enables several features by default. Elinos, on the other hand,
-disables lots of kernel features. So, during the migration from Petalinux to Elinos, a few unknown kernel feature dependencies were unveiled. 
-Now these kernel features are [documented](https://github.com/fred-framework/meta-fred#kernel-requirements). Use this list (and keep it up-to-date) 
-if FRED is ported to newer versions of Linux OS in the future.
+> **Please refrain from manually building this project by itself. Instead,
+> use the `build.sh` and the `burn.sh` scripts in the top-level directory
+> to do so. Refer to [../README.md](../README.md) for further info.**
 
-Besides configuring Elinos for FRED, this project also add external tools to the image (tree, dtc, rsync, cpufreq, etc 
-located in zcu102_hwvirt_linux.app/app.rootfs/) and it also compiles the FRED kernel modules ([fpga-mgr-fmod](https://github.com/fred-framework/fred-linux-fpga-mgr-fmod/commit/e7f9bb0cca1227eb34819acb8f9b29c6bac69ef7) and [buffctl](https://github.com/fred-framework/fred-linux-buffctl-kmod/commit/9c0b9677ad830c1bb520853afe4318efcdc9907f)) in src/kernel-modules.
+## Missing Features
 
-If you need to add more tools to the image that are not promptly available in Elinos, I recommend
-you copy the required binaries and libraries out of a Petalinux project. Petalinux by default enables much more tools than Elinos, and it is most probably already compiled there. That's what I did for tree, dtc, and cpufreq.
+> If you use the project "as is", no manual intervention is required.
 
-## Restoring the ElinOS Project
+However, not everything in this project works as intended in a typical FRED
+installation. Missing features include:
 
-Run 
+ - Dynamically changing the Linux device tree via overlays. Typically, FRED
+   creates an overlay on top of the base Linux device tree where it places
+   the FPGA slots and other devices' information. This is not possible as
+   of now. See [this section](#updating-the-device-tree-manually) for how
+   to statically include information about your FPGA slots into the ElinOS
+   device tree.
+   > NOTICE that FRED currently is tested with only one slot, so you should
+   > be fine leaving everything as-is.
 
-```
-$ cd zcu102_hwvirt_linux.app
-$ /opt/elinos-7.1/bin/elinos-share-project import
-$ ./configure -n
-$ . ./ELINOS.sh
-```
+ - The shared memory regions, defined in the device tree, among
+   fred-server, fred client app, and fpga-manager must be configured in
+   PikeOS see [the PikeOS Integration
+   Project](../zcu102_hwvirt_pikeos.int/README.md) for further info.
 
-to restore the project once the repository is cloned.
+ - The following patches are pending to be applied in this project (as per
+   AMPERE requirements):
+    - [ ] https://github.com/fred-framework/meta-retis/blob/main/recipes-kernel/linux/files/0001-Disable-runtime-frequency-scaling-in-dl-tasks.patch
+    - [ ] https://github.com/fred-framework/meta-retis/blob/main/recipes-kernel/linux/files/0002-Set-rt-class-priority-higher-than-dl.patch
 
-## Generating the Linux Image 
+___________________________________________________________________________
 
-First, run `make install` in fred-lib.app and fred-server.app. This will populate zcu102_hwvirt_linux.app/app.rootfs/usr/ with FRED server and it's libraries.
+## Useful information for debugging purposes
 
-Run `make boot` to compile the kernel and generate the ElinOS image. This process takes about 10 to 15 minutes.
+### Project Targets
 
-## Updating the Device Tree Manually
+This project builds a Linux kernel image in `boot` and populates a
+corresponding rootfs in `app.rootfs`.
 
-Before saving the image into the SD-card we have to add the FPGA configuration into the device tree and also to replace the FPGA-manager driver. This is currently done manually but could be updated to apply a patch, for example. 
+### Moving from PetaLinux to ElinOS
 
-Add the following lines inside the device tree axi block related to slot0 and pr_decoupler0:
+FRED is tightly integrated with the PetaLinux kernel. As such, lots of its
+component may rely on other components that are only present in a PetaLinux
+kernel and not in others Linux versions, like ElinOS. In addition, ElinOS
+disables by default several kernel features compared to other
+distributions.
 
+Thankfully, this migration from PetaLinux to ElinOS let us re-discover
+(seemingly) all FRED kernel requirements, which are now documented
+[here](https://github.com/fred-framework/meta-fred#kernel-requirements).
+
+### Project Structure
+
+In addition to porting FRED into ElinOS, this project contains other tools
+that are useful from a user perspective when interacting with ElinOS (tree,
+dtc, rsync, cpufreq, etc.), together with FRED kernel modules.
+
+Included tools are located [here](app.rootfs/). Some are included as
+binaries, while others (like `rsync`) are built from sources and then
+copied into that directory for later use. Binaries are taken from the
+PetaLinux project (version 2020.2).
+
+> **NOTE**: beware that the `app.rootfs` directory will contain other files
+> built by this project. As such, it is mostly ignored by `git`. Manually
+> add (with `-f`) all the files you want to keep and track.
+
+[fpga-mgr-fmod]: https://github.com/fred-framework/fred-linux-fpga-mgr-fmod
+[buffctl]: https://github.com/fred-framework/fred-linux-buffctl-kmod
+
+FRED kernel modules are located [here](src/kernel-modules). They include
+the [fpga-mgr-fmod][fpga-mgr-fmod] and the [buffctl][buffctl] modules.
+
+Included versions refer to the following commits:
+
+| Module        | Commit SHA                               |
+| :------------ | :--------------------------------------- |
+| fpga-mgr-fmod | e7f9bb0cca1227eb34819acb8f9b29c6bac69ef7 |
+| buffctl       | 9c0b9677ad830c1bb520853afe4318efcdc9907f |
+
+### Project Dependencies
+
+This project depends on the [../fred-lib.app](../fred-lib.app) and the
+[../fred-server.app](../fred-server.app) projects. If you make any changes
+to those projects either run again `build.sh` or run `make install` in
+those project before continuing development here.
+
+### Updating the Device Tree Manually
+
+> If you come from PetaLinux, you might be used to let FRED dynamically
+> change the hardware IPs available by injecting a device tree overlay at
+> runtime. This feature **does not work**.
+
+For any change that you want to make to the FPGA manager configuration
+(list of IPs, etc.), you need to re-build the device tree in this project
+and build a new image from scratch. You also need to replace the FPGA
+Manager driver in ElinOS to reflect the new configuration.
+
+To do so, add the following lines inside the device tree `axi` block
+related to `slot0` and `pr_decoupler0`:
 ```
 	axi {
 		compatible = "simple-bus";
@@ -61,39 +124,44 @@ Add the following lines inside the device tree axi block related to slot0 and pr
 		};
 ```
 
-To make things easier, there is a modified device tree in `system.dts`. The file `linux-modif.dtb` is a already compiled version of this device tree, such that it's just a matter of replacing the 
-device tree generated by ELinOS. Be aware that if ElinOS configuration is changed just that it also changes its device tree, then one needs to make the manual device tree modification again. Checkout the  comment section of the `Makefile`, under rule `boot`, to generate the newer device tree. 
+The actual lines depend on the DTS that you want to place of course, but
+you should get an idea from the example above.
 
-## Updating the SD.card
+As of now, the file [system.dts](system.dts) is already edited to include
+this information. You can edit it to make changes yourself and rebuild the
+project if you need.
 
-The Linux image is only ready after the PikeOS project is executed. Refer to the directory `zcu102_hwvirt_pikeos.int/README` for more information.
+There is also an already-compiled version of this DTS file in
+[linux-modif.dtb](linux-modif.dtb). If you make some changes, delete it and
+rebuild it yourself.
 
-## Missing Features
+> Be aware that if ElinOS configuration is changed just that it also
+> changes its device tree, then you need to make the manual device tree
+> modification again. Checkout the comment section of the `Makefile`, under
+> rule `boot`, to generate the newer device tree.
 
- - Linux Device tree overlays was not working. So it is currently using a fixed device tree to specify the FPGA layout (number of slots). This is not ideal because, for example, if more slots are added to the FPGA, then we need to manually add the device tree to correspond this change and rebuild the kernel image. With the use of device tree overlay, which is working in Petalinux, changing the FPGA layout can be incorporated in the Linux image in runtime, while running the image.
- - The shared memory regions, defined in the device tree, among fred-server, fred client app, and fpga-manager must be configured in PikeOS
- - It's possible that the interruptions issues when the IP finishes its tasks, defined in the device tree, should also be mapped in PikeOS.
- - Apply the kernel patches:
-    - https://github.com/fred-framework/meta-retis/blob/main/recipes-kernel/linux/files/0001-Disable-runtime-frequency-scaling-in-dl-tasks.patch
-    - https://github.com/fred-framework/meta-retis/blob/main/recipes-kernel/linux/files/0002-Set-rt-class-priority-higher-than-dl.patch
+### Committing Changes to ElinOS Configuration
 
+> **NOTE**: you must have a valid ElinOS license and a license server
+> running on your host to run this step.
 
-## Updating the ElinOS configuration
-
-Since there are still some work to be done to configure ELinos for FRED, it will be necessary to update both Elinos System Project 
-and PikeOS project. Run the following command to prepare the project to update the repository. 
-
+Before re-running the `build.sh` script, export the changes that you made
+to the project in CODEO/Eclipse (or your editor of choice) by running:
+```bash
+PATH_TO_ELINOS_INSTALLATION/bin/elinos-share-project export
 ```
-$ cd zcu102_hwvirt_linux.app
-$ /opt/elinos-7.1/bin/elinos-share-project export
-```
 
-Then repeat the procedure mentioned above to restore the project.
+You can now re-run the `build.sh` script and everything will be updated
+accordingly.
 
+<!--
 ## Diff Elinos configuration
 
-In the future, when migrating to newer Elinos version, it will be useful to know all the configurations done manually in CODEO.
-For this reason, run the command `make diffconfig` to highlight those differences compared to the default Elinos config. Then,
-it's is just a matter of finding each parameter in the newer CODEO/Elinos.
+In the future, when migrating to newer Elinos version, it will be useful to
+know all the configurations done manually in CODEO. For this reason, run
+the command `make diffconfig` to highlight those differences compared to
+the default Elinos config. Then, it's is just a matter of finding each
+parameter in the newer CODEO/Elinos.
 
  A. Amory
+-->
