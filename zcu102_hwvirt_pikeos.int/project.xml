@@ -4,6 +4,7 @@
     <PathTable>
       <Path id="PIKEOS" location="/opt/pikeos-5.1/"/>
       <Path id="PIKEOS_POOL" location="/opt/pikeos-5.1/target/arm/v8hf/"/>
+      <Path id="CUSTOM_POOL" location="/home/gabriele/workspace/pool/"/>
     </PathTable>
     <ConfigurationDomainTable>
       <!--start here-->

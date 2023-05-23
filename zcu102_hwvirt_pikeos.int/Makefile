@@ -52,13 +52,13 @@ all: boot/$(PIKEOS_BOOT_IMAGE)
 #
 # or, if using sd-card, change the partition names according to your sd-card. In this example, ROOT is the boot, and ROOT1 is rootfs
 install: all
-	cp boot/hwvirt-linux-zynq-zcu102-hwvirt-uboot_dtb /media/ubuntu/ROOT
-	sudo tar -zxvf ../zcu102_hwvirt_linux.app/rootfs.tgz -C /media/ubuntu/ROOT1/
+	cp boot/hwvirt-linux-zynq-zcu102-hwvirt-uboot_dtb "/run/media/gabriele/BOOT"
+	sudo tar -zxvf ../zcu102_hwvirt_linux.app/rootfs.tgz -C "/run/media/gabriele/ROOT"/
 	sync
 	sleep 1
-	umount /media/ubuntu/ROOT
+	#umount "/run/media/gabriele/BOOT"
 	sleep 1
-	umount /media/ubuntu/ROOT1
+	#umount "/run/media/gabriele/ROOT"
 
 #
 # For backward compatibility

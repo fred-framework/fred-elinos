@@ -1,0 +1,23 @@
+/rootfs.tgz
+/app.rootfs
+/src/demo/hanoi
+/.project.lkc
+/feature.*
+/kernel.rootfs
+/configure
+/boot
+!linux/.gitignore
+
+
+
+# Binary files that MUST be kept in the output directory of the project
+!app.rootfs/opt/fredsys/fred.tar.gz
+!app.rootfs/usr/bin/cpufreq-aperf
+!app.rootfs/usr/bin/cpufreq-info
+!app.rootfs/usr/bin/cpufreq-set
+!app.rootfs/usr/bin/dtc
+!app.rootfs/usr/bin/load_hw
+!app.rootfs/usr/bin/tree
+!app.rootfs/usr/bin/update_hw
+!app.rootfs/usr/lib/libcpufreq.so.0
+!app.rootfs/usr/lib/libcpufreq.so.0.0.0

@@ -89,25 +89,16 @@ function main() {
     SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
     cd "$SCRIPT_DIR"
 
-    MAKEFILE="zcu102_hwvirt_pikeos.int/Makefile"
-    if ! [ -f "$MAKEFILE.bkp" ]; then
-        echo "" >&2
-        echo "WARN: Backing up file '$MAKEFILE'." >&2
-        echo "If this is the first time you run this script this is expected." >&2
-        echo "" >&2
-        cp "$MAKEFILE" "$MAKEFILE.bkp"
-    fi
-
     echo " + Setting target directories as instructed..."
-
     # Substitute destination directories
+    MAKEFILE="zcu102_hwvirt_pikeos.int/Makefile"
     tmpfile=$(mktemp)
-    cp "$MAKEFILE.bkp" "$tmpfile"
+    cp "$MAKEFILE" "$tmpfile"
     sed -i 's#/media/ubuntu/ROOT1#'"\"$DESTINATION_ROOTFS\""'#g' "$tmpfile"
     sed -i 's#/media/ubuntu/ROOT#'"\"$DESTINATION_UBOOT\""'#g' "$tmpfile"
-    sed -i 's/umount/#umount/g/' "$tmpfile"
+    sed -i 's/umount/#umount/g' "$tmpfile"
     # TODO: rename to image.ub
-    cp "$tmpfile" "$MAKEFILE"
+    cp "$tmpfile" "$MAKEFILE.tmp"
     rm -f "$tmpfile"
 
     echo " + Cleaning target directories..."
@@ -118,10 +109,12 @@ function main() {
     cd zcu102_hwvirt_pikeos.int
     # source ELINOS.sh
     source PikeOS.sh
-    make install
+    make -f Makefile.tmp install
+    rm -f Makefile.tmp
     cd ..
 
     mv "$DESTINATION_UBOOT"/hwvirt-linux-zynq-zcu102-hwvirt-uboot_dtb "$DESTINATION_UBOOT/image.ub"
+    cp uboot/* "$DESTINATION_UBOOT"
     umount "$DESTINATION_UBOOT"
     umount "$DESTINATION_ROOTFS"
     echo " + Success"
