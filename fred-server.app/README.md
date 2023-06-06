@@ -1,28 +1,33 @@
-# fred-server
+# FRED Server
 
-This Elinos App Project is only created to enable debug of fred-server on the board. Somehow, debug does not work in a Elinos System Project.
-If one learn how to debug it in the Elinos System Project, it would be easier since we dont need to manage multiple Elinos projects.
+This ELinOS App project builds and installs the `fred-server` application
+for the _ElinOS Project for FRED_ (see
+[here](../zcu102_hwvirt_linux.app/)).
 
-Run `make install` to generate these files
+Fred Server source code is included as a git submodule.
 
-```
-app.rootfs/
-└── usr
-    ├── bin
-        └── fred-server
-```
+## Building
 
-The same files are also copied to `../zcu102_hwvirt_linux.app`, to add them to the Linux image. 
-Make sure the project names keep the same to avoid changing the makefiles.
+> **Please refrain from manually building this project by itself. Instead,
+> use the `build.sh` and the `burn.sh` scripts in the top-level directory
+> to do so. Refer to [../README.md](../README.md) for further info.**
 
-Run `make distclean` to prepare the project to update the repository. 
+## Compilation options
 
-The fred-server source code is from [here](https://github.com/fred-framework/fred-linux/commit/dcce87c62b909707bbd3793e45a838cb822d12da).
+Export the following variables before running the `build.sh` script to
+configure the way the Fred Server is built:
 
-In the future, use git submodule instead of copying the code.
+| Variable        | Accepted Values                      | Default Value  |
+| :-------------- | :----------------------------------- | :------------- |
+| BUILD_TYPE      | `Release`, `Debug`                   | `Release`      |
+| FREDS_LOG_LEVEL | `mute`, `simple`, `full`, `pedantic` | `mute`         |
+| FREDS_PATH      | Any valid Unix path                  | `/opt/fredsys` |
 
-Note that fred-server is compiled for debug by default. If you want to do performance evaluation, change this in the Makefile:
- - LOG_GLOBAL_LEVEL=LOG_LEV_FULL => LOG_GLOBAL_LEVEL=LOG_LEV_MUTE
- - DEBUG=YES => DEBUG=NO
+## Authors
 
- A. Amory
+- Alexandre Amory (Feb 2023)
+- Gabriele Ara (May 2023-)
+
+[Real-Time Systems Laboratory (ReTiS Lab)](https://retis.santannapisa.it/),
+[Scuola Superiore Sant'Anna (SSSA)](https://www.santannapisa.it/), Pisa,
+Italy.

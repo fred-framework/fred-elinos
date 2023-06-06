@@ -1,0 +1,53 @@
+#==========================================================#
+# Makefile for the Fred Server                             #
+#==========================================================#
+#
+# Must accept following arguments:
+# - all
+# - install
+# - clean
+# - distclean
+
+.PHONY: all build configure install clean distclean
+
+#==========================================================#
+#                      Configuration                       #
+#==========================================================#
+
+# Configuration options
+BUILD_TYPE              ?= Release
+FREDS_LOG_LEVEL         ?= mute
+FREDS_64BIT_ADDRESSES   ?= OFF
+FREDS_PATH              ?= /opt/fredsys
+
+# Global variables
+DIR_INSTALL             := $(ELINOS_PROJECT)/app.rootfs/usr
+DIR_SOURCE              := fred-linux
+DIR_BUILD               := $(DIR_SOURCE)/build
+TARGET_NAME             := fred-server
+
+#==========================================================#
+#                         Targets                          #
+#==========================================================#
+
+all: build
+
+build: configure
+	$(MAKE) -C $(DIR_BUILD)
+
+configure:
+	cmake -S $(DIR_SOURCE) -B $(DIR_BUILD) \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_INSTALL_PREFIX=$(DIR_INSTALL) \
+		-DFREDS_LOG_LEVEL=$(FREDS_LOG_LEVEL) \
+		-DFREDS_64BIT_ADDRESSES=$(FREDS_64BIT_ADDRESSES) \
+		-DFREDS_PATH=$(FREDS_PATH)
+
+clean:
+	rm -rf $(DIR_BUILD)
+
+install: build
+	$(MAKE) -C $(DIR_BUILD) install
+
+distclean: clean
+	rm -f $(DIR_INSTALL)/bin/$(TARGET_NAME)

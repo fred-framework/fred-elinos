@@ -1,17 +1,13 @@
-
-###############################################################################
+#----------------------------------------------------------------------
 # (C) Copyright SYSGO GmbH.
 # Klein-Winternheim, Germany
 # All rights reserved.
-#
-# Purpose:
-# Project Makefile
-#
-# $Id$
-# $Author$
-# $Date$
-# $Revision$
-###############################################################################
+#----------------------------------------------------------------------
+
+#----------------------------------------------------------------------
+# Project:     Fred Client Applications for ElinOS
+# Author:      Gabriele Ara (Scuola Superiore Sant'Anna, Pisa)
+#----------------------------------------------------------------------
 
 # only allow ourselves to run when ELINOS.sh is sourced:
 ifeq "$(ELINOS_PREFIX)" ""
@@ -43,68 +39,63 @@ includes:
 	echo "project environment is not set up correctly."; \
 	echo "You must probably run"; \
 	echo "    sh# elinos-share-project import"
-	
+
 else
 
-# Set to NO or unset to switch off debug information
-DEBUG = YES
 
-# define additional objects to be cleaned
-CLEAN_OBJS = libfred.so libfred.a sum-vec app.rootfs/usr
+###############################################################################
+# (C) Copyright SYSGO GmbH.
+# Klein-Winternheim, Germany
+# All rights reserved.
+#
+# Purpose:
+#    Simple ELinOS Makefile, which forwards the targets "all, install,
+#    clean, distclean" to any Makefile.elinos found one level below of
+#    where we are now.
+#
+#    Customize to your liking, but make sure *this* Makefile.elinos is
+#    present and responds to all, install, clean, distclean"
+#
+# $Id$
+# $Author$
+# $Date$
+# $Revision$
+###############################################################################
 
-# not really in use
-FRED_PATH ?= /opt/fredsys/
+.PHONY: all install install_common distclean_common clean
 
-SRCS = $(wildcard $(ELINOS_PROJECT)/src/**/*.c) $(wildcard $(ELINOS_PROJECT)/src/**/**/*.c)
-#$(info $$SRCS is [${SRCS}])
-C_OBJS = $(SRCS:.c=.o)
-C_DEPS = $(C_OBJS:.o=.d)
+M_ELINOS_DIRECTORY  := $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app
+M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs
 
-ADDITIONAL_CFLAGS = -fPIC -I./include -I $(ELINOS_PROJECT)/src/fred-linux-client-lib/ -std=gnu99 -Wall -Werror -DFRED_PATH=${FRED_PATH}
-ADDITIONAL_LDFLAGS = -shared 
+# forward make target to Makefile.elinos in src dir
+all:
+	$(MAKE) -C src -f Makefile.elinos all
+install_common:
+	$(MAKE) -C src -f Makefile.elinos install
+clean:
+	$(MAKE) -C src -f Makefile.elinos clean
+distclean_common:
+	$(MAKE) -C src -f Makefile.elinos distclean
 
--include $(ELINOS_PREFIX)/scripts/application.mk
+INSTALLED_FILES         := \
+	usr/lib64/libfred.so \
+	usr/lib64/libfred.a \
+	usr/include/fred_lib.h \
+	usr/include/fredcpp.h \
+	usr/lib64/cmake/libfred/libfredTargets.cmake \
+	usr/lib64/cmake/libfred/libfredTargets-release.cmake \
+	usr/lib64/cmake/libfred/libfredConfig.cmake \
+	usr/lib64/cmake/libfred/libfredConfigVersion.cmake
 
-# the main client application, sum-vec
-all: sum-vec
+INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
 
-clean: clean_common
+install: install_common
+	@echo "Installing into ElinOS Project directory... ($(M_ELINOS_DIRECTORY))"
+	@for d in $(INSTALLED_DIRS); do mkdir -p $(M_ELINOS_ROOTDIR)/$$d ; done
+	@for f in $(INSTALLED_FILES); do echo "Copying into $(M_ELINOS_ROOTDIR)/$$f"; cp app.rootfs/$$f $(M_ELINOS_ROOTDIR)/$$f ; done
 
 distclean: distclean_common
+	@for f in $(INSTALLED_FILES); do rm -f $(M_ELINOS_ROOTDIR)/$$f ; done
 
-# to compile sum-vec, we need to compile and install the fred-lib 1st, in install_libs
-sum-vec: install_libs 
-	$(CC) $(C_OBJS) -o $@ -L $(ELINOS_PROJECT)/app.rootfs/usr/lib -lfred -lpthread
-
-libfred.so: $(C_OBJS)
-	@echo 'Building target: $@'
-	@echo 'Invoking: ELinOS C Linker'
-	$(CC) $(LDFLAGS) -o "$@" $^ $(LIBS)
-	@echo 'Finished building target: $@'
-	@echo ' '
-
-libfred.a: $(C_OBJS)
-	@echo 'Invoking: ELinOS Archiver'
-	$(AR) -r "$@" $^ $(LIBS)
-	@echo 'Finished building: $@'
-	@echo ' '
-
-install_libs: libfred.so libfred.a
-	@echo 'Installing libfred'
-	mkdir -p $(ELINOS_PROJECT)/app.rootfs/usr/include $(ELINOS_PROJECT)/app.rootfs/usr/lib
-	mkdir -p $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/include
-	cp $(ELINOS_PROJECT)/src/fred-linux-client-lib/fred_lib.h $(ELINOS_PROJECT)/app.rootfs/usr/include
-	cp $(ELINOS_PROJECT)/libfred.* $(ELINOS_PROJECT)/app.rootfs/usr/lib 
-	mkdir -p $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/lib
-	mkdir -p $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/include
-	cp $(ELINOS_PROJECT)/src/fred-linux-client-lib/fred_lib.h $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/include
-	cp $(ELINOS_PROJECT)/libfred.* $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/lib
-
-install: sum-vec
-	@echo 'Installing FRED example application'
-	mkdir -p $(ELINOS_PROJECT)/app.rootfs/usr/bin
-	cp $(ELINOS_PROJECT)/sum-vec $(ELINOS_PROJECT)/app.rootfs/usr/bin 
-	mkdir -p $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/bin
-	cp $(ELINOS_PROJECT)/sum-vec $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/bin
-
+# endif (ELINOS_PROJECT)
 endif

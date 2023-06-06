@@ -1,0 +1,59 @@
+#==========================================================#
+# Makefile for the Fred Server                             #
+#==========================================================#
+#
+# Must accept following arguments:
+# - all
+# - install
+# - clean
+# - distclean
+
+.PHONY: all build configure install clean distclean
+
+#==========================================================#
+#                      Configuration                       #
+#==========================================================#
+
+# Configuration options
+BUILD_TYPE              ?= Release
+
+# Global variables
+DIR_INSTALL             := $(ELINOS_PROJECT)/app.rootfs/usr
+DIR_SOURCE              := fred-linux-client-lib
+DIR_BUILD               := $(DIR_SOURCE)/build
+
+# TODO: CHANGE TARGET MANAGEMENT
+INSTALLED_FILES         := \
+	usr/lib64/libfred.so \
+	usr/lib64/libfred.a \
+	usr/include/fred_lib.h \
+	usr/include/fredcpp.h \
+	usr/lib64/cmake/libfred/libfredTargets.cmake \
+	usr/lib64/cmake/libfred/libfredTargets-release.cmake \
+	usr/lib64/cmake/libfred/libfredConfig.cmake \
+	usr/lib64/cmake/libfred/libfredConfigVersion.cmake
+
+TARGET_NAME             := fred-server
+
+#==========================================================#
+#                         Targets                          #
+#==========================================================#
+
+all: build
+
+build: configure
+	$(MAKE) -C $(DIR_BUILD)
+
+configure:
+	cmake -S $(DIR_SOURCE) -B $(DIR_BUILD) \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_INSTALL_PREFIX=$(DIR_INSTALL)
+
+clean:
+	rm -rf $(DIR_BUILD)
+
+install: build
+	$(MAKE) -C $(DIR_BUILD) install
+
+distclean: clean
+	@for f in $(INSTALLED_FILES); do echo "rm -f $(DIR_INSTALL)/$$f" ; rm -f $(DIR_INSTALL)/$$f ; done

@@ -1,17 +1,13 @@
-
-###############################################################################
+#----------------------------------------------------------------------
 # (C) Copyright SYSGO GmbH.
 # Klein-Winternheim, Germany
 # All rights reserved.
-#
-# Purpose:
-# Project Makefile
-#
-# $Id$
-# $Author$
-# $Date$
-# $Revision$
-###############################################################################
+#----------------------------------------------------------------------
+
+#----------------------------------------------------------------------
+# Project:     Fred Server for ElinOS
+# Author:      Gabriele Ara (Scuola Superiore Sant'Anna, Pisa)
+#----------------------------------------------------------------------
 
 # only allow ourselves to run when ELINOS.sh is sourced:
 ifeq "$(ELINOS_PREFIX)" ""
@@ -43,46 +39,51 @@ includes:
 	echo "project environment is not set up correctly."; \
 	echo "You must probably run"; \
 	echo "    sh# elinos-share-project import"
-	
+
 else
 
-# Must be defined for the standard Makefile system
-PROG = fred-server
 
-# Set to NO or unset to switch off debug information
-DEBUG = YES
+###############################################################################
+# (C) Copyright SYSGO GmbH.
+# Klein-Winternheim, Germany
+# All rights reserved.
+#
+# Purpose:
+#    Simple ELinOS Makefile, which forwards the targets "all, install,
+#    clean, distclean" to any Makefile.elinos found one level below of
+#    where we are now.
+#
+#    Customize to your liking, but make sure *this* Makefile.elinos is
+#    present and responds to all, install, clean, distclean"
+#
+# $Id$
+# $Author$
+# $Date$
+# $Revision$
+###############################################################################
 
-# define additional objects to be cleaned
-CLEAN_OBJS = app.rootfs/bin
+.PHONY: all install install_common distclean_common clean
 
-#C_OBJS = $(patsubst %.c,%.o,$(wildcard src/**/*.c))
-#C_DEPS = $(patsubst %.c,%.d,$(wildcard src/**/*.c))
-SRCS = $(wildcard src/fred-linux/*.c) $(wildcard src/fred-linux/**/*.c)
-#$(info $$SRCS is [${SRCS}])
-C_OBJS = $(SRCS:.c=.o)
-C_DEPS = $(C_OBJS:.o=.d)
+M_ELINOS_DIRECTORY  := $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app
+M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs
 
-ADDITIONAL_CFLAGS = -I./include -std=gnu99  -Wno-unused-but-set-variable -D LOG_GLOBAL_LEVEL=LOG_LEV_FULL
-#ADDITIONAL_INC_FLAGS =  -I./src/fred-server/hw_support -I./src/fred-server/shared_kernel -I./src/fred-server/shared_user -I./src/fred-server/srv_core -I./src/fred-server/srv_core_mocks -I./src/fred-server/srv_support -I./src/fred-server/utils
+# forward make target to Makefile.elinos in src dir
+all:
+	$(MAKE) -C src -f Makefile.elinos all
+install_common:
+	$(MAKE) -C src -f Makefile.elinos install
+clean:
+	$(MAKE) -C src -f Makefile.elinos clean
+distclean_common:
+	$(MAKE) -C src -f Makefile.elinos distclean
 
--include $(ELINOS_PREFIX)/scripts/application.mk
-
-
-all: all_common
-
-clean: clean_common
-	rm -f $(ELINOS_PROJECT)/$(PROG)
-	rm -rf $(ELINOS_PROJECT)/app.rootfs/*
+install: install_common
+	@echo "Installing into ElinOS Project directory... ($(M_ELINOS_DIRECTORY))"
+	mkdir -p $(M_ELINOS_ROOTDIR)/usr/bin/
+	cp app.rootfs/usr/bin/fred-server $(M_ELINOS_ROOTDIR)/usr/bin/
 
 distclean: distclean_common
+	rm -f $(M_ELINOS_ROOTDIR)/usr/bin/fred-server
 
-filesystem: filesystem_common
-
-install: $(PROG)
-	@echo 'Installing fred-server'
-	mkdir -p $(ELINOS_PROJECT)/app.rootfs/usr/bin
-	cp $(ELINOS_PROJECT)/$(PROG) $(ELINOS_PROJECT)/app.rootfs/usr/bin
-	mkdir -p $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/bin
-	cp $(ELINOS_PROJECT)/$(PROG) $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app/app.rootfs/usr/bin
-
+# endif (ELINOS_PROJECT)
 endif

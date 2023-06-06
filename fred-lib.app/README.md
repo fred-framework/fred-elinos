@@ -7,46 +7,63 @@ test and debug FRED when running on ElinOS.
 > use the `build.sh` and the `burn.sh` scripts in the top-level directory
 > to do so. Refer to [../README.md](../README.md) for further info.**
 
-___________________________________________________________________________
+The following projects are included as submodules:
+ - [Fred Linux Client Library](https://)
 
-## Useful information for debugging purposes
+## Building
 
-### Building in Debug/Release Mode
+> **Please refrain from manually building this project by itself. Instead,
+> use the `build.sh` and the `burn.sh` scripts in the top-level directory
+> to do so. Refer to [../README.md](../README.md) for further info.**
 
-By default, the project is built in debug mode. This can be changed by
-editing the [Makefile], so that:
-```Makefile
-DEBUG=NO
-```
+## Compilation options
 
-### Changing FRED/DART IPs
+Export the following variables before running the `build.sh` script to
+configure the way the Fred Server is built:
 
-FRED/DART IPs are not contained in this project and must be built
-separately. The result of the build process is a `tar` archive that should
-be placed in [this
-location](../zcu102_hwvirt_linux.app/app.rootfs/opt/fredsys/fred.tar.gz).
-Notice that the file is NOT part of this project, but part of the [ElinOS
-Project for FRED](../zcu102_hwvirt_linux.app/).
+| Variable   | Accepted Values    | Default Value |
+| :--------- | :----------------- | :------------ |
+| BUILD_TYPE | `Release`, `Debug` | `Release`     |
 
-> **TODO**: Further information on how to re-build and change IPs should be
-> included here.
-
-### Project Targets
+## Project sources
 
 This project builds the FRED Client Library and multiple client
-applications. Target binaries are located in [app.rootfs](app.rootfs) and
+applications. Target binaries are placed in [app.rootfs](app.rootfs) and
 copied automatically to the correct location in
-[../zcu102_hwvirt_linux.app/].
+[../zcu102_hwvirt_linux.app/](../zcu102_hwvirt_linux.app/).
 
-The FRED Client Libraries and the client applications included in this
-project are copied from other projects (with some minor changes). The
-following table summarizes the sources of each subproject.
+The following projects code is included as submodules:
 
-| Subproject          | URL                 | Commit SHA                               |
-| :------------------ | :------------------ | :--------------------------------------- |
-| Fred Client Library | [URL][fred-cli-lib] | bffd5141f86cd3ed1f2626bac84f1ceadfaf8d0c |
-| Sum Vec Application | [URL][sum-vec]      | bd210b3c1966a9e5509a4cd051be84aa96601aaf |
-
+- [Fred Client Library][fred-cli-lib]
+- [Sum Vec Application][sum-vec]
 
 [fred-cli-lib]: https://github.com/fred-framework/fred-linux-client-lib
 [sum-vec]: https://github.com/fred-framework/meta-fred/tree/main/recipes-example/sum-vec/files
+
+## Authors
+
+- Alexandre Amory (Feb 2023)
+- Gabriele Ara (May 2023-)
+
+[Real-Time Systems Laboratory (ReTiS Lab)](https://retis.santannapisa.it/),
+[Scuola Superiore Sant'Anna (SSSA)](https://www.santannapisa.it/), Pisa,
+Italy.
+
+___________________________________________________________________________
+
+## Changing FRED/DART IPs
+
+FRED/DART IPs are not contained in this project and must be built
+separately. The result of the build process is a `tar` archive that should
+be placed in [this location](../zcu102_hwvirt_linux.app/app.rootfs/opt/fredsys/fred.tar.gz).
+Notice that the file is NOT part of this project, but part of the [ElinOS Project for FRED](../zcu102_hwvirt_linux.app/).
+
+You will find the archive to substitute at the following path from the root
+of the project:
+
+```txt
+zcu102_hwvirt_linux.app/app.rootfs/opt/fredsys/fred.tar.gz
+```
+
+> **TODO**: Further information on how to re-build and change IPs should be
+> included here.

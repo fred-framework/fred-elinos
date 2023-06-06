@@ -54,6 +54,19 @@ Example:
  +-- Success!
 ```
 
+### Changing the configuration
+
+You can change some of the build parameters of the project by exporting
+some environment variables before running the `build.sh` script.
+
+Most notably, applications can be built in `Release` or `Debug` mode by
+setting the `RELEASE_TYPE` variable accordingly.
+
+For more info see the following `README.md` files:
+
+ - [fred-lib.app/README.md](fred-lib.app/README.md)
+ - [fred-server.app/README.md](fred-server.app/README.md)
+
 ## Burning an SD Card
 
 To test/use the built system on your Xilinx Ultrascale+ ZCU102 Evaluation

@@ -1,0 +1,6 @@
+[submodule "fred-server.app/src/fred-linux"]
+	path = fred-server.app/src/fred-linux
+	url = ../fred-linux.git
+[submodule "fred-lib.app/src/fred-linux-client-lib"]
+	path = fred-lib.app/src/fred-linux-client-lib
+	url = ../fred-linux-client-lib.git
