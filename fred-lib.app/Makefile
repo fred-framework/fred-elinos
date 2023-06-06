@@ -85,7 +85,8 @@ INSTALLED_FILES         := \
 	usr/lib64/cmake/libfred/libfredTargets.cmake \
 	usr/lib64/cmake/libfred/libfredTargets-release.cmake \
 	usr/lib64/cmake/libfred/libfredConfig.cmake \
-	usr/lib64/cmake/libfred/libfredConfigVersion.cmake
+	usr/lib64/cmake/libfred/libfredConfigVersion.cmake \
+	usr/bin/rtdag \
 
 INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
 
@@ -95,7 +96,7 @@ install: install_common
 	@for f in $(INSTALLED_FILES); do echo "Copying into $(M_ELINOS_ROOTDIR)/$$f"; cp app.rootfs/$$f $(M_ELINOS_ROOTDIR)/$$f ; done
 
 distclean: distclean_common
-	@for f in $(INSTALLED_FILES); do rm -f $(M_ELINOS_ROOTDIR)/$$f ; done
+	@for f in $(INSTALLED_FILES); do echo "rm -f $(M_ELINOS_ROOTDIR)/$$f"; rm -f $(M_ELINOS_ROOTDIR)/$$f ; done
 
 # endif (ELINOS_PROJECT)
 endif
