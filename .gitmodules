@@ -6,4 +6,4 @@
 	url = ../fred-linux-client-lib.git
 [submodule "fred-lib.app/src/rtdag"]
 	path = fred-lib.app/src/rtdag
-	url = ../../gabrielara/rtdag.git
+	url = https://github.com/gabrieleara/rtdag.git
