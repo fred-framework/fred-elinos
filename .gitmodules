@@ -4,3 +4,6 @@
 [submodule "fred-lib.app/src/fred-linux-client-lib"]
 	path = fred-lib.app/src/fred-linux-client-lib
 	url = ../fred-linux-client-lib.git
+[submodule "fred-lib.app/src/rtdag"]
+	path = fred-lib.app/src/rtdag
+	url = ../../gabrielara/rtdag.git
