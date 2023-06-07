@@ -67,6 +67,32 @@ For more info see the following `README.md` files:
  - [fred-lib.app/README.md](fred-lib.app/README.md)
  - [fred-server.app/README.md](fred-server.app/README.md)
 
+A summary of the major compilation options follows:
+
+**Global variables**
+
+| Variable               | Accepted Values                             | Default Value  |
+| :--------------------- | :------------------------------------------ | :------------- |
+| BUILD_TYPE             | `Release`, `Debug`                          | `Release`      |
+
+**Fred Server specific variables**
+
+| Variable               | Accepted Values                             | Default Value  |
+| :--------------------- | :------------------------------------------ | :------------- |
+| FREDS_LOG_LEVEL        | `mute`, `simple`, `full`, `pedantic`        | `mute`         |
+| FREDS_PATH             | Any valid Unix path                         | `/opt/fredsys` |
+
+**Fred Clients (RTDAG) specific variables**
+
+| Variable               | Accepted Values                             | Default Value  |
+| :--------------------- | :------------------------------------------ | :------------- |
+| RTDAG_LOG_LEVEL        | `none`, `error`, `warning`, `info`, `debug` | `none`         |
+| RTDAG_TASK_IMPL        | `thread`, `process` (untested)              | `thread`       |
+| RTDAG_INPUT_TYPE       | `yaml`, `header` (untested)                 | `yaml`         |
+| RTDAG_COMPILER_BARRIER | `ON`, `OFF`                                 | `ON`           |
+| RTDAG_MEM_ACCESS       | `ON`, `OFF`                                 | `OFF`          |
+| RTDAG_COUNT_TICK       | `ON`, `OFF`                                 | `ON`           |
+
 ## Burning an SD Card
 
 To test/use the built system on your Xilinx Ultrascale+ ZCU102 Evaluation

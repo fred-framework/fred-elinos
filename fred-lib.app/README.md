@@ -3,13 +3,6 @@
 This ElinOS App Project contains some FRED Client Applications useful to
 test and debug FRED when running on ElinOS.
 
-> **Please refrain from manually building this project by itself. Instead,
-> use the `build.sh` and the `burn.sh` scripts in the top-level directory
-> to do so. Refer to [../README.md](../README.md) for further info.**
-
-The following projects are included as submodules:
- - [Fred Linux Client Library](https://)
-
 ## Building
 
 > **Please refrain from manually building this project by itself. Instead,
@@ -21,9 +14,15 @@ The following projects are included as submodules:
 Export the following variables before running the `build.sh` script to
 configure the way the Fred Server is built:
 
-| Variable   | Accepted Values    | Default Value |
-| :--------- | :----------------- | :------------ |
-| BUILD_TYPE | `Release`, `Debug` | `Release`     |
+| Variable               | Accepted Values                             | Default Value |
+| :--------------------- | :------------------------------------------ | :------------ |
+| BUILD_TYPE             | `Release`, `Debug`                          | `Release`     |
+| RTDAG_LOG_LEVEL        | `none`, `error`, `warning`, `info`, `debug` | `none`        |
+| RTDAG_TASK_IMPL        | `thread`, `process` (untested)              | `thread`      |
+| RTDAG_INPUT_TYPE       | `yaml`, `header` (untested)                 | `yaml`        |
+| RTDAG_COMPILER_BARRIER | `ON`, `OFF`                                 | `ON`          |
+| RTDAG_MEM_ACCESS       | `ON`, `OFF`                                 | `OFF`         |
+| RTDAG_COUNT_TICK       | `ON`, `OFF`                                 | `ON`          |
 
 ## Project sources
 

@@ -16,16 +16,10 @@
 
 # Configuration options
 BUILD_TYPE              ?= Release
-RTDAG_LOG_LEVEL         ?= none
-RTDAG_TASK_IMPL         ?= thread
-RTDAG_INPUT_TYPE        ?= yaml
-RTDAG_COMPILER_BARRIER  ?= ON
-RTDAG_MEM_ACCESS        ?= OFF
-RTDAG_COUNT_TICK        ?= ON
 
 # Global variables
 DIR_INSTALL             := $(ELINOS_PROJECT)/app.rootfs/usr
-DIR_SOURCE              := rtdag
+DIR_SOURCE              := fredspeedtest
 DIR_FRED_LIB            := $(shell realpath ./fred-linux-client-lib)
 DIR_BUILD               := $(DIR_SOURCE)/build
 
@@ -37,8 +31,8 @@ INSTALLED_FILES         := \
 	lib64/cmake/libfred/libfredTargets.cmake \
 	lib64/cmake/libfred/libfredTargets-release.cmake \
 	lib64/cmake/libfred/libfredConfig.cmake \
-	lib64/cmake/libfred/libfredConfigVersion.cmake \
-	bin/rtdag
+	lib64/cmake/libfred/libfredConfigVersion.cmake
+	bin/fredspeedtest \
 
 #==========================================================#
 #                         Targets                          #
@@ -53,14 +47,7 @@ configure:
 	cmake -S $(DIR_SOURCE) -B $(DIR_BUILD) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DCMAKE_INSTALL_PREFIX=$(DIR_INSTALL) \
-		-DRTDAG_FRED_SUPPORT=ON \
-		-DCPM_libfred_SOURCE=$(DIR_FRED_LIB) \
-		-DRTDAG_LOG_LEVEL=$(RTDAG_LOG_LEVEL) \
-		-DRTDAG_TASK_IMPL=$(RTDAG_TASK_IMPL) \
-		-DRTDAG_INPUT_TYPE=$(RTDAG_INPUT_TYPE) \
-		-DRTDAG_COMPILER_BARRIER=$(RTDAG_COMPILER_BARRIER) \
-		-DRTDAG_MEM_ACCESS=$(RTDAG_MEM_ACCESS) \
-		-DRTDAG_COUNT_TICK=$(RTDAG_COUNT_TICK)
+		-DCPM_libfred_SOURCE=$(DIR_FRED_LIB)
 
 clean:
 	rm -rf $(DIR_BUILD)

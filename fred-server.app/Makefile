@@ -5,7 +5,7 @@
 #----------------------------------------------------------------------
 
 #----------------------------------------------------------------------
-# Project:     Fred Server for ElinOS
+# Project:     Fred Client Applications for ElinOS
 # Author:      Gabriele Ara (Scuola Superiore Sant'Anna, Pisa)
 #----------------------------------------------------------------------
 
@@ -64,8 +64,14 @@ else
 
 .PHONY: all install install_common distclean_common clean
 
+INSTALLED_FILES         := \
+	bin/fred-server
+
+INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
+
 M_ELINOS_DIRECTORY  := $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app
-M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs
+M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs/usr
+M_PROJ_ROOTDIR      := $(ELINOS_PROJECT)/app.rootfs/usr
 
 # forward make target to Makefile.elinos in src dir
 all:
@@ -79,11 +85,19 @@ distclean_common:
 
 install: install_common
 	@echo "Installing into ElinOS Project directory... ($(M_ELINOS_DIRECTORY))"
-	mkdir -p $(M_ELINOS_ROOTDIR)/usr/bin/
-	cp app.rootfs/usr/bin/fred-server $(M_ELINOS_ROOTDIR)/usr/bin/
+	@for d in $(INSTALLED_DIRS); do \
+		mkdir -p $(M_ELINOS_ROOTDIR)/$$d ; \
+	done
+	@for f in $(INSTALLED_FILES); do \
+		echo "Copying into $(M_ELINOS_ROOTDIR)/$$f"; \
+		cp $(M_PROJ_ROOTDIR)/$$f $(M_ELINOS_ROOTDIR)/$$f; \
+	done
 
 distclean: distclean_common
-	rm -f $(M_ELINOS_ROOTDIR)/usr/bin/fred-server
+	@for f in $(INSTALLED_FILES); do \
+		echo "rm -f $(M_ELINOS_ROOTDIR)/$$f"; \
+		rm -f $(M_ELINOS_ROOTDIR)/$$f; \
+	done
 
 # endif (ELINOS_PROJECT)
 endif

@@ -64,8 +64,23 @@ else
 
 .PHONY: all install install_common distclean_common clean
 
+INSTALLED_FILES         := \
+	lib64/libfred.so \
+	lib64/libfred.a \
+	include/fred_lib.h \
+	include/fredcpp.h \
+	lib64/cmake/libfred/libfredTargets.cmake \
+	lib64/cmake/libfred/libfredTargets-release.cmake \
+	lib64/cmake/libfred/libfredConfig.cmake \
+	lib64/cmake/libfred/libfredConfigVersion.cmake \
+	bin/rtdag \
+	bin/fredspeedtest
+
+INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
+
 M_ELINOS_DIRECTORY  := $(ELINOS_PROJECT)/../zcu102_hwvirt_linux.app
-M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs
+M_ELINOS_ROOTDIR    := $(M_ELINOS_DIRECTORY)/app.rootfs/usr
+M_PROJ_ROOTDIR      := $(ELINOS_PROJECT)/app.rootfs/usr
 
 # forward make target to Makefile.elinos in src dir
 all:
@@ -77,26 +92,21 @@ clean:
 distclean_common:
 	$(MAKE) -C src -f Makefile.elinos distclean
 
-INSTALLED_FILES         := \
-	usr/lib64/libfred.so \
-	usr/lib64/libfred.a \
-	usr/include/fred_lib.h \
-	usr/include/fredcpp.h \
-	usr/lib64/cmake/libfred/libfredTargets.cmake \
-	usr/lib64/cmake/libfred/libfredTargets-release.cmake \
-	usr/lib64/cmake/libfred/libfredConfig.cmake \
-	usr/lib64/cmake/libfred/libfredConfigVersion.cmake \
-	usr/bin/rtdag \
-
-INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
-
 install: install_common
 	@echo "Installing into ElinOS Project directory... ($(M_ELINOS_DIRECTORY))"
-	@for d in $(INSTALLED_DIRS); do mkdir -p $(M_ELINOS_ROOTDIR)/$$d ; done
-	@for f in $(INSTALLED_FILES); do echo "Copying into $(M_ELINOS_ROOTDIR)/$$f"; cp app.rootfs/$$f $(M_ELINOS_ROOTDIR)/$$f ; done
+	@for d in $(INSTALLED_DIRS); do \
+		mkdir -p $(M_ELINOS_ROOTDIR)/$$d ; \
+	done
+	@for f in $(INSTALLED_FILES); do \
+		echo "Copying into $(M_ELINOS_ROOTDIR)/$$f"; \
+		cp $(M_PROJ_ROOTDIR)/$$f $(M_ELINOS_ROOTDIR)/$$f; \
+	done
 
 distclean: distclean_common
-	@for f in $(INSTALLED_FILES); do echo "rm -f $(M_ELINOS_ROOTDIR)/$$f"; rm -f $(M_ELINOS_ROOTDIR)/$$f ; done
+	@for f in $(INSTALLED_FILES); do \
+		echo "rm -f $(M_ELINOS_ROOTDIR)/$$f"; \
+		rm -f $(M_ELINOS_ROOTDIR)/$$f; \
+	done
 
 # endif (ELINOS_PROJECT)
 endif
