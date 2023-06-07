@@ -31,8 +31,8 @@ INSTALLED_FILES         := \
 	lib64/cmake/libfred/libfredTargets.cmake \
 	lib64/cmake/libfred/libfredTargets-release.cmake \
 	lib64/cmake/libfred/libfredConfig.cmake \
-	lib64/cmake/libfred/libfredConfigVersion.cmake
-	bin/fredspeedtest \
+	lib64/cmake/libfred/libfredConfigVersion.cmake \
+	bin/fredspeedtest
 
 #==========================================================#
 #                         Targets                          #
