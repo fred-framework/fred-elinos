@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(chrt)
+project(runsched)
 
 add_executable(${PROJECT_NAME}
     ${PROJECT_NAME}.cpp

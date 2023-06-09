@@ -394,11 +394,11 @@ int main(int argc, char *argv[]) {
         (void)fred_speedtest<vec_xor_t>(handle, fill_vec<1024, 2>,
                                         fill_vec<1024, 3>, check_vec<1024, 1>,
                                         dump_vec<1024, 10>);
-    } else if (invoke == "mat64") {
+    } else if (invoke == "mul64") {
         (void)fred_speedtest<mat_mul64_t>(handle, fill_mat_A<64>,
                                           fill_mat_B<64>, check_mat_C<64>,
                                           dump_mat<64>);
-    } else if (invoke == "mat128") {
+    } else if (invoke == "mul128") {
         (void)fred_speedtest<mat_mul128_t>(handle, fill_mat_A<128>,
                                            fill_mat_B<128>, check_mat_C<128>,
                                            dump_mat<128>);

@@ -74,7 +74,8 @@ INSTALLED_FILES         := \
 	lib64/cmake/libfred/libfredConfig.cmake \
 	lib64/cmake/libfred/libfredConfigVersion.cmake \
 	bin/rtdag \
-	bin/fredspeedtest
+	bin/fredspeedtest \
+	bin/runsched
 
 INSTALLED_DIRS := $(dir $(INSTALLED_FILES))
 
