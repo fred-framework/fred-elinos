@@ -15,9 +15,9 @@ function main() {
     echo "+------- Starting fred server"
 
     # Ready to start the fred server on core 1
-    "${PREFIX}${RUNSCHED}" SCHED_FIFO 99 taskset 2 ${PREFIX}${FRED_SERVER} >./fred.log 2>./fred.err &
+    "${PREFIX}${RUNSCHED}" SCHED_FIFO 99 taskset 2 "${PREFIX}${FRED_SERVER}" >./fred.log 2>./fred.err &
 
-    sleep 10s
+    sleep 3s
 
     echo "+------- Fred server definitely started"
 
@@ -37,23 +37,20 @@ function main() {
 
         # Run with re-configuration 100 times
         for i in $(seq 1 100); do
-            echo "+------- Running other        $i" >&2
+            echo "+------- Running $ip other        $i" >&2
             "${PREFIX}${RUNSCHED}" SCHED_FIFO 99 taskset 4 "${PREFIX}${FST}" $other_ip >/dev/null
+            sleep .4s
 
-            sleep 1
-
-            echo "+------- Running reconf test  $i" >&2
+            echo "+------- Running $ip reconf test  $i" >&2
             "${PREFIX}${RUNSCHED}" SCHED_FIFO 99 taskset 4 "${PREFIX}${FST}" $ip
-
-            sleep 1
+            sleep .4s
         done | taskset 8 grep took >./fst.out.d/$ip.reconf.txt
 
         # Run without re-configuration 100 times
         for i in $(seq 1 100); do
-            echo "+------- Running regular test $i" >&2
+            echo "+------- Running $ip regular test $i" >&2
             "${PREFIX}${RUNSCHED}" SCHED_FIFO 99 taskset 4 "${PREFIX}${FST}" $ip
-
-            sleep 1
+            sleep .4s
         done | taskset 8 grep took >./fst.out.d/$ip.regular.txt
 
     done
