@@ -1,12 +1,15 @@
 #!/bin/bash
 
 function main() {
-    # Initialize fred stuff
-    # modprobe zynqmp-fpga-fmod ; sleep 1
-    # modprobe fred-buffctl ; sleep 1
-    # load_hw ; sleep 1
+    # Initialize fred stuff (do only once!)
+    # modprobe zynqmp-fpga-fmod
+    # modprobe fred-buffctl
+    # load_hw
 
-    PREFIX=./usr/bin/
+    # Use this to avoid using the binaries in PATH, must execute this
+    # script from the right directory!
+    #
+    # PREFIX=./usr/bin/
 
     FRED_SERVER=fred-server
     FST=fredspeedtest
