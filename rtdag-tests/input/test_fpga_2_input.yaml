@@ -1,0 +1,22 @@
+dags:
+  - activation_period: 100000000.000000
+    deadline: 100000000.000000
+    tasks:
+      - wcet_ref: 20000000.000000
+        wcet_ref_ns: 0.000000
+      - wcet_ref: 40000000.000000
+        wcet_ref_ns: 0.000000
+      - wcet_ref: 30000000.000000
+        wcet_ref_ns: 0.000000
+      - wcet_ref: 40000000.000000
+        wcet_ref_ns: 0.000000
+      - wcet_ref: 20000000.000000
+        wcet_ref_ns: 0.000000
+    edge_list:
+     [
+      [0,1],
+      [0,3],
+      [1,2],
+      [2,4],
+      [3,4],
+     ]

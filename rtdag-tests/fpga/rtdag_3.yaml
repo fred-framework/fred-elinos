@@ -1,0 +1,29 @@
+dag_name: dag0
+n_tasks: 8
+n_edges: 10
+n_cpus: 4
+max_out_edges: 4
+max_in_edges: 4
+max_msg_len: 1
+repetitions: 250
+hyperperiod: 120000
+dag_period: 120000
+dag_deadline: 120000
+tasks_name: [n000, n001, n002, n003, n004, n005, n006, n007]
+tasks_type: [cpu, cpu, cpu, cpu, cpu, cpu, fred, cpu]
+tasks_wcet: [20000, 40000, 30000, 40000, 30000, 20000, 70000, 40000]
+tasks_runtime: [20000, 40000, 30000, 40000, 30000, 20000, 1024, 40000]
+tasks_rel_deadline: [21691, 43162, 32628, 43162, 32628, 21691, 6956, 54170]
+tasks_affinity: [3, 1, 2, 3, 3, 1, 0, 0]
+fred_id: [-1, -1, -1, -1, -1, -1, 100, -1]
+cpus_freq: [1199, 1199, 1199, 1199]
+expected_wcet_ratio: 0.95
+adjacency_matrix:
+  - [0, 1, 0, 1, 0, 0, 1, 1]
+  - [0, 0, 1, 0, 0, 0, 0, 0]
+  - [0, 0, 0, 0, 0, 1, 0, 0]
+  - [0, 0, 0, 0, 1, 0, 0, 0]
+  - [0, 0, 0, 0, 0, 1, 0, 0]
+  - [0, 0, 0, 0, 0, 0, 0, 0]
+  - [0, 0, 0, 0, 0, 1, 0, 0]
+  - [0, 0, 0, 0, 0, 1, 0, 0]

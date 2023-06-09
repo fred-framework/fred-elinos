@@ -1,0 +1,55 @@
+tool_name: "dag.c"
+platform_filename: ""
+platform_name: "zcu102-mat64-128-hf"
+dag_filename: "test_fpga_2.lp"
+execution_time_us: 43611
+cpu_load: 1.500000
+n_dags: 1
+power: 3.044938
+islands:
+    - capacity: 1.000000
+      frequency: 1199
+      tasks: [
+                [0,0],
+                [0,1],
+                [0,3],
+                [0,4],
+             ]
+      pus: 
+            - [
+                 [0.840795,0,0],
+                 [0.851311,0,3],
+                 [0.840795,0,4],
+              ]
+            - [
+              ]
+            - [
+              ]
+            - [
+                 [0.871072,0,1],
+              ]
+    - capacity: 1.330000
+      frequency: 100
+      tasks: [
+                [0,2],
+             ]
+      pus: 
+            - [
+                 [0.411611,0,2],
+              ]
+tasks:
+    - id: [0,0]
+      deadline: 23787023.823351
+      wcet: 20000000.000000
+    - id: [0,1]
+      deadline: 45920444.410191
+      wcet: 40000000.000000
+    - id: [0,2]
+      deadline: 3101226.736892
+      wcet: 1276500.000000
+    - id: [0,3]
+      deadline: 46986334.504706
+      wcet: 40000000.000000
+    - id: [0,4]
+      deadline: 23787023.823350
+      wcet: 20000000.000000

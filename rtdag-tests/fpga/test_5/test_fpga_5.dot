@@ -1,0 +1,48 @@
+digraph G {
+  rankdir=LR;
+  label="pow=3.122988"
+  subgraph cluster_island_0 {
+    label="Island 0 [freq:1199.00Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.87]";
+      bgcolor=gray93;
+      n_0_7 [ label="n0,7 C:10000.00us D:11532.05us [bw:0.87]", color=darkred, penwidth=3 ];
+    }
+    subgraph cluster_pu_1 {
+      label="PU 1 [U:0.66]";
+      bgcolor=gray93;
+      n_0_2 [ label="n0,2 C:30000.00us D:45335.83us [bw:0.66]", color=darkred, penwidth=3 ];
+    }
+    subgraph cluster_pu_2 {
+      label="PU 2 [U:0.93]";
+      bgcolor=gray93;
+      n_0_0 [ label="n0,0 C:20000.00us D:21697.65us [bw:0.92]", color=darkred, penwidth=3 ];
+      n_0_5 [ label="n0,5 C:20000.00us D:21697.65us [bw:0.92]", color=darkred, penwidth=3 ];
+      n_0_6 [ label="n0,6 C:60000.00us D:64233.09us [bw:0.93]", color=darkred, penwidth=3 ];
+    }
+    subgraph cluster_pu_3 {
+      label="PU 3 [U:0.93]";
+      bgcolor=gray93;
+      n_0_3 [ label="n0,3 C:40000.00us D:43158.85us [bw:0.93]", color=darkred, penwidth=3 ];
+      n_0_4 [ label="n0,4 C:30000.00us D:32625.11us [bw:0.92]", color=darkred, penwidth=3 ];
+    }
+  }
+  subgraph cluster_island_1 {
+    label="Island 1 [freq:100.00Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.18]";
+      bgcolor=gray93;
+      n_0_1 [ label="n0,1 C:899.47us D:5018.17us [bw:0.18]", color=darkred, penwidth=3 ];
+    }
+  }
+  n_0_0 -> n_0_1
+  n_0_0 -> n_0_3
+  n_0_0 -> n_0_6
+  n_0_1 -> n_0_2
+  n_0_2 -> n_0_5
+  n_0_3 -> n_0_4
+  n_0_4 -> n_0_5
+  n_0_6 -> n_0_5
+  n_0_6 -> n_0_7
+  n_0_7 -> n_0_5
+}

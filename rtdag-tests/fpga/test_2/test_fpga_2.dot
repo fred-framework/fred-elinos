@@ -1,0 +1,40 @@
+digraph G {
+  rankdir=LR;
+  label="pow=3.044938"
+  subgraph cluster_island_0 {
+    label="Island 0 [freq:1199.00Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.85]";
+      bgcolor=gray93;
+      n_0_0 [ label="n0,0 C:20000.00us D:23787.02us [bw:0.84]", color=darkred, penwidth=3 ];
+      n_0_3 [ label="n0,3 C:40000.00us D:46986.33us [bw:0.85]", color=darkred, penwidth=3 ];
+      n_0_4 [ label="n0,4 C:20000.00us D:23787.02us [bw:0.84]", color=darkred, penwidth=3 ];
+    }
+    subgraph cluster_pu_1 {
+      label="PU 1 [U:0.00]";
+      bgcolor=gray93;
+    }
+    subgraph cluster_pu_2 {
+      label="PU 2 [U:0.00]";
+      bgcolor=gray93;
+    }
+    subgraph cluster_pu_3 {
+      label="PU 3 [U:0.87]";
+      bgcolor=gray93;
+      n_0_1 [ label="n0,1 C:40000.00us D:45920.44us [bw:0.87]", color=darkred, penwidth=3 ];
+    }
+  }
+  subgraph cluster_island_1 {
+    label="Island 1 [freq:100.00Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.41]";
+      bgcolor=gray93;
+      n_0_2 [ label="n0,2 C:1276.50us D:3101.23us [bw:0.41]", color=darkred, penwidth=3 ];
+    }
+  }
+  n_0_0 -> n_0_1
+  n_0_0 -> n_0_3
+  n_0_1 -> n_0_2
+  n_0_2 -> n_0_4
+  n_0_3 -> n_0_4
+}
