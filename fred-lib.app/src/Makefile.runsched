@@ -38,8 +38,8 @@ build: configure
 configure:
 	cmake -S $(DIR_SOURCE) -B $(DIR_BUILD) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-		-DCMAKE_INSTALL_PREFIX=$(DIR_INSTALL) \
-		-DCPM_libfred_SOURCE=$(DIR_FRED_LIB)
+		-DCMAKE_INSTALL_PREFIX=$(DIR_INSTALL)
+
 
 clean:
 	rm -rf $(DIR_BUILD)
