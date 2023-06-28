@@ -176,7 +176,11 @@ def generate_rtdag(dag, dag_id, dag_name, sol_data, iterations, hyperperiod):
                 t_type = 'cpu'
 
             if t_type == 'fred':
-                f_id = FRED_IDS[int(task['wcet'])] # in ns
+                try:
+                    f_id = FRED_IDS[int(task['wcet'])] # in ns
+                except:
+                    # Key not found, assign id 102, which is the worst one
+                    f_id = 102
             else:
                 f_id = -1
 

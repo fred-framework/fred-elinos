@@ -1,0 +1,65 @@
+tool_name: "dag.c"
+platform_filename: ""
+platform_name: "zcu102-mat64-128-hf"
+dag_filename: "test_fpga_1_slack.lp"
+execution_time_us: 61795
+cpu_load: 2.108333
+n_dags: 1
+power: 3.124457
+islands:
+    - capacity: 1.000000
+      frequency: 1199
+      tasks: [
+                [0,0],
+                [0,2],
+                [0,3],
+                [0,4],
+                [0,5],
+                [0,6],
+             ]
+      pus: 
+            - [
+                 [0.950000,0,0],
+                 [0.950000,0,4],
+                 [0.950000,0,5],
+              ]
+            - [
+                 [0.950000,0,6],
+              ]
+            - [
+                 [0.950000,0,3],
+              ]
+            - [
+                 [0.690958,0,2],
+              ]
+    - capacity: 1.330000
+      frequency: 100
+      tasks: [
+                [0,1],
+             ]
+      pus: 
+            - [
+                 [0.390645,0,1],
+              ]
+tasks:
+    - id: [0,0]
+      deadline: 21305263.588036
+      wcet: 20240000.000000
+    - id: [0,1]
+      deadline: 11519410.496073
+      wcet: 4500000.000000
+    - id: [0,2]
+      deadline: 43938988.431483
+      wcet: 30360000.000000
+    - id: [0,3]
+      deadline: 42610526.315789
+      wcet: 40480000.000000
+    - id: [0,4]
+      deadline: 31957894.736842
+      wcet: 30360000.000000
+    - id: [0,5]
+      deadline: 21305263.588036
+      wcet: 20240000.000000
+    - id: [0,6]
+      deadline: 74568421.052631
+      wcet: 70840000.000000

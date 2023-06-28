@@ -1,0 +1,113 @@
+digraph G {
+  rankdir=LR;
+  label="Power=1.660964W"
+  subgraph cluster_island_0 {
+    label="CPU (island 0) [freq:1190.40Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.92]";
+      bgcolor=gray93;
+      subgraph cluster_omp_wt_pu_0_env_0 {
+        label="OpenMP env 0 -> runtime: 2481.61us period: 2710.12us";
+        bgcolor=lightskyblue2;
+      n_2_7 [ label="n2,7 C:196.14us \n D:2710.12us [bw:0.07]", color=darkblue, penwidth=3 ];
+      n_2_8 [ label="n2,8 C:183.53us \n D:2710.12us [bw:0.07]", color=darkblue, penwidth=3 ];
+      n_2_11 [ label="n2,11 C:164.26us \n D:2710.12us [bw:0.06]", color=darkblue, penwidth=3 ];
+      n_2_12 [ label="n2,12 C:168.17us \n D:2710.12us [bw:0.06]", color=darkblue, penwidth=3 ];
+      n_2_14 [ label="n2,14 C:166.28us \n D:2710.12us [bw:0.06]", color=darkblue, penwidth=3 ];
+      }
+    }
+    subgraph cluster_pu_1 {
+      label="PU 1 [U:0.00]";
+      bgcolor=gray93;
+      subgraph cluster_omp_wt_pu_1_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 39.06us";
+        bgcolor=lightskyblue2;
+      }
+    }
+    subgraph cluster_pu_2 {
+      label="PU 2 [U:0.95]";
+      bgcolor=gray93;
+      n_2_0 [ label="n2,0 C:5820.80us \n D:6127.16us [bw:0.95]", color=darkblue, penwidth=3 ];
+      n_2_2 [ label="n2,2 C:1222.93us \n D:1287.29us [bw:0.95]", color=darkblue, penwidth=3 ];
+      n_2_4 [ label="n2,4 C:8452.47us \n D:8897.34us [bw:0.95]", color=darkblue, penwidth=3 ];
+      subgraph cluster_omp_wt_pu_2_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 10000.00us";
+        bgcolor=lightskyblue2;
+      }
+    }
+    subgraph cluster_pu_3 {
+      label="PU 3 [U:0.95]";
+      bgcolor=gray93;
+      n_1_0 [ label="n1,0 C:3251.63us \n D:3422.77us [bw:0.95]", color=darkgreen, penwidth=3 ];
+      subgraph cluster_omp_wt_pu_3_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 10000.00us";
+        bgcolor=lightskyblue2;
+      }
+    }
+    subgraph cluster_pu_4 {
+      label="PU 4 [U:0.00]";
+      bgcolor=gray93;
+      subgraph cluster_omp_wt_pu_4_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 10000.00us";
+        bgcolor=lightskyblue2;
+      }
+    }
+    subgraph cluster_pu_5 {
+      label="PU 5 [U:0.74]";
+      bgcolor=gray93;
+      subgraph cluster_omp_wt_pu_5_env_0 {
+        label="OpenMP env 0 -> runtime: 221.16us period: 298.13us";
+        bgcolor=lightskyblue2;
+      n_2_6 [ label="n2,6 C:177.70us \n D:298.88us [bw:0.59]", color=darkblue, penwidth=3 ];
+      n_2_9 [ label="n2,9 C:163.50us \n D:298.13us [bw:0.55]", color=darkblue, penwidth=3 ];
+      n_2_13 [ label="n2,13 C:221.16us \n D:298.13us [bw:0.74]", color=darkblue, penwidth=3 ];
+      }
+    }
+    subgraph cluster_pu_6 {
+      label="PU 6 [U:0.07]";
+      bgcolor=gray93;
+      n_0_0 [ label="n0,0 C:131.62us \n D:1887.82us [bw:0.07]", color=darkred, penwidth=3 ];
+      subgraph cluster_omp_wt_pu_6_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 10000.00us";
+        bgcolor=lightskyblue2;
+      }
+    }
+    subgraph cluster_pu_7 {
+      label="PU 7 [U:0.86]";
+      bgcolor=gray93;
+      subgraph cluster_omp_wt_pu_7_env_0 {
+        label="OpenMP env 0 -> runtime: 263.47us period: 305.88us";
+        bgcolor=lightskyblue2;
+      n_2_5 [ label="n2,5 C:234.35us \n D:305.88us [bw:0.77]", color=darkblue, penwidth=3 ];
+      n_2_10 [ label="n2,10 C:263.47us \n D:305.88us [bw:0.86]", color=darkblue, penwidth=3 ];
+      }
+    }
+  }
+  subgraph cluster_island_1 {
+    label="GPU (island 1) [freq:624.75Hz]";
+    subgraph cluster_pu_0 {
+      label="PU 0 [U:0.94]";
+      bgcolor=gray93;
+      n_2_1 [ label="n2,1 C:1767.64us \n D:9671.54us [bw:0.18]", color=darkblue, penwidth=3 ];
+      n_2_3 [ label="n2,3 C:3907.46us \n D:4136.97us [bw:0.94]", color=darkblue, penwidth=3 ];
+      subgraph cluster_omp_wt_pu_0_env_0 {
+        label="OpenMP env 0 -> runtime: 0.00us period: 0.00us";
+        bgcolor=lightskyblue2;
+      }
+    }
+  }
+  n_2_0 -> n_2_1
+  n_2_1 -> n_2_2
+  n_2_2 -> n_2_3
+  n_2_3 -> n_2_4
+  n_2_4 -> n_2_5
+  n_2_5 -> n_2_6
+  n_2_6 -> n_2_7
+  n_2_7 -> n_2_8
+  n_2_8 -> n_2_9
+  n_2_9 -> n_2_10
+  n_2_10 -> n_2_11
+  n_2_11 -> n_2_12
+  n_2_12 -> n_2_13
+  n_2_13 -> n_2_14
+}

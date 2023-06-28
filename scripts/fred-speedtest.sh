@@ -11,6 +11,11 @@ function main() {
     #
     # PREFIX=./usr/bin/
 
+    # not empty
+    if [ -n "$PREFIX" ] ; then
+        PREFIX="$(realpath "$PREFIX")/"
+    fi
+
     FRED_SERVER=fred-server
     FST=fredspeedtest
     RUNSCHED=runsched

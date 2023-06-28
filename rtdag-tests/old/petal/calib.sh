@@ -1,0 +1,5 @@
+export TICKS_PER_US='3.86238'
+export TICKS_PER_US='3.86032'
+export TICKS_PER_US='3.86148'
+export TICKS_PER_US='3.86061'
+export TICKS_PER_US='3.85991'

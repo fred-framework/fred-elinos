@@ -11,7 +11,7 @@ timespec operator-(const timespec &time1, const timespec &time0) {
     timespec diff = {.tv_sec = time1.tv_sec - time0.tv_sec,
                      .tv_nsec = time1.tv_nsec - time0.tv_nsec};
     if (diff.tv_nsec < 0) {
-        diff.tv_nsec += 1000000000; // nsec/sec
+        diff.tv_nsec += 1'000'000'000; // nsec/sec
         diff.tv_sec--;
     }
     return diff;

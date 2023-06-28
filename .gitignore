@@ -118,3 +118,4 @@ dkms.conf
 *.bkp
 ELINOS.sh
 PikeOS.sh
+.vscode
