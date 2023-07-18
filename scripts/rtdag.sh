@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function main() {
-    export TICKS_PER_US=3.82
+    export TICKS_PER_US=1.218
     echo -1 | tee /proc/sys/kernel/sched_rt_runtime_us
 
     # Export PREFIX to override the version of rtdag to use
