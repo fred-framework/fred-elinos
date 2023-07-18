@@ -1,0 +1,29 @@
+// First naive implementation
+
+void kernel naive_matrix_mul(const int MATRIX_SIZE,
+    const global float *A, const global float *B, global float *C) {
+    // Thread identifiers will give us output element ID of C
+    const int idx = get_global_id(0);
+    const int row = idx % MATRIX_SIZE;
+    const int col = idx / MATRIX_SIZE;
+
+    // Perform matrix multiplication by iterating over elements to be
+    // multiplied
+    float acc = 0.0f;
+    for (int i = 0; i < MATRIX_SIZE; ++i) {
+        acc += A[i * MATRIX_SIZE + row] * B[col * MATRIX_SIZE + i];
+    }
+
+    // Store the result
+    C[row * MATRIX_SIZE + col] = acc;
+}
+
+void kernel repeated_naive_matrix_mul(const int MATRIX_SIZE,
+                                      const global float *A,
+                                      const global float *B, global float *C,
+                                      int repeat) {
+    // Repeat multiple times to hopefully elongate computation time
+    for (int r = 0; r < repeat; ++r) {
+        naive_matrix_mul(MATRIX_SIZE, A, B, C);
+    }
+}

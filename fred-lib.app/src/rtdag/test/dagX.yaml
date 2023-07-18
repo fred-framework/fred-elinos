@@ -1,0 +1,26 @@
+dag_name: dagX
+n_tasks: 1
+n_edges: 0
+n_cpus: 8
+max_out_edges: 0
+max_in_edges: 0
+max_msg_len: 0
+repetitions: 10
+hyperperiod: 33000
+dag_period: 33000
+dag_deadline: 33000
+tasks_name:          [n003]
+tasks_matrix_size:   [512 ]
+tasks_omp_target:    [0   ]
+tasks_ticks_per_us:  [1   ]
+tasks_prio:          [0   ]
+tasks_type:          [cpu ]
+tasks_wcet:          [1   ]
+tasks_runtime:       [4464]
+tasks_rel_deadline:  [4850]
+tasks_affinity:      [1   ]
+fred_id:             [-1, ]
+cpus_freq:           [1190, 1190, 1190, 1190, 1190, 1190, 1190, 1190]
+expected_wcet_ratio: 0.95
+adjacency_matrix:
+  - [0]

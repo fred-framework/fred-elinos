@@ -1,0 +1,13 @@
+get_filename_component(LIBFRED_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+list(APPEND CMAKE_MODULE_PATH ${LIBFRED_CMAKE_DIR})
+
+# In case we have some dependencies...
+# include(CMakeFindDependencyMacro)
+# find_dependency(Boost @MIN_BOOST_VERSION@ REQUIRED)
+
+if(NOT TARGET FredFramework::libfred_shared)
+    include("${LIBFRED_CMAKE_DIR}/libfredTargets.cmake")
+endif()
+
+# set(LIBFRED_lIBRARIES FredFramework::libfred)
